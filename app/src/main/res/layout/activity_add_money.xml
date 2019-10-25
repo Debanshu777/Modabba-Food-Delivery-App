@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+    <Toolbar
+        android:background="@color/colorAccent"
+        android:id="@+id/money_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/b1"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                android:tint="@color/white"
+                android:layout_marginTop="16dp"
+                android:layout_alignParentStart="true"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/opensans_regular"
+                android:text="Add Modabba Cash"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </Toolbar>
+    <RelativeLayout
+        android:layout_below="@id/money_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/rupee"
+            android:layout_toLeftOf="@+id/amount"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:id="@+id/amount"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:textSize="60dp"
+            android:textColor="@color/black"
+            android:hint="0"
+            android:background="@null"
+            android:maxLength="4"
+            android:layout_centerInParent="true"
+            android:textColorHint="@color/grey"/>
+        <TextView
+            android:id="@+id/minimum_indicator"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:text="Minimum amount is Rs.50"
+            android:layout_below="@id/amount"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/done"
+        android:visibility="gone"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_done_black_24dp"
+        android:layout_margin="30dp"
+        app:maxImageSize="35dp"
+        app:rippleColor="@color/colorAccent"
+        android:layout_width="wrap_content"
+        app:elevation="5dp"
+        android:layout_height="wrap_content">
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+</RelativeLayout>

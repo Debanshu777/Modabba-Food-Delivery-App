@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center|top">
+
+    <ImageView
+        android:id="@+id/iv_line"
+        android:layout_gravity="start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/avd_line" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:paddingLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/otpimg" />
+
+    <TextView
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:fontFamily="@font/open_sans_light"
+        android:textAlignment="center"
+        android:layout_gravity="left"
+        android:text="Enter OTP"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:layout_gravity="left"
+        android:fontFamily="@font/open_sans_light"
+        android:textAlignment="center"
+        android:text="We have sent you an OTP for mobile verification"/>
+    <TextView
+        android:id="@+id/verification_number"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/open_sans_light"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"/>
+   <in.aabhasjindal.otptextview.OtpTextView
+       android:id="@+id/otp_view"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="20dp"
+       app:width="40dp"
+       app:bar_error_color="@color/red"
+       app:bar_success_color="#4CAF50"
+       app:bar_height="3dp"
+       app:bar_enabled="true"
+       app:length="6"/>
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="150dp"
+        app:backgroundTint="@color/white"
+        android:layout_marginTop="36dp"
+        android:text="next"
+
+        android:id="@+id/submit"
+        android:elevation="3dp"
+        app:strokeColor="@color/materialBlueGrey200"
+        android:textAllCaps="true"
+        android:layout_gravity="center"
+        app:cornerRadius="8dp"
+        android:textSize="21dp"
+        android:textColor="@color/black"
+        android:letterSpacing="0.5"
+        android:layout_height="60dp" />
+
+    <TextView
+        android:id="@+id/resend_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Resend OTP?"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:textColor="#1E88E5"/>
+
+</LinearLayout>

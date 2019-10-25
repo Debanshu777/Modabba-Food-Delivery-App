@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_margin="16dp"
+        android:translationZ="100dp"
+        android:src="@drawable/ic_arrow_back_black_24dp"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:background="@color/white"
+        android:weightSum="6"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+      <FrameLayout
+          android:layout_weight="2.5"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+          <fragment
+              android:id="@+id/map"
+              android:name="com.google.android.gms.maps.SupportMapFragment"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" />
+          <ImageView
+              android:layout_centerInParent="true"
+              android:layout_above="@id/pin"
+              android:src="@drawable/map"
+              android:layout_gravity="center"
+              android:id="@+id/text3"
+              android:layout_marginBottom="43dp"
+              android:layout_marginRight="3dp"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+          <ImageView
+              android:id="@+id/pin"
+              android:layout_gravity="center"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_centerInParent="true"
+              android:translationY="-15dp"
+              android:src="@drawable/ic_pin"/>
+
+      </FrameLayout>
+        <ImageView
+            android:id="@+id/iv_line"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/colorAccent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/avd_line" />
+
+        <ScrollView
+            android:layout_weight="3.5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Set Delivery Location"
+                    android:layout_margin="5dp"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/open_sans_light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:hint="Location"
+                    app:hintAnimationEnabled="true"
+                    app:boxBackgroundMode="outline"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/maps_details_address"
+                        android:layout_width="match_parent"
+                        android:maxLines="1"
+                        android:textSize="14dp"
+                        android:layout_height="wrap_content"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="match_parent"
+                    android:hint="Landmark"
+                    app:hintAnimationEnabled="true"
+                    app:boxBackgroundMode="outline"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/landmark"
+                        android:layout_width="match_parent"
+                        android:maxLines="1"
+                        android:textSize="14dp"
+                        android:layout_height="wrap_content"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    app:singleSelection="true"
+                    app:chipSpacing="16dp"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/home"
+                        app:chipStartPadding="10dp"
+                        app:chipEndPadding="10dp"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipStrokeColor="@color/black"
+                        app:chipStrokeWidth="0.5dp"
+                        android:layout_width="wrap_content"
+                        android:text="Home"
+                        app:checkedIconEnabled="false"
+                        android:checkable="true"
+                        app:checkedIconVisible="true"
+                        app:chipIconEnabled="false"
+                        app:checkedIcon="@drawable/ic_check_circle_black_24dp"
+                        android:layout_height="wrap_content"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/work"
+                        app:chipStartPadding="10dp"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipStrokeColor="@color/black"
+                        app:chipStrokeWidth="0.5dp"
+                        app:chipEndPadding="10dp"
+                        app:checkedIconEnabled="false"
+                        android:layout_width="wrap_content"
+                        android:text="Work"
+                        app:checkedIconVisible="true"
+                        android:checkable="true"
+                        app:checkedIcon="@drawable/ic_check_circle_black_24dp"
+                        android:layout_height="wrap_content"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/other"
+                        app:chipStartPadding="10dp"
+                        app:chipEndPadding="10dp"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipStrokeColor="@color/black"
+                        app:checkedIconVisible="true"
+                        app:chipStrokeWidth="0.5dp"
+                        android:checkable="true"
+                        app:chipIconEnabled="false"
+                        android:text="Other"
+                        app:checkedIcon="@drawable/ic_check_circle_black_24dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/save"
+                    android:layout_width="match_parent"
+                    android:text="Save and Proceed"
+                    app:cornerRadius="7dp"
+                    android:layout_marginLeft="16dp"
+                    android:enabled="false"
+                    android:layout_marginRight="16dp"
+                    android:backgroundTint="@color/materialBlueGrey200"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>

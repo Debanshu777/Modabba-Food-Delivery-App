@@ -1,0 +1,133 @@
+{
+  "project_info": {
+    "project_number": "798286909890",
+    "firebase_url": "https://modabba-53905.firebaseio.com",
+    "project_id": "modabba-53905",
+    "storage_bucket": "modabba-53905.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:798286909890:android:870116ab7a27c322",
+        "android_client_info": {
+          "package_name": "com.example.modabba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "798286909890-h6iv5ibmkd9ltrk5hqqan9fct5qa0b9r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.modabba",
+            "certificate_hash": "e738c2289f9868aef431ef56b65c30a372130036"
+          }
+        },
+        {
+          "client_id": "798286909890-kras33b7ehvpa3ibd255gh4f9pvmailo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.modabba",
+            "certificate_hash": "588a01e785096575d1c94580124705b06af0ff41"
+          }
+        },
+        {
+          "client_id": "798286909890-67unoogig62bsoo1eao49t4ekv28oo1g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.modabba",
+            "certificate_hash": "9207936537f7f272f8ee79e36ba1c6f5cfb8bb14"
+          }
+        },
+        {
+          "client_id": "798286909890-oa2nie654o30q23rg89mbsauc336o2sb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.modabba",
+            "certificate_hash": "c9ae7e9684f9e19c986026a3820032f3cfe117d7"
+          }
+        },
+        {
+          "client_id": "798286909890-25j99j4e0je43tjm8vdscbca04n8v84j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.modabba",
+            "certificate_hash": "14f49dc06dea5f576c5e93d3b1f1d73222109ad3"
+          }
+        },
+        {
+          "client_id": "798286909890-jcfhc907fs7v1km3hbglvo6gr1ooie80.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.modabba",
+            "certificate_hash": "bc40b80b4645afbcbc1f4d76a20bbe6d92cfb67a"
+          }
+        },
+        {
+          "client_id": "798286909890-59q9li2un2ln2jrh0fki754dudrs9jgs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB28Jqni98uDuJtrayFVnWuZ3fzjBD5mzo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "798286909890-59q9li2un2ln2jrh0fki754dudrs9jgs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:798286909890:android:654da9d562ebf16559465b",
+        "android_client_info": {
+          "package_name": "com.example.modabbafinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "798286909890-fkvl63na14udrpp6pf7d02qkcfjm6bnu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.modabbafinal",
+            "certificate_hash": "e738c2289f9868aef431ef56b65c30a372130036"
+          }
+        },
+        {
+          "client_id": "798286909890-9uhhqcfd7ac57k71p78b3pfag9186smi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.modabbafinal",
+            "certificate_hash": "c9ae7e9684f9e19c986026a3820032f3cfe117d7"
+          }
+        },
+        {
+          "client_id": "798286909890-59q9li2un2ln2jrh0fki754dudrs9jgs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB28Jqni98uDuJtrayFVnWuZ3fzjBD5mzo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "798286909890-59q9li2un2ln2jrh0fki754dudrs9jgs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

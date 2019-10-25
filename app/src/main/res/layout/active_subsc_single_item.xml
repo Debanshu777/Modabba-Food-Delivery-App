@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="3dp"
+        android:layout_margin="16dp"
+        android:layout_height="200dp">
+
+        <RelativeLayout
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/purchaseDate"
+                android:layout_width="wrap_content"
+                tools:text = "21 Mar 2019"
+                android:textSize="16dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/planType"
+                android:layout_width="wrap_content"
+                tools:text="Lunch"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/foodType"
+                android:layout_width="wrap_content"
+                tools:text="Veg"
+                android:layout_below="@id/planType"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/planDays"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                tools:text="30Days"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/startDate"
+                android:layout_width="wrap_content"
+                android:layout_alignParentBottom="true"
+                tools:text="21 Mar 4891"
+                android:layout_height="wrap_content"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/changeStartDate"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:text="change" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                tools:text="Ative"
+                android:layout_centerInParent="true"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_margin="16dp"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Edit Account"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Username"
+            android:textAllCaps="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="12dp"
+            android:textColor="@color/materialPrimaryDarkGrey"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/edit_profile_username"
+            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:inputType="text"
+            android:maxLines="1"
+            android:backgroundTint="@color/black"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Phone Number"
+            android:textAllCaps="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="12dp"
+            android:textColor="@color/materialPrimaryDarkGrey"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/edit_profile_number"
+            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:maxLength="10"
+            android:inputType="number"
+            android:maxLines="1"
+            android:backgroundTint="@color/black"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Email Address"
+            android:textAllCaps="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="12dp"
+            android:textColor="@color/materialPrimaryDarkGrey"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/edit_profile_email"
+            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:backgroundTint="@color/black"
+            android:layout_height="wrap_content" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/edit_profile_update_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="update"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:textSize="15dp"
+            android:background="@color/colorAccent"
+            android:textAllCaps="true"/>
+    </LinearLayout>
+</LinearLayout>
