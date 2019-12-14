@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:background="@color/white"
+<LinearLayout android:background="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <LinearLayout
+    <LinearLayout
             android:background="@color/white"
+            android:paddingTop="10dp"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center">
@@ -14,8 +18,8 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/profile_image"
-                android:layout_width="60dp"
-                android:layout_height="70dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_margin="10dp"
                 android:src="@drawable/ic_account_circle_black_24dp"
                 />
@@ -38,11 +42,12 @@
                         android:text="Shivam Agrawal"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/editProfile"
+                        android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="27dp"
                         android:layout_alignParentRight="true"
@@ -52,7 +57,7 @@
                         android:text="Edit"
                         android:textAllCaps="true"
                         android:textColor="#F45C45"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -66,10 +71,11 @@
                         android:id="@+id/number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:layout_marginRight="5dp"
                         android:fontFamily="@font/open_sans_light"
                         android:text="7415372795"
-                        android:textSize="11sp"
+                        android:textSize="10sp"
                         android:textColor="@color/materialPrimaryDarkGrey" />
 
                     <TextView
@@ -79,11 +85,12 @@
                         android:textColor="@color/materialPrimaryDarkGrey" />
 
                     <TextView
+                        android:gravity="center"
                         android:id="@+id/email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:textSize="11sp"
+                        android:textSize="10sp"
                         android:fontFamily="@font/open_sans_light"
                         android:text="shivamagrawal655@gmail.com"
                         android:textColor="@color/materialPrimaryDarkGrey" />
@@ -93,13 +100,15 @@
 
         </LinearLayout>
 
-        <View
+    <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginTop="1dp"
             android:background="@color/grey" />
     <ScrollView
         android:layout_width="match_parent"
+        android:paddingLeft="3dp"
+        android:paddingRight="7dp"
         android:layout_height="match_parent">
 
         <LinearLayout
@@ -210,7 +219,6 @@
                         android:textSize="16sp" />
                 </RelativeLayout>
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/active_subscription"
                 android:layout_width="match_parent"
@@ -282,7 +290,6 @@
 
                 </RelativeLayout>
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/leave_feedback"
                 android:layout_width="match_parent"
@@ -318,7 +325,6 @@
 
                 </RelativeLayout>
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/share_app"
                 android:layout_width="match_parent"
@@ -354,7 +360,6 @@
 
                 </RelativeLayout>
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/contact_us"
                 android:layout_width="match_parent"
@@ -389,14 +394,13 @@
 
                 </RelativeLayout>
             </LinearLayout>
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
-                android:background="#F45C45"
+                app:backgroundTint="@color/colorPrimary"
                 android:elevation="3dp"
                 android:text="Logout"
                 android:textAllCaps="true"
@@ -404,6 +408,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_margin="20dp">
                 <ImageView
                     android:layout_width="15dp"

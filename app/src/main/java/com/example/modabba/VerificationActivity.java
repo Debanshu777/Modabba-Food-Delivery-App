@@ -184,11 +184,11 @@ public class VerificationActivity extends AppCompatActivity {
                                     Map<String, Object> secondaryNumber = new HashMap<>();
                                     secondaryNumber.put("alternateNumber",number);
 
-                                    db.collection("user/")
-                                            .document(getIntent().getStringExtra("documentId"))
-                                            .set(secondaryNumber, SetOptions.merge());
+                                        db.collection("user/")
+                                                .document(getIntent().getStringExtra("documentId"))
+                                              .set(secondaryNumber, SetOptions.merge());
 
-                                    sessionManagement.changeNumber(number);
+                                       sessionManagement.changeNumber(number);
 
                                     finish();
                                 }

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/colorPrimary"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="3">
@@ -9,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:padding="10dp"
-        android:background="@color/colorPrimary">
+        app:elevation="0dp"
+        android:background="@color/colorPrimary"
+        >
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -17,17 +20,14 @@
                 android:layout_width="match_parent"
                 android:weightSum="2"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_arrow_back_black_24dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Subcription"
+                    android:text="Active Subcription"
                     android:layout_gravity="center"
                     android:textAlignment="inherit"
+                    android:textColor="@color/white"
                     android:textSize="25dp"
                     android:textStyle="bold" />
                 <LinearLayout
@@ -61,6 +61,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:text="Rs 0"
                         android:textAlignment="center"
                         android:textSize="15dp" />
 
@@ -69,7 +70,17 @@
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
-    <TextView
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/button_background"
+        android:layout_height="match_parent">
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Choose a Plan?"
@@ -78,162 +89,152 @@
         android:layout_weight="1"
         android:textAlignment="center"
         />
-    <LinearLayout
-        android:padding="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="3"
-        android:orientation="horizontal"
-        android:layout_weight="1">
-
-        <com.google.android.material.chip.ChipGroup
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <com.google.android.material.chip.ChipGroup
+            android:layout_width="match_parent"
             android:id="@+id/plan_group"
             app:chipSpacing="16dp"
             app:singleSelection="true"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="150dp"
+                    app:cardElevation="7dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    app:cardCornerRadius="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:background="@color/colorPrimary"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="7 Days"
+                            android:fontFamily="@font/opensans_regular"
+                            android:layout_centerInParent="true"
+                            android:textSize="18dp"
+                            android:gravity="center"
+                            android:id="@+id/lo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/p1"
+                            android:layout_marginTop="20dp"
+                            android:layout_below="@id/lo"
+                            app:chipBackgroundColor="#EEECEC"
+                            app:chipStrokeColor="@color/black"
+                            app:chipStrokeWidth="0.5dp"
+                            android:text="Rs.70/each"
+                            android:textAlignment="center"
+                            app:checkedIconEnabled="false"
+                            android:checkable="true"
+                            app:checkedIconVisible="true"
+                            app:chipIconEnabled="false"
+                            app:checkedIcon="@drawable/ic_check_circle_black_24dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </RelativeLayout>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/p1"
-                app:chipBackgroundColor="@color/white"
-                app:chipStrokeColor="@color/black"
-                app:chipStrokeWidth="0.5dp"
-                android:text="7 Days | Rs.70/each"
-                app:checkedIconEnabled="false"
-                android:checkable="true"
-                app:checkedIconVisible="true"
-                app:chipIconEnabled="false"
-                app:checkedIcon="@drawable/ic_check_circle_black_24dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <com.google.android.material.chip.Chip
-                android:id="@+id/p2"
-                app:chipStartPadding="10dp"
-                app:chipEndPadding="10dp"
-                app:chipBackgroundColor="@color/white"
-                app:chipStrokeColor="@color/black"
-                app:chipStrokeWidth="0.5dp"
-                android:text="14 Days | Rs.60/each"
-                app:checkedIconEnabled="false"
-                android:checkable="true"
-                app:checkedIconVisible="true"
-                app:chipIconEnabled="false"
-                app:checkedIcon="@drawable/ic_check_circle_black_24dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <com.google.android.material.chip.Chip
-                android:id="@+id/p3"
-                app:chipStartPadding="10dp"
-                app:chipEndPadding="10dp"
-                app:chipBackgroundColor="@color/white"
-                app:chipStrokeColor="@color/black"
-                app:chipStrokeWidth="0.5dp"
-                android:text="30 Days | Rs.50/each"
-                app:checkedIconEnabled="false"
-                android:checkable="true"
-                app:checkedIconVisible="true"
-                app:chipIconEnabled="false"
-                app:checkedIcon="@drawable/ic_check_circle_black_24dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+        </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="150dp"
+                    app:cardElevation="14dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    app:cardCornerRadius="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:background="@color/colorPrimary"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="14 Days"
+                            android:fontFamily="@font/opensans_regular"
+                            android:layout_centerInParent="true"
+                            android:textSize="18dp"
+                            android:gravity="center"
+                            android:id="@+id/la"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/p2"
+                            android:layout_marginTop="20dp"
+                            android:layout_below="@id/la"
+                            app:chipBackgroundColor="#EEECEC"
+                            app:chipStrokeColor="@color/black"
+                            app:chipStrokeWidth="0.5dp"
+                            android:text="Rs.60/each"
+                            android:textAlignment="center"
+                            app:checkedIconEnabled="false"
+                            android:checkable="true"
+                            app:checkedIconVisible="true"
+                            app:chipIconEnabled="false"
+                            app:checkedIcon="@drawable/ic_check_circle_black_24dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="150dp"
+                    app:cardElevation="7dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    app:cardCornerRadius="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:background="@color/colorPrimary"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="30 Days"
+                            android:fontFamily="@font/opensans_regular"
+                            android:layout_centerInParent="true"
+                            android:textSize="18dp"
+                            android:gravity="center"
+                            android:id="@+id/le"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/p3"
+                            android:layout_marginTop="20dp"
+                            android:layout_below="@id/le"
+                            app:chipBackgroundColor="#EEECEC"
+                            app:chipStrokeColor="@color/black"
+                            app:chipStrokeWidth="0.5dp"
+                            android:text="Rs.50/each"
+                            android:textAlignment="center"
+                            app:checkedIconEnabled="false"
+                            android:checkable="true"
+                            app:checkedIconVisible="true"
+                            app:chipIconEnabled="false"
+                            app:checkedIcon="@drawable/ic_check_circle_black_24dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
         </com.google.android.material.chip.ChipGroup>
-
-<!--        <androidx.cardview.widget.CardView-->
-<!--            android:id="@+id/p1"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:layout_height="150dp"-->
-<!--            app:cardElevation="5dp"-->
-<!--            android:layout_marginRight="10dp"-->
-<!--            app:cardCornerRadius="10dp">-->
-
-<!--          <RelativeLayout-->
-<!--              android:layout_width="match_parent"-->
-<!--              android:layout_height="match_parent">-->
-
-<!--              <TextView-->
-<!--                  android:text="7 Days"-->
-<!--                  android:fontFamily="@font/opensans_regular"-->
-<!--                  android:layout_centerInParent="true"-->
-<!--                  android:textSize="18dp"-->
-<!--                  android:id="@+id/lo"-->
-<!--                  android:layout_width="wrap_content"-->
-<!--                  android:layout_height="wrap_content"/>-->
-<!--              <TextView-->
-<!--                  android:text="Rs.60/each"-->
-<!--                  android:fontFamily="@font/opensans_regular"-->
-<!--                  android:layout_below="@id/lo"-->
-<!--                  android:layout_centerInParent="true"-->
-<!--                  android:textSize="18dp"-->
-<!--                  android:layout_width="wrap_content"-->
-<!--                  android:layout_height="wrap_content"/>-->
-<!--          </RelativeLayout>-->
-
-<!--        </androidx.cardview.widget.CardView>-->
-<!--        <androidx.cardview.widget.CardView-->
-<!--            android:id="@+id/p2"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            app:cardCornerRadius="10dp"-->
-<!--            app:cardElevation="5dp"-->
-<!--            android:layout_marginRight="10dp"-->
-<!--            android:layout_height="150dp">-->
-<!--            <RelativeLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
-
-<!--                <TextView-->
-<!--                    android:text="14 Days"-->
-<!--                    android:fontFamily="@font/opensans_regular"-->
-<!--                    android:layout_centerInParent="true"-->
-<!--                    android:textSize="18dp"-->
-<!--                    android:id="@+id/ko"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"/>-->
-<!--                <TextView-->
-<!--                    android:text="Rs.50/each"-->
-<!--                    android:fontFamily="@font/opensans_regular"-->
-<!--                    android:layout_below="@id/ko"-->
-<!--                    android:layout_centerInParent="true"-->
-<!--                    android:textSize="18dp"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"/>-->
-<!--            </RelativeLayout>-->
-
-<!--        </androidx.cardview.widget.CardView>-->
-<!--        <androidx.cardview.widget.CardView-->
-<!--            android:id="@+id/p3"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            app:cardElevation="5dp"-->
-<!--            app:cardCornerRadius="10dp"-->
-<!--            android:layout_height="150dp"-->
-<!--            android:layout_marginRight="10dp"-->
-<!--            android:layout_weight="1">-->
-<!--            <RelativeLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
-
-<!--                <TextView-->
-<!--                    android:text="30 Days"-->
-<!--                    android:fontFamily="@font/opensans_regular"-->
-<!--                    android:layout_centerInParent="true"-->
-<!--                    android:textSize="18dp"-->
-<!--                    android:id="@+id/go"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"/>-->
-<!--                <TextView-->
-<!--                    android:text="Rs.40/each"-->
-<!--                    android:layout_below="@id/go"-->
-<!--                    android:fontFamily="@font/opensans_regular"-->
-<!--                    android:layout_centerInParent="true"-->
-<!--                    android:textSize="18dp"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"/>-->
-<!--            </RelativeLayout>-->
-<!--        </androidx.cardview.widget.CardView>-->
-    </LinearLayout>
-    <LinearLayout
+        </LinearLayout>
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center|top"
@@ -331,5 +332,7 @@
             android:layout_marginBottom="20dp"
             android:layout_gravity="right|end"/>
     </LinearLayout>
+    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

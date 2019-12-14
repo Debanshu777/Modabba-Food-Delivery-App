@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "798286909890-8d9plumimmvqdrirvrgmtv7sv0oh3bai.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.modabba",
+            "certificate_hash": "24dc74eef9cba8aadef338bdf9ba34afa452be9d"
+          }
+        },
+        {
+          "client_id": "798286909890-8vu4pfmvieghfhdk7poe2b7ie2u8brf3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.modabba",
+            "certificate_hash": "f5d2eca1f73329e9393eb9fab56f58330e4192c5"
+          }
+        },
+        {
           "client_id": "798286909890-h6iv5ibmkd9ltrk5hqqan9fct5qa0b9r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

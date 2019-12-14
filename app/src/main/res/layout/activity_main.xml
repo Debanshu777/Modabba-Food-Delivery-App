@@ -17,15 +17,15 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_height="60dp"
-        android:paddingTop="10dp"
+        android:layout_height="50dp"
+        android:paddingTop="7dp"
         android:id="@+id/bottom_nav"
         android:background="#ffffff"
         android:clickable="true"
         android:elevation="10dp"
         android:fadingEdge="vertical"
         app:itemIconTint="@color/color_selector"
-        app:itemIconSize="30dp"
+        app:itemIconSize="20dp"
         app:menu="@menu/menu"
         android:focusable="true">
 

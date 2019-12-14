@@ -1,0 +1,16 @@
+<com.diegodobelo.expandingview.ExpandingItem
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/expandable_layout"
+    app:animation_duration="250"
+    android:background="#F5F3F3"
+    app:indicator_margin_left="16dp"
+    app:indicator_margin_right="16dp"
+    app:indicator_size="42dp"
+    app:item_layout="@layout/expandable_list_item"
+    app:show_animation="true"
+    app:show_indicator="true"
+    app:start_collapsed="true"
+    app:sub_item_layout="@layout/expandable_list_subitem"/>
