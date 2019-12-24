@@ -13,7 +13,8 @@
             android:paddingRight="7dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:layout_margin="16dp">
 
 
 
@@ -22,8 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:orientation="vertical"
-                android:padding="10dp"
-                android:layout_margin="16dp">
+                android:padding="10dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -78,6 +78,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="|"
+                        android:fontFamily="@font/open_sans_light"
                         android:textColor="@color/materialPrimaryDarkGrey" />
 
                     <TextView
@@ -96,10 +97,12 @@
 
         </LinearLayout>
 
-    <View
+        <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_marginTop="1dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
             android:background="@color/grey" />
     <ScrollView
         android:layout_width="match_parent"
@@ -143,6 +146,7 @@
                         android:text="Manage Address"
                         android:textColor="@color/materialBlack"
                         android:textSize="16sp" />
+
                 </RelativeLayout>
             </LinearLayout>
             <LinearLayout
