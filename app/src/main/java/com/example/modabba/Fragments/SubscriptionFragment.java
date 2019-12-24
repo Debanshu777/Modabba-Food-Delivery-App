@@ -14,7 +14,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.modabba.ActiveSubcription;
+import com.example.modabba.ActiveSubcriptionAdapter;
 import com.example.modabba.CheckoutActivity;
 import com.example.modabba.R;
 import com.example.modabba.SessionManagement.SessionManagement;
@@ -23,6 +27,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SubscriptionFragment extends Fragment {
 
@@ -36,26 +43,39 @@ public class SubscriptionFragment extends Fragment {
     private ChipGroup group;
     private RadioGroup categoryGroup,mealCategory;
     private Button subscribe;
+    private RecyclerView recyclerView;
+    List<ActiveSubcription> subcriptionList;
+    public SubscriptionFragment(){}
     public SubscriptionFragment(Context context){
         this.context = context;
     }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        init();
+    //    init();
         View view = inflater.inflate(R.layout.fragment_subscription,container,false);
+        ActiveSubcriptionAdapter subcriptionAdapter=new ActiveSubcriptionAdapter(getContext(),subcriptionList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        recyclerView.setAdapter(subcriptionAdapter);
         return view;
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        recyclerView=view.findViewById(R.id.subscribtion_list);
+        subcriptionList=new ArrayList<>();
+        subcriptionList.add(new ActiveSubcription("#223434","7 Day Plan","11:12:2019","18:12:2019"));
+        subcriptionList.add(new ActiveSubcription("#222367","14 Day Plan","11:12:2019","25:12:2019"));
+        subcriptionList.add(new ActiveSubcription("#224289","30 Day Plan","11:12:2019","11:01:2020"));
 
-        initView(view);
+        //      initView(view);
         //setCredits();
     }
 
-    private void setCredits() {
+    /*private void setCredits() {
         db.collection("user").document(sessionManagement.getUserDocumentId())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -147,5 +167,5 @@ public class SubscriptionFragment extends Fragment {
 
 
     }
-
+*/
 }
