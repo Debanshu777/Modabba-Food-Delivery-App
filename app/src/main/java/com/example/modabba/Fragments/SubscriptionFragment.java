@@ -43,17 +43,20 @@ public class SubscriptionFragment extends Fragment {
     private ChipGroup group;
     private RadioGroup categoryGroup,mealCategory;
     private Button subscribe;
+
     private RecyclerView recyclerView;
     List<ActiveSubcription> subcriptionList;
+
     public SubscriptionFragment(){}
-    public SubscriptionFragment(Context context){
-        this.context = context;
-    }
+   // public SubscriptionFragment(Context context){
+    //    this.context = context;
+  //  }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     //    init();
         View view = inflater.inflate(R.layout.fragment_subscription,container,false);
+        recyclerView=view.findViewById(R.id.subscribtion_list);
         ActiveSubcriptionAdapter subcriptionAdapter=new ActiveSubcriptionAdapter(getContext(),subcriptionList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -63,9 +66,21 @@ public class SubscriptionFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        subcriptionList=new ArrayList<>();
+        subcriptionList.add(new ActiveSubcription("#223434","7 Day Plan","11:12:2019","18:12:2019"));
+        subcriptionList.add(new ActiveSubcription("#222367","14 Day Plan","11:12:2019","25:12:2019"));
+        subcriptionList.add(new ActiveSubcription("#224289","30 Day Plan","11:12:2019","11:01:2020"));
+        subcriptionList.add(new ActiveSubcription("#223434","7 Day Plan","11:12:2019","18:12:2019"));
+
+    }
+
+/*    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView=view.findViewById(R.id.subscribtion_list);
+
         subcriptionList=new ArrayList<>();
         subcriptionList.add(new ActiveSubcription("#223434","7 Day Plan","11:12:2019","18:12:2019"));
         subcriptionList.add(new ActiveSubcription("#222367","14 Day Plan","11:12:2019","25:12:2019"));
@@ -75,7 +90,7 @@ public class SubscriptionFragment extends Fragment {
         //      initView(view);
         //setCredits();
     }
-
+*/
     /*private void setCredits() {
         db.collection("user").document(sessionManagement.getUserDocumentId())
                 .get()
