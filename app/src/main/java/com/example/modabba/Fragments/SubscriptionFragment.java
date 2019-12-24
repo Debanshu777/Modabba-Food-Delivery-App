@@ -74,6 +74,7 @@ public class SubscriptionFragment extends Fragment {
         subcriptionList.add(new ActiveSubcription("#222367","14 Day Plan","11:12:2019","25:12:2019"));
         subcriptionList.add(new ActiveSubcription("#224289","30 Day Plan","11:12:2019","11:01:2020"));
         subcriptionList.add(new ActiveSubcription("#223434","7 Day Plan","11:12:2019","18:12:2019"));
+        subcriptionList.add(new ActiveSubcription("#223434","7 Day Plan","11:12:2019","18:12:2019"));
 
     }
 
