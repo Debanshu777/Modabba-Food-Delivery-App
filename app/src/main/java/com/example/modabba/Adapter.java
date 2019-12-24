@@ -11,17 +11,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.example.modabba.Fragments.DashboardFragment;
+
 import java.util.List;
 
 public class Adapter extends PagerAdapter {
 
     private List<Model> models;
     private LayoutInflater layoutInflater;
-    private Context context;
+    private DashboardFragment context;
+    private Context con;
 
-    public Adapter(List<Model> models, Context context) {
+    public Adapter(List<Model> models, DashboardFragment context,Context con) {
         this.models = models;
         this.context = context;
+        this.con= con;
     }
 
     @Override
@@ -37,7 +41,7 @@ public class Adapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
-        layoutInflater = LayoutInflater.from(context);
+        layoutInflater = LayoutInflater.from(con);
         View view = layoutInflater.inflate(R.layout.item, container, false);
 
         ImageView imageView;
@@ -54,9 +58,9 @@ public class Adapter extends PagerAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DetailActivity.class);
+                Intent intent = new Intent(con,DetailActivity.class);
                 intent.putExtra("param", models.get(position).getTitle());
-                context.startActivity(intent);
+                con.startActivity(intent);
                 // finish();
             }
         });

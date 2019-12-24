@@ -87,6 +87,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+        mapView = mapFragment.getView();
 
         callingActivity = getIntent().getIntExtra("callingActivity",0000);
 
@@ -105,9 +108,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         });
         avd.start();
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-        mapView = mapFragment.getView();
 
         chipGroup.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
             @Override

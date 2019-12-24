@@ -47,19 +47,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans"
+                        android:textStyle="bold"
                         android:text="#subcription id"
-                        android:textColor="@color/colorBlack">
-
+                        >
                     </TextView>
                 </LinearLayout>
 
                 <Button
                     android:id="@+id/more_btn"
-                    android:layout_width="150dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.30"
-                    android:background="@drawable/abtn_background"
+                    android:backgroundTint="@color/colorPrimary"
                     android:padding="5dp"
+                    android:fontFamily="@font/open_sans"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
                     android:text="Unsubcribe"
                     android:textColor="@color/white">
                 </Button>
@@ -84,7 +87,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_light"
-                        android:text="Plan"></TextView>
+                        android:text="Plan"/>
 
                     <TextView
                         android:id="@+id/plan_name"
@@ -93,7 +96,7 @@
                         android:fontFamily="@font/open_sans"
                         android:paddingTop="3dp"
                         android:text="7 day plan"
-                        android:textColor="@color/colorBlack"></TextView>
+                        android:textColor="@color/colorBlack"/>
 
                 </LinearLayout>
 
@@ -164,8 +167,9 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="2dp"
                     android:layout_marginBottom="5dp"
-                    android:background="@android:color/transparent"
+                    android:backgroundTint="@color/white"
                     android:text="skip meal"
+                    android:fontFamily="@font/open_sans"
                     android:textColor="@color/colorPrimary"></Button>
 
                 <Button
@@ -174,7 +178,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="2dp"
-                    android:background="@drawable/btn_background"
+                    android:fontFamily="@font/open_sans"
+                    android:backgroundTint="@color/white"
                     android:text="Modify"
                     android:textColor="@color/colorPrimary">
 

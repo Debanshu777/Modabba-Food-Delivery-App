@@ -100,7 +100,7 @@ public class VerificationActivity extends AppCompatActivity {
 
                 userDetails = (PassingData) getIntent().getParcelableExtra("object");
                 number = userDetails.getPhone();
-                
+
                 break;
             case ActivityConstants.MainActivity:
 
@@ -171,7 +171,7 @@ public class VerificationActivity extends AppCompatActivity {
                 //      1.1  YES, then return ERROR
                 //      1.2  NO, Create New User with Document ID = new_number, Document Data = old_number data
 
-                db.collection("user/")
+                db.collection("listOfUsers/")
                         .whereEqualTo("primaryNumber",number)
                         .get()
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -184,11 +184,11 @@ public class VerificationActivity extends AppCompatActivity {
                                     Map<String, Object> secondaryNumber = new HashMap<>();
                                     secondaryNumber.put("alternateNumber",number);
 
-                                        db.collection("user/")
-                                                .document(getIntent().getStringExtra("documentId"))
-                                              .set(secondaryNumber, SetOptions.merge());
+                                    db.collection("listOfUsers/")
+                                            .document(getIntent().getStringExtra("documentId"))
+                                            .set(secondaryNumber, SetOptions.merge());
 
-                                       sessionManagement.changeNumber(number);
+                                    sessionManagement.changeNumber(number);
 
                                     finish();
                                 }
@@ -205,7 +205,7 @@ public class VerificationActivity extends AppCompatActivity {
     public void isUserNumberIsPrimaryNumber(){
 
         Log.i(TAG,"checkUserPrimaryNumber "+ number);
-        db.collection("user")
+        db.collection("listOfUsers")
                 .whereEqualTo("primaryNumber",number)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -230,20 +230,6 @@ public class VerificationActivity extends AppCompatActivity {
                             sessionManagement.createLoginSession(number,email,username,documentId);
                             startActivity(new Intent(VerificationActivity.this, MainActivity.class)
                                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-
-//                            if(serviceable){    //if user location is in bhubaneswar
-//
-//                                Log.i(TAG,"Serviceable Location");
-//                                //create login session for the user
-//                                sessionManagement.createLoginSession(number,email,username,documentId);
-//                                startActivity(new Intent(VerificationActivity.this, MainActivity.class)
-//                                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-//                            }
-//                            else{
-//                                //then redirect it to Not Serviceable Layout
-////                                startActivity(new Intent(VerificationActivity.this, NotServiceableActivity.class)
-////                                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-//                            }
                         }
                         //If user does not exists
                         else {
@@ -281,7 +267,7 @@ public class VerificationActivity extends AppCompatActivity {
 
         @Override
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-          //  super.onCodeSent(s, forceResendingToken);
+            //  super.onCodeSent(s, forceResendingToken);
             verificationId = s;
         }
         @Override
@@ -315,7 +301,7 @@ public class VerificationActivity extends AppCompatActivity {
     public void isUserNumberIsAlternateNumber(){
 
         Log.i(TAG,"checkUserAlternateNumber" + number);
-        db.collection("user")
+        db.collection("listOfUsers/")
                 .whereEqualTo("alternateNumber",number)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -359,9 +345,6 @@ public class VerificationActivity extends AppCompatActivity {
     }
     private void showProgressDialog(String title,String Message){
 
-//        progressDialog.setTitle(title);
-//        progressDialog.setMessage(Message);
-//        progressDialog.show();
         progressHUD.setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setLabel("Please Wait")
                 .setCancellable(false)
