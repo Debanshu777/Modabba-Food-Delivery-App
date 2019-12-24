@@ -100,7 +100,7 @@ public class VerificationActivity extends AppCompatActivity {
 
                 userDetails = (PassingData) getIntent().getParcelableExtra("object");
                 number = userDetails.getPhone();
-
+                
                 break;
             case ActivityConstants.MainActivity:
 

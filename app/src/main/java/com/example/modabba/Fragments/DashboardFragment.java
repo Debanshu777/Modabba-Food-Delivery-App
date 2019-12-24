@@ -116,7 +116,7 @@ public class DashboardFragment extends Fragment {
 
             initView(view);
 
-            setCredits();
+            //setCredits();
         //menu
         //setTodaysMenu();
         tabLayout.addTab(tabLayout.newTab().setText("Veg"));

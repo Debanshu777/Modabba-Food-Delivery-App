@@ -12,7 +12,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class SignUpActivity extends AppCompatActivity {
-    private TextInputEditText username,useremail,userpass,userconfirm;
+    private TextInputEditText username,useremail,userpass,userconfirm,useraltphone;
     private MaterialButton next;
     private PassingData data;
 
@@ -42,6 +42,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                     data.setName(username.getText().toString());
                     data.setEmail(useremail.getText().toString());
+                    data.setAltphone(useraltphone.getText().toString());
                     data.setPassword(userconfirm.getText().toString());
 
 
@@ -58,6 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
         useremail  = findViewById(R.id.user_email);
         userpass = findViewById(R.id.user_password);
         userconfirm  = findViewById(R.id.user_confirm_password);
+        useraltphone=findViewById(R.id.altphone);
         next = findViewById(R.id.next);
     }
 }

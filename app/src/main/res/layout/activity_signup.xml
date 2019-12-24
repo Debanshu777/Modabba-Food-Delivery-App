@@ -126,6 +126,47 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
             </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_marginRight="8dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/ic_phone_black_24dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:hintEnabled="true"
+                    app:errorEnabled="true"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@color/colorPrimaryDark"
+                    android:textColorHint="#babdbe"
+                    app:hintAnimationEnabled="true"
+                    app:boxStrokeWidth="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:textSize="16dp"
+                        android:textColor="#000000"
+                        android:hint="Alternate Phone no"
+                        android:id="@+id/altphone"
+                        android:textColorHint="#babdbe"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </RelativeLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"

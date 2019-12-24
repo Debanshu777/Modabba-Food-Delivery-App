@@ -13,7 +13,6 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -58,7 +57,6 @@ import java.util.Map;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    ImageButton back;
     private ProgressDialog progressDialog;
     private GoogleMap mGoogleMap;
     private Geocoder geocoder;
@@ -89,17 +87,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+
         callingActivity = getIntent().getIntExtra("callingActivity",0000);
 
         init();
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MapActivity.this,SignUpActivity.class);
-                startActivity(intent);
-            }
-        });
         avd.registerAnimationCallback(new Animatable2.AnimationCallback() {
             @Override
             public void onAnimationEnd(Drawable drawable) {
@@ -112,7 +104,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         });
         avd.start();
-
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -147,7 +138,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         signUpUser();
                         break;
                     case ActivityConstants.MapActivity:
-                       // addAddress();
+                        // addAddress();
                         break;
                 }
 
@@ -183,7 +174,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         user.put("email",data.getEmail());
         user.put("password",data.getPassword());
         user.put("primaryNumber",data.getPhone());
-        user.put("alternateNumber",null);
+        user.put("alternateNumber",data.getAltphone());
         user.put("address",userAddress);
         user.put("wallet",00);
 
@@ -195,7 +186,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             user.put("serviceable", false);
         }
 
-        db.collection("user/")
+        db.collection("listOfUsers/")
                 .add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
@@ -204,9 +195,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         progressDialog.dismiss();
 
 
-                            sessionManagement.createLoginSession(data.getPhone(),data.getEmail(),data.getName(),documentReference.getId());
-                            startActivity(new Intent(MapActivity.this,MainActivity.class)
-                                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                        sessionManagement.createLoginSession(data.getPhone(),data.getEmail(),data.getName(),documentReference.getId());
+                        startActivity(new Intent(MapActivity.this,MainActivity.class)
+                                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
 
 
                     }
@@ -234,7 +225,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         iv_lines=findViewById(R.id.iv_line);
         avd= (AnimatedVectorDrawable) iv_lines.getBackground();
         progressDialog = new ProgressDialog(this);
-        back=findViewById(R.id.back);
 
     }
 

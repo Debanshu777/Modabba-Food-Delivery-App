@@ -11,6 +11,7 @@ public class PassingData implements Parcelable {
     private String name;
     private String email;
     private String phone;
+    private String altphone;
     private Context context;
 
     public PassingData(Context context) {
@@ -22,6 +23,7 @@ public class PassingData implements Parcelable {
         name = in.readString();
         email = in.readString();
         phone = in.readString();
+        altphone=in.readString();
     }
 
     public static final Creator<PassingData> CREATOR = new Creator<PassingData>() {
@@ -36,6 +38,9 @@ public class PassingData implements Parcelable {
         }
     };
 
+    public String getAltphone() { return altphone; }
+
+    public void setAltphone(String altphone) {this.altphone = altphone; }
     public String getPassword() {
         return password;
     }
@@ -87,5 +92,6 @@ public class PassingData implements Parcelable {
         parcel.writeString(name);
         parcel.writeString(email);
         parcel.writeString(phone);
+        parcel.writeString(altphone);
     }
 }

@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/sub_title"
         android:textColor="#000000"
-        android:backgroundTint="#F5F3F3"
+        android:backgroundTint="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerVertical="true"

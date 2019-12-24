@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/expandable_layout"
     app:animation_duration="250"
-    android:background="#F5F3F3"
+    android:background="@color/white"
     app:indicator_margin_left="16dp"
     app:indicator_margin_right="16dp"
     app:indicator_size="42dp"
