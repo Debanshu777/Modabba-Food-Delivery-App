@@ -48,9 +48,9 @@ public class SubscriptionFragment extends Fragment {
     List<ActiveSubcription> subcriptionList;
 
     public SubscriptionFragment(){}
-   // public SubscriptionFragment(Context context){
-    //    this.context = context;
-  //  }
+    public SubscriptionFragment(Context context){
+        this.context = context;
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
