@@ -40,11 +40,13 @@
                         android:layout_height="match_parent"
                         android:background="#FCF5F5F5"
                         android:paddingTop="3dp"
+                        android:id="@+id/getmap"
                         android:src="@drawable/arrow_down"
                         android:tint="@color/colorPrimary" />
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/loc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Patia"

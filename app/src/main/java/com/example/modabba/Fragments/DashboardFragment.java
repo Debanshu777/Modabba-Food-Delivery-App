@@ -1,11 +1,14 @@
 package com.example.modabba.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.location.Address;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,11 +21,14 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.modabba.Adapter;
+import com.example.modabba.MainActivity;
+import com.example.modabba.MapActivity;
 import com.example.modabba.Model;
 import com.example.modabba.R;
 import com.example.modabba.SessionManagement.SessionManagement;
 import com.example.modabba.SlidePagerAdapter;
 import com.example.modabba.SliderAdapterExample;
+import com.example.modabba.Utils.PassingData;
 import com.example.modabba.ViewPagerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,6 +36,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController;
@@ -50,10 +57,12 @@ public class DashboardFragment extends Fragment {
     private TextView dashBoardCredit;
     private String[] descriptionData = {"Preparing", "On Way", "Delivered"};
     private StateProgressBar stateProgressBar;
-    private TextView dashboardUsername,dashboardLunch,dashBoardDinner;
+    private TextView dashboardUsername,dashboardLunch,dashBoardDinner,loc;
     private ViewPager viewPager,pager,horiscroll;
     private PagerAdapter pageadapter;
     private TabLayout tabLayout;
+    private ImageButton getmap;
+    private List<Address> addressList;
     Adapter adapter;
     List<Model> models;
 
@@ -70,6 +79,8 @@ public class DashboardFragment extends Fragment {
             init();
 
             View view = inflater.inflate(R.layout.fragment_dashboard,container,false);
+
+
             //scrollable card view
         models = new ArrayList<>();
         models.add(new Model(R.drawable.login_image, "FOOD1", "Brochure is an informative paper document (often also used for advertising) that can be folded into a template"));
@@ -102,6 +113,7 @@ public class DashboardFragment extends Fragment {
                 sliderView.setCurrentPagePosition(position);
             }
         });
+
          return view;
     }
 
@@ -115,8 +127,6 @@ public class DashboardFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
             initView(view);
-
-            //setCredits();
         //menu
         //setTodaysMenu();
         tabLayout.addTab(tabLayout.newTab().setText("Veg"));
@@ -131,21 +141,36 @@ public class DashboardFragment extends Fragment {
         list.add(new DinnerDashboard());
         pageadapter=new SlidePagerAdapter(getChildFragmentManager(),list);
         pager.setAdapter(pageadapter);
-
+        setLoccredits();
+        getmap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(context, MapActivity.class));
+            }
+        });
 
 
     }
-
-    private void setCredits() {
-        db.collection("user").document(sessionManagement.getUserDocumentId())
+    private void  setLoccredits()
+    {
+        db.collection("listOfUsers").document(sessionManagement.getUserDocumentId())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Map<String, Map<String,Object>> address = (Map<String, Map<String, Object>>) documentSnapshot.get("address");
                         long credit  = (long)documentSnapshot.get("wallet");
-
                         dashBoardCredit.setText(String.valueOf(credit));
 
+                        for(Map.Entry<String,Map<String,Object>> data : address.entrySet()){
+
+
+                            Map<String,Object> address_type_data  = data.getValue();
+
+                            String c = (String) address_type_data.get("city");
+
+                            loc.setText(c);
+                        }
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -154,8 +179,8 @@ public class DashboardFragment extends Fragment {
                         Toast.makeText(context,e.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 });
-
     }
+
 
     private void initView(View view) {
         viewPager = view.findViewById(R.id.viewPager);
@@ -164,6 +189,9 @@ public class DashboardFragment extends Fragment {
 
         dashBoardCredit = view.findViewById(R.id.dashboard_credits);
         stateProgressBar  = view.findViewById(R.id.progress_bar);
+        getmap=view.findViewById(R.id.getmap);
+        loc=view.findViewById(R.id.loc);
+
         stateProgressBar.setStateDescriptionData(descriptionData);
         //dashboardUsername = view.findViewById(R.id.dashboard_username);
 
