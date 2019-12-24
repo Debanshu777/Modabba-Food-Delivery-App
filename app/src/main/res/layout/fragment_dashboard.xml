@@ -381,7 +381,7 @@
                         android:fontFamily="@font/open_sans"
                         android:text="Menu"
                         android:textAlignment="textStart"
-                        android:textSize="17dp"
+                        android:textSize="17sp"
                         android:textStyle="bold" />
                     <View
                         android:layout_width="match_parent"

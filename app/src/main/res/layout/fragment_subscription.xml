@@ -11,8 +11,7 @@
         android:layout_height="50dp"
         android:padding="10dp"
         app:elevation="0dp"
-        android:background="@color/colorPrimary"
-        >
+        android:background="@color/colorPrimary">
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -80,7 +79,17 @@
         android:layout_marginTop="20dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <TextView
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/subscribtion_list"
+                android:background="@drawable/button_background"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_marginBottom="?attr/actionBarSize">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Choose a Plan?"
@@ -331,7 +340,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:layout_gravity="right|end"/>
-    </LinearLayout>
+    </LinearLayout>-->
     </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
