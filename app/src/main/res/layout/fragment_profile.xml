@@ -15,20 +15,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/profile_image"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="10dp"
-                android:src="@drawable/ic_account_circle_black_24dp"
-                />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_margin="16dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -43,7 +38,8 @@
                         android:textAllCaps="true"
                         android:textColor="@color/black"
                         android:textSize="17sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        />
 
                     <TextView
                         android:id="@+id/editProfile"
@@ -143,7 +139,7 @@
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/homeImage"
-                        android:fontFamily="@font/open_sans_light"
+                        android:fontFamily="@font/open_sans"
                         android:text="Manage Address"
                         android:textColor="@color/materialBlack"
                         android:textSize="16sp" />
@@ -173,13 +169,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginTop="7dp"
                         android:layout_toRightOf="@+id/trial"
-                        android:fontFamily="@font/open_sans_light"
+                        android:fontFamily="@font/open_sans"
                         android:text="Order a Trial"
                         android:textColor="@color/materialBlack"
-
                         android:textSize="16sp" />
 
                 </RelativeLayout>
@@ -212,14 +209,14 @@
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/PaymentImage"
-                        android:fontFamily="@font/open_sans_light"
+                        android:fontFamily="@font/open_sans"
                         android:text="Add modabba cash"
                         android:textColor="@color/materialBlack"
 
                         android:textSize="16sp" />
                 </RelativeLayout>
             </LinearLayout>
-            <LinearLayout
+            <!--<LinearLayout
                 android:id="@+id/active_subscription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -253,8 +250,8 @@
                         android:textSize="16sp" />
 
                 </RelativeLayout>
-            </LinearLayout>
-            <LinearLayout
+            </LinearLayout>-->
+            <!--<LinearLayout
                 android:id="@+id/order_history"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -289,7 +286,7 @@
                         android:textSize="16sp" />
 
                 </RelativeLayout>
-            </LinearLayout>
+            </LinearLayout>-->
             <LinearLayout
                 android:id="@+id/leave_feedback"
                 android:layout_width="match_parent"
@@ -317,7 +314,7 @@
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/feedbackimage"
-                        android:fontFamily="@font/open_sans_light"
+                        android:fontFamily="@font/open_sans"
                         android:text="Leave Feedback"
                         android:textColor="@color/materialBlack"
 
@@ -353,7 +350,7 @@
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/share"
-                        android:fontFamily="@font/open_sans_light"
+                        android:fontFamily="@font/open_sans"
                         android:text="Share our app"
                         android:textColor="@color/materialBlack"
                         android:textSize="16sp" />
@@ -387,7 +384,7 @@
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/contact"
-                        android:fontFamily="@font/open_sans_light"
+                        android:fontFamily="@font/open_sans"
                         android:text="Contact Us"
                         android:textColor="@color/materialBlack"
                         android:textSize="16sp" />
@@ -423,7 +420,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:fontFamily="@font/open_sans_light"
+                    android:fontFamily="@font/open_sans"
                     android:text="Modabba"
                     android:textColor="#F45C45"
                     android:textSize="11sp" />
