@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="5dp"
+        android:id="@+id/cardview"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="5dp"
+        android:background="@color/colorAccent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.70"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:padding="5dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="#subcription id"
+            android:fontFamily="@font/open_sans_light">
+        </TextView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="#subcription id"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/colorBlack"
+                    android:id="@+id/subid">
+                </TextView>
+            </LinearLayout>
+            <!--
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="150dp"
+
+                android:layout_height="wrap_content"
+                android:text="skip Plan"
+                android:layout_weight="0.30"
+                android:background="@android:color/transparent"
+                android:drawableStart="@drawable/ic_skip_next_black_24dp"
+                >
+
+            </com.google.android.material.button.MaterialButton>-->
+           <Button
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.30"
+               android:textColor="@color/white"
+                android:id="@+id/more_btn"
+               android:layout_margin="10dp"
+               android:padding="5dp"
+               android:background="@drawable/abtn_background"
+                android:text="Unsubcribe">
+        <!--android:drawableStart="@drawable/ic_skip_next_black_24dp"-->
+
+            </Button>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="0.20"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Plan"
+                    android:fontFamily="@font/open_sans_light"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/plan_name"
+                    android:text="7 day plan"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/colorBlack"
+                    android:paddingTop="3dp">
+                </TextView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="0.40"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Started"
+                    android:fontFamily="@font/open_sans_light"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11:12:2019"
+                    android:id="@+id/start"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/colorBlack"
+                    android:paddingTop="3dp">
+
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="0.40"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Next Payment"
+                    android:fontFamily="@font/open_sans_light"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:text="04:12:2019"
+                    android:id="@+id/end"
+                    android:textColor="@color/colorBlack"
+                    android:paddingTop="3dp">
+
+                </TextView>
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="skip meal"
+                android:textColor="@color/colorPrimary"
+                android:background="@android:color/transparent"
+                android:layout_marginRight="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/skip">
+            </Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modify"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/btn_background"
+            android:id="@+id/modify">
+
+        </Button>
+
+        </LinearLayout>
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
