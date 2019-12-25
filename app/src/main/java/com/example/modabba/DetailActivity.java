@@ -33,6 +33,8 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        TextView textView = findViewById(R.id.textView);
+        textView.setText(getIntent().getStringExtra("param"));
 
         flexiblePlanList = new ArrayList<>();
         choosePlanList =new ArrayList<>();
@@ -78,8 +80,6 @@ public class DetailActivity extends AppCompatActivity {
         recyclerViewPlan.setAdapter(choosePlanAdapter);
 
 
-        TextView textView = findViewById(R.id.textView);
-        textView.setText(getIntent().getStringExtra("param"));
     }
 
 
