@@ -36,11 +36,11 @@
                         android:textSize="10sp" />
 
                     <ImageButton
+                        android:id="@+id/getmap"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="#FCF5F5F5"
                         android:paddingTop="3dp"
-                        android:id="@+id/getmap"
                         android:src="@drawable/arrow_down"
                         android:tint="@color/colorPrimary" />
                 </LinearLayout>
@@ -383,6 +383,7 @@
                         android:textAlignment="textStart"
                         android:textSize="17sp"
                         android:textStyle="bold" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -412,37 +413,41 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="30dp"
                 android:layout_height="300dp"
-                android:gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_weight="1"
                 android:background="@drawable/poster"
-                android:layout_weight="1" >
+                android:gravity="center">
+
                 <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    app:cardBackgroundColor="@color/white"
                     android:alpha="0.8"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp">
+                    app:cardBackgroundColor="@color/white">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:weightSum="1"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:weightSum="1">
+
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/app_logo"
+                            android:layout_weight="0.5"
                             android:scaleType="fitCenter"
-                            android:layout_weight="0.5"/>
+                            android:src="@drawable/app_logo" />
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:gravity="center"
                             android:layout_weight="0.5"
-                            android:textSize="10dp"
-                            android:textAlignment="center"
+                            android:gravity="center"
                             android:padding="10dp"
-                            android:text="Our chefs make the use of freshest ingredients to prepare affordable and healthy meals without the use of any additional preservatives, artificial colorants and other additives.It’s true that you can get a wholesome healthy and tasty food starting at very minimal cost."/>
+                            android:text="Our chefs make the use of freshest ingredients to prepare affordable and healthy meals without the use of any additional preservatives, artificial colorants and other additives.It’s true that you can get a wholesome healthy and tasty food starting at very minimal cost."
+                            android:textAlignment="center"
+                            android:textSize="10dp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
