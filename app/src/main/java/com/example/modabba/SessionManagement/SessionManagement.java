@@ -41,6 +41,8 @@ public class SessionManagement {
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }
+
+
     //Create Login Sessions
     public void createLoginSession(String number, String email, String name, String id){
         // Storing login value as TRUE

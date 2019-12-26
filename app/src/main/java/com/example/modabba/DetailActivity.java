@@ -1,6 +1,7 @@
 package com.example.modabba;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,12 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
-    private LinearLayout mTitleContainer;
-
-    private TextView mTitle;
 
     private AppBarLayout mAppBarLayout;
-
+    private ImageView imageview;
+    private TextView title,desc;
     private Toolbar mToolbar;
     private RecyclerView recyclerView,recyclerViewPlan;
     private FlexiblePlanAdapter flexiblePlanAdapter;
@@ -34,9 +33,11 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        imageview=findViewById(R.id.imageview);
+        title=findViewById(R.id.title);
+        desc=findViewById(R.id.desc);
         flexiblePlanList = new ArrayList<>();
         choosePlanList =new ArrayList<>();
-        //flexiblePlanList.add(new FexiblePlanData(R.drawable.like,"swap meal","Craving a change?Swap upcoming mealwith any other meal"));
         flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "skip meal", "Sudden chanf=ge of schedule?Skip upcoming meal"));
         flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "pause plan", "Going out of town? Pause your plan for those days"));
         flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "Cancel plan", "Never feel bound.Cancel plan anytime if you're unhappy"));
@@ -45,11 +46,17 @@ public class DetailActivity extends AppCompatActivity {
         choosePlanList.add(new ChoosePlan("14 day","75"));
         choosePlanList.add(new ChoosePlan("30 day","120"));
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Bundle extras = getIntent().getExtras();
+        int entryId = extras.getInt("id");
+        final String tite=extras.getString("title");
+        String dec=extras.getString("desc");
+        imageview.setImageResource(entryId);
+        title.setText(tite);
+        desc.setText(dec);
+
+        mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        //  mTitle          = (TextView) findViewById(R.id.main_textview_title);
-        //mTitleContainer = (LinearLayout) findViewById(R.id.linearlayouttitle);
-        mAppBarLayout = (AppBarLayout) findViewById(R.id.appbar);
+        mAppBarLayout = findViewById(R.id.appbar);
         collapsing=findViewById(R.id.collapsing);
         collapsing.setTitle(" ");
         mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
@@ -62,7 +69,7 @@ public class DetailActivity extends AppCompatActivity {
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
-                    collapsing.setTitle("Delicious Lunch Plan");
+                    collapsing.setTitle(tite);
                     isShow = true;
                 } else if (isShow) {
                     collapsing.setTitle("");

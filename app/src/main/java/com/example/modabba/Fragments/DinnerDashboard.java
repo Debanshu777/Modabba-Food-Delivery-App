@@ -46,7 +46,7 @@ public class DinnerDashboard extends Fragment {
                             String cap  = key.substring(0, 1).toUpperCase() + key.substring(1);
 
                             builder.append(" "+value);
-                            builder.append(" ("+cap+") ");
+                            builder.append(" "+cap+" ");
 
                             if((itr.hasNext()))
                                 builder.append("/");

@@ -186,7 +186,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             user.put("serviceable", false);
         }
 
-        db.collection("user")
+        db.collection("users")
                 .add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override

@@ -68,7 +68,7 @@
                     android:orientation="vertical">
 
                     <TextView
-
+                        android:id="@+id/title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans"
@@ -90,23 +90,24 @@
                             android:fontFamily="@font/open_sans_light"
                             android:text="Cooking with  "
                             android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
-                            android:textSize="10dp"></TextView>
+                            android:textSize="10dp"/>
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="14dp"
+                            android:layout_marginTop="11dp"
                             android:src="@drawable/like"
-                            android:tint="@color/colorBlack"></ImageView>
+                            android:tint="@color/colorBlack"/>
 
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/desc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/open_sans_light"
-                        android:text="Give your tummya healthy and tasty food tour with these Modabba plans."></TextView>
+                        android:text="Give your tummya healthy and tasty food tour with these Modabba plans."/>
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>

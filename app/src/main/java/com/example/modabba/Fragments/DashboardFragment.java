@@ -84,10 +84,10 @@ public class DashboardFragment extends Fragment {
 
         //scrollable card view
         models = new ArrayList<>();
-        models.add(new Model(R.drawable.login_image, "FOOD1", "Brochure is an informative paper document (often also used for advertising) that can be folded into a template"));
-        models.add(new Model(R.drawable.login_image, "FOOD2", "Sticker is a type of label: a piece of printed paper, plastic, vinyl, or other material with pressure sensitive adhesive on one side"));
-        models.add(new Model(R.drawable.login_image, "FOOD3", "Poster is any piece of printed paper designed to be attached to a wall or vertical surface."));
-        models.add(new Model(R.drawable.login_image, "FOOD4", "Business cards are cards bearing business information about a company or individual."));
+        models.add(new Model(R.drawable.photo4, "FOOD1", "Brochure is an informative paper document (often also used for advertising) that can be folded into a template"));
+        models.add(new Model(R.drawable.photo2, "FOOD2", "Sticker is a type of label: a piece of printed paper, plastic, vinyl, or other material with pressure sensitive adhesive on one side"));
+        models.add(new Model(R.drawable.photo1, "FOOD3", "Poster is any piece of printed paper designed to be attached to a wall or vertical surface."));
+        models.add(new Model(R.drawable.photo3, "FOOD4", "Business cards are cards bearing business information about a company or individual."));
         adapter = new Adapter(models, this, getContext());
         horiscroll = view.findViewById(R.id.horiscroll);
         horiscroll.setAdapter(adapter);
@@ -100,7 +100,7 @@ public class DashboardFragment extends Fragment {
         adapter.setCount(5);
         sliderView.setSliderAdapter(adapter);
         sliderView.setIndicatorAnimation(IndicatorAnimations.SLIDE); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-        sliderView.setSliderTransformAnimation(SliderAnimations.FADETRANSFORMATION);
+        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
         sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
         sliderView.setIndicatorSelectedColor(Color.WHITE);
         sliderView.setIndicatorUnselectedColor(Color.GRAY);
@@ -151,7 +151,7 @@ public class DashboardFragment extends Fragment {
     }
 
     private void setLoccredits() {
-        db.collection("listOfUsers").document(sessionManagement.getUserDocumentId())
+        db.collection("users").document(sessionManagement.getUserDocumentId())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override

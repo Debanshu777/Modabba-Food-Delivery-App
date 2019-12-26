@@ -51,14 +51,35 @@ public class SliderAdapterExample extends
                         .fitCenter()
                         .into(viewHolder.imageViewBackground);
                 break;
+            case 1:
+                viewHolder.imageGifContainer.setVisibility(View.GONE);
+                Glide.with(viewHolder.itemView)
+                        .load(R.drawable.photo1)
+                        .fitCenter()
+                        .into(viewHolder.imageViewBackground);
+                break;
             case 2:
                 viewHolder.imageGifContainer.setVisibility(View.GONE);
                 Glide.with(viewHolder.itemView)
-                        .load(R.drawable.poster)
+                        .load(R.drawable.photo2)
+                        .fitCenter()
+                        .into(viewHolder.imageViewBackground);
+                break;
+            case 3:
+                viewHolder.imageGifContainer.setVisibility(View.GONE);
+                Glide.with(viewHolder.itemView)
+                        .load(R.drawable.photo3)
                         .fitCenter()
                         .into(viewHolder.imageViewBackground);
                 break;
             case 4:
+                viewHolder.imageGifContainer.setVisibility(View.GONE);
+                Glide.with(viewHolder.itemView)
+                        .load(R.drawable.photo4)
+                        .fitCenter()
+                        .into(viewHolder.imageViewBackground);
+                break;
+            case 5:
                 viewHolder.imageGifContainer.setVisibility(View.GONE);
                 Glide.with(viewHolder.itemView)
                         .load(R.drawable.poster)

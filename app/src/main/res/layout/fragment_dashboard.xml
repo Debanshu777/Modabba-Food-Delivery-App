@@ -415,7 +415,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_height="200dp"
                 android:gravity="center"
-                android:background="@drawable/poster"
+                android:background="@drawable/photo2"
                 android:layout_weight="1" >
                 <androidx.cardview.widget.CardView
                     android:layout_marginLeft="20dp"

@@ -171,7 +171,7 @@ public class VerificationActivity extends AppCompatActivity {
                 //      1.1  YES, then return ERROR
                 //      1.2  NO, Create New User with Document ID = new_number, Document Data = old_number data
 
-                db.collection("listOfUsers/")
+                db.collection("users")
                         .whereEqualTo("primaryNumber",number)
                         .get()
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -205,7 +205,7 @@ public class VerificationActivity extends AppCompatActivity {
     public void isUserNumberIsPrimaryNumber(){
 
         Log.i(TAG,"checkUserPrimaryNumber "+ number);
-        db.collection("listOfUsers")
+        db.collection("users")
                 .whereEqualTo("primaryNumber",number)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -301,7 +301,7 @@ public class VerificationActivity extends AppCompatActivity {
     public void isUserNumberIsAlternateNumber(){
 
         Log.i(TAG,"checkUserAlternateNumber" + number);
-        db.collection("listOfUsers/")
+        db.collection("users")
                 .whereEqualTo("alternateNumber",number)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {

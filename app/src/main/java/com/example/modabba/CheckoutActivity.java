@@ -208,7 +208,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private void setDeliveryWalletBalance() {
 
         db = FirebaseFirestore.getInstance();
-        db.collection("listOfUsers")
+        db.collection("users")
             .document(sessionManagement.getUserDocumentId())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

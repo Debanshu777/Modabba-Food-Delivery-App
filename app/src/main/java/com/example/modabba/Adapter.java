@@ -58,7 +58,9 @@ public class Adapter extends PagerAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),DetailActivity.class);
+                Intent intent = new Intent(v.getContext(),DetailActivity.class).putExtra("id",models.get(position).getImage());
+                intent.putExtra("title",models.get(position).getTitle());
+                intent.putExtra("desc",models.get(position).getDesc());
                 view.getContext().startActivity(intent);
                 // finish();
             }
