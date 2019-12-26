@@ -137,13 +137,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     case ActivityConstants.SignUpActivity:
                         signUpUser();
                         break;
-                    case ActivityConstants.MapActivity:
+                    case ActivityConstants.MainActivity:
                         // addAddress();
                         break;
                 }
 
             }
         });
+
+    }
+    public void addAddress()
+    {
 
     }
     public void signUpUser(){

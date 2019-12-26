@@ -16,10 +16,12 @@ import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.modabba.ActivityConstants;
 import com.example.modabba.Adapter;
 import com.example.modabba.MainActivity;
 import com.example.modabba.MapActivity;
@@ -143,7 +145,8 @@ public class DashboardFragment extends Fragment {
         getmap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(context, MapActivity.class));
+                startActivity(new Intent(context, MapActivity.class).putExtra("callingActivity", ActivityConstants.MainActivity)
+                        .putExtra("Sessionid",sessionManagement.getUserDocumentId()));
             }
         });
 
