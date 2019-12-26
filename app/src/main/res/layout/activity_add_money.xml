@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
     <Toolbar
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:id="@+id/money_toolbar"
         android:layout_width="match_parent"
         android:layout_height="150dp">

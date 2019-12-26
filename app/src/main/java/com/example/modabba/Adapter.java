@@ -42,7 +42,7 @@ public class Adapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         layoutInflater = LayoutInflater.from(con);
-        View view = layoutInflater.inflate(R.layout.item, container, false);
+        final View view = layoutInflater.inflate(R.layout.item, container, false);
 
         ImageView imageView;
         TextView title, desc;
@@ -58,9 +58,8 @@ public class Adapter extends PagerAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(con,DetailActivity.class);
-                intent.putExtra("param", models.get(position).getTitle());
-                con.startActivity(intent);
+                Intent intent = new Intent(v.getContext(),DetailActivity.class);
+                view.getContext().startActivity(intent);
                 // finish();
             }
         });

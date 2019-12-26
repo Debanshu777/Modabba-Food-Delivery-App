@@ -413,7 +413,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_marginTop="30dp"
-                android:layout_height="300dp"
+                android:layout_height="200dp"
                 android:gravity="center"
                 android:background="@drawable/poster"
                 android:layout_weight="1" >
@@ -421,9 +421,9 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     app:cardBackgroundColor="@color/white"
-                    android:alpha="0.8"
+                    android:alpha="0.95"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp">
+                    android:layout_height="150dp">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:weightSum="1"

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,12 +32,14 @@ public class MainActivity extends AppCompatActivity implements UpdateHelper.onUp
         setContentView(R.layout.activity_main);
 
         init();
-
         loadFragment(new SubscriptionFragment(getApplicationContext()));
+        setDefaultFragment();
+
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
+
 
                 switch (menuItem.getItemId()){
 
@@ -69,11 +72,18 @@ public class MainActivity extends AppCompatActivity implements UpdateHelper.onUp
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
 
+
     }
     private void loadFragment(Fragment fragment){
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.screens,fragment).commit();
+
+    }
+    private void setDefaultFragment() {
+        fragment = new DashboardFragment(getApplicationContext());
+        loadFragment(fragment);
+
     }
 
     @Override

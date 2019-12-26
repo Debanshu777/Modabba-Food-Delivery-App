@@ -9,7 +9,7 @@
    <LinearLayout
        android:orientation="vertical"
        android:layout_weight="2"
-       android:background="@color/colorAccent"
+       android:background="@drawable/login_image"
        android:layout_width="match_parent"
        android:layout_height="match_parent">
     <RelativeLayout
@@ -68,16 +68,17 @@
                        android:id="@+id/text1"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:fontFamily="@font/opensans_regular"
+                       android:fontFamily="@font/open_sans"
                        android:text="Phone number"
                        android:textColor="@color/grey"
-                       android:textSize="16dp" />
+                       android:textSize="17dp" />
                    <TextView
                        android:id="@+id/payment_number"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
                        android:layout_below="@+id/text1"
                        android:text="8887856159"
+                       android:fontFamily="@font/open_sans_light"
                        android:textColor="@color/black"
                        android:textSize="16dp"/>
                </RelativeLayout>
@@ -110,15 +111,16 @@
                        android:layout_height="wrap_content"
                        android:text="Balance"
                        android:id="@+id/text2"
-                       android:fontFamily="@font/opensans_regular"
+                       android:fontFamily="@font/open_sans"
                        android:textColor="@color/grey"
-                       android:textSize="16dp"/>
+                       android:textSize="17dp"/>
                    <TextView
                        android:id="@+id/credit"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
                        android:layout_below="@+id/text2"
                        android:text="00.0"
+                       android:fontFamily="@font/open_sans_light"
                        android:textColor="@color/black"
                        android:textSize="16dp"/>
                </RelativeLayout>
@@ -127,7 +129,7 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_gravity="bottom|end"
-            android:background="@color/colorPrimary"
+            android:backgroundTint="@color/colorPrimary"
             android:id="@+id/add_money"
             android:layout_margin="24dp"
             android:tint="@color/white"

@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_width="270dp"
+    android:layout_height="170dp"
     android:layout_marginEnd="10dp">
     <androidx.cardview.widget.CardView
         android:layout_width="250dp"
@@ -13,11 +14,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:padding="7dp"
             android:layout_margin="8dp">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/like"
+            android:tint="@color/colorBlack"
             android:layout_marginTop="8dp"
             android:id="@+id/image">
 
@@ -27,20 +30,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="swap meal"
+            android:textSize="17dp"
             android:fontFamily="@font/open_sans"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textAllCaps="true"
             android:layout_marginTop="8dp"
-            android:textStyle="bold">
+            >
         </TextView>
             <TextView
                 android:layout_width="wrap_content"
                 android:id="@+id/descp"
+                android:textSize="10dp"
                 android:layout_height="wrap_content"
                 android:text="Cravings a change?"
                 android:fontFamily="@font/open_sans_light"
-                android:layout_marginTop="15dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+                android:layout_marginTop="15dp">
 
             </TextView>
         </LinearLayout>

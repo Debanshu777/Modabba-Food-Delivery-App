@@ -74,14 +74,14 @@ public class CheckoutActivity extends AppCompatActivity {
         progressDialog.setTitle("Wait");
         progressDialog.setMessage("Doing something");
         progressDialog.setCancelable(false);
-        toolbar = findViewById(R.id.checkout_toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        //toolbar = findViewById(R.id.checkout_toolbar);
+        //toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onBackPressed();
+//            }
+//        });
 
         initViews();
 
