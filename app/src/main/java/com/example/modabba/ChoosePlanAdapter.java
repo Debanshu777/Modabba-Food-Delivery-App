@@ -25,7 +25,7 @@ public class ChoosePlanAdapter extends RecyclerView.Adapter<ChoosePlanAdapter.Pl
     List<ChoosePlan> choosePlanList;
     FirebaseFirestore db= FirebaseFirestore.getInstance();
     private SessionManagement sessionManagement;
-    boolean accessable;
+    String accessable;
     public ChoosePlanAdapter(List<ChoosePlan> choosePlanList) {
         this.choosePlanList = choosePlanList;
     }
@@ -44,23 +44,27 @@ public class ChoosePlanAdapter extends RecyclerView.Adapter<ChoosePlanAdapter.Pl
     @Override
     public void onBindViewHolder(@NonNull final PlanViewHolder holder, int position) {
         ChoosePlan data=choosePlanList.get(position);
-        holder.plan_name.setText(data.getPlan_name());
-        holder.plan_price.setText(data.getPlan_price());
+        final String day=data.getPlan_name();
+        final String price=data.getPlan_price();
+        holder.plan_name.setText(day);
+        holder.plan_price.setText(price);
         db.collection("users").document(sessionManagement.getUserDocumentId())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        accessable=(boolean)documentSnapshot.get("serviceable");
+                        accessable=(String) documentSnapshot.get("servicable");
                     }
                 });
 
         holder.chhosebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(accessable)
+                if(accessable.equalsIgnoreCase("Servicable"))
                 {
                     Intent intent = new Intent(v.getContext(),CheckoutActivity.class);
+                    intent.putExtra("days",day.substring(0,2));
+                    intent.putExtra("prices",price);
                     v.getContext().startActivity(intent);
                 }
                 else

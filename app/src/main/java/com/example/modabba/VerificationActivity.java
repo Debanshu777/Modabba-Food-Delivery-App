@@ -184,7 +184,7 @@ public class VerificationActivity extends AppCompatActivity {
                                     Map<String, Object> secondaryNumber = new HashMap<>();
                                     secondaryNumber.put("alternateNumber",number);
 
-                                    db.collection("listOfUsers/")
+                                    db.collection("users")
                                             .document(getIntent().getStringExtra("documentId"))
                                             .set(secondaryNumber, SetOptions.merge());
 

@@ -20,6 +20,7 @@ import com.example.modabba.ActivityConstants;
 import com.example.modabba.Dialogs.CustomDialogFragment;
 import com.example.modabba.Dialogs.EditProfileBottomSheet;
 import com.example.modabba.FeedbackActivity;
+import com.example.modabba.MapActivity;
 import com.example.modabba.Payment.PaymentActivity;
 import com.example.modabba.R;
 import com.example.modabba.SessionManagement.SessionManagement;
@@ -61,6 +62,12 @@ public class ProfileFragment extends Fragment {
         initView(view);
 
         setCurrentUserDetails();
+        manage_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(context, MapActivity.class).putExtra("callingActivity",002));
+            }
+        });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,12 +123,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        /*active_subscription.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(context, ActiveSubscriptionActivity.class));
-            }
-        });*/
     }
 
     private void setCurrentUserDetails() {
@@ -145,9 +146,7 @@ public class ProfileFragment extends Fragment {
 
         manage_address = view.findViewById(R.id.manage_address);
         contactus=view.findViewById(R.id.contact_us);
-        //order_history = view.findViewById(R.id.order_history);
         payment = view.findViewById(R.id.payment);
-        //active_subscription = view.findViewById(R.id.active_subscription);
         shareapp = view.findViewById(R.id.share_app);
         leavefeedback = view.findViewById(R.id.leave_feedback);
     }

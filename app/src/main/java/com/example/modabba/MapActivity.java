@@ -50,6 +50,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -74,6 +76,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private int callingActivity;
     private TextInputEditText location,landmark;
     private ChipGroup chipGroup;
+    private  String sessionId;
     private List<Address> addressList;
     private LatLng finalLatLng;
     private MaterialButton save;
@@ -92,6 +95,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapView = mapFragment.getView();
 
         callingActivity = getIntent().getIntExtra("callingActivity",0000);
+        sessionId=getIntent().getStringExtra("Sessionid");
 
         init();
 
@@ -137,8 +141,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     case ActivityConstants.SignUpActivity:
                         signUpUser();
                         break;
-                    case ActivityConstants.MainActivity:
-                        // addAddress();
+                    case 002:
+                        updateAddress();
                         break;
                 }
 
@@ -146,13 +150,44 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         });
 
     }
-    public void addAddress()
-    {
+    public void updateAddress()
+        {
+            String city = addressList.get(0).getLocality();
+            Map<String,Object> details  = new HashMap<>();
+            details.put("city",addressList.get(0).getLocality());
+            details.put("pincode",addressList.get(0).getPostalCode());
+            details.put("geopoint", new GeoPoint(finalLatLng.latitude,finalLatLng.longitude));
+            details.put("completeAddress",addressList.get(0).getAddressLine(0));
+            details.put("landmark",landmark.getText().toString());
 
-    }
+
+            Map<String,Map<String,Object>> userAddress = new HashMap<>();
+            userAddress.put(addressType,details);
+
+            DocumentReference docref=db.collection("users").document(sessionId);
+            docref.update("address",userAddress).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(MapActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(MapActivity.this, "not updated", Toast.LENGTH_SHORT).show();
+                }
+            });
+            if(city.equals("Bhubaneswar")) {
+                docref.update("servicable", "Servicable");
+            }else {
+                docref.update("servicable", "Not Servicable");
+            }
+
+        }
     public void signUpUser(){
 
         String city = addressList.get(0).getLocality();
+        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
 
 
         //User Address
@@ -178,6 +213,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         user.put("email",data.getEmail());
         user.put("password",data.getPassword());
         user.put("primaryNumber",data.getPhone());
+        user.put("registration_Date",currentDate+" "+currentTime);
         user.put("alternateNumber",data.getAltphone());
         user.put("address",userAddress);
         user.put("wallet",00);
@@ -185,9 +221,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         //check for serviceability
         if(city.equals("Bhubaneswar")) {
-            user.put("serviceable", true);
+            user.put("servicable", "Servicable");
         }else {
-            user.put("serviceable", false);
+            user.put("servicable", "Not Servicable");
         }
 
         db.collection("users")

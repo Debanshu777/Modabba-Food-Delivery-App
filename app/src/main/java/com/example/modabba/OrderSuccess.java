@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.modabba.ActiveSubActivity.ActiveSubscriptionActivity;
+import com.example.modabba.Fragments.DashboardFragment;
 
 public class OrderSuccess extends AppCompatActivity{
 
@@ -24,7 +25,7 @@ public class OrderSuccess extends AppCompatActivity{
         text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(OrderSuccess.this, ActiveSubscriptionActivity.class));
+                startActivity(new Intent(OrderSuccess.this, DashboardFragment.class));
                 finish();
             }
         });

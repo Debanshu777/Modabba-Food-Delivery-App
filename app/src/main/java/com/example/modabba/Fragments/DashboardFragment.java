@@ -45,9 +45,12 @@ import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawControlle
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class DashboardFragment extends Fragment {
@@ -68,9 +71,6 @@ public class DashboardFragment extends Fragment {
     Adapter adapter;
     List<Model> models;
 
-
-    public DashboardFragment() {
-    }
 
     public DashboardFragment(Context context) {
         this.context = context;
@@ -94,8 +94,6 @@ public class DashboardFragment extends Fragment {
         horiscroll = view.findViewById(R.id.horiscroll);
         horiscroll.setAdapter(adapter);
         horiscroll.setPadding(130, 0, 130, 0);
-
-
         //top flipper
         sliderView = view.findViewById(R.id.imageSlider);
         final SliderAdapterExample adapter = new SliderAdapterExample(getContext());
@@ -145,8 +143,9 @@ public class DashboardFragment extends Fragment {
         getmap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(context, MapActivity.class).putExtra("callingActivity", ActivityConstants.MainActivity)
+                startActivity(new Intent(context, MapActivity.class).putExtra("callingActivity",002)
                         .putExtra("Sessionid",sessionManagement.getUserDocumentId()));
+                    setLoccredits();
             }
         });
 
@@ -194,10 +193,6 @@ public class DashboardFragment extends Fragment {
         loc = view.findViewById(R.id.loc);
 
         stateProgressBar.setStateDescriptionData(descriptionData);
-        //dashboardUsername = view.findViewById(R.id.dashboard_username);
-
-        // dashboardUsername.setText(sessionManagement.getUserName());
-
         dashboardLunch = view.findViewById(R.id.dashboard_lunch);
         dashBoardDinner = view.findViewById(R.id.dashboard_dinner);
 
