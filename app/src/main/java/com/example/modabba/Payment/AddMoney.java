@@ -78,7 +78,7 @@ public class AddMoney extends AppCompatActivity implements PaymentResultWithData
             }
         });
 
-
+        startPayment();
     }
 
     private void initViews() {
@@ -135,7 +135,7 @@ public class AddMoney extends AppCompatActivity implements PaymentResultWithData
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url1, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                startPayment(response);
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -151,18 +151,18 @@ public class AddMoney extends AppCompatActivity implements PaymentResultWithData
 
         requestQueue.add(jsonRequest);
     }
-    private void startPayment(JSONObject jsonResponse) {
+    private void startPayment() {
 
         Log.i(TAG,"at start payment");
 
         String razorpayOrdeId = null;
 
-        try{
-            razorpayOrdeId = jsonResponse.getString("id");
-        }
-        catch(JSONException e){
-            Log.i(TAG,"Exception Caught " + e.getMessage());
-        }
+//        try{
+//            razorpayOrdeId = jsonResponse.getString("id");
+//        }
+//        catch(JSONException e){
+//            Log.i(TAG,"Exception Caught " + e.getMessage());
+//        }
 
          Checkout checkout = new Checkout();
          Activity activity = this;
@@ -172,9 +172,9 @@ public class AddMoney extends AppCompatActivity implements PaymentResultWithData
             //customer details
 
             JSONObject options = new JSONObject();
-            options.put("name", "Modabba");
-            options.put("description", "Add Modabba Cash");
-            options.put("order_id", razorpayOrdeId);
+                options.put("name", "Marchant Name");
+            options.put("description", "Reference No. #123456");
+            options.put("order_id", "order_9A33XWu170gUtm");
             options.put("currency", "INR");
 
             JSONObject preFill = new JSONObject();

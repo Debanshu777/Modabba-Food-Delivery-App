@@ -35,6 +35,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -48,45 +49,60 @@ public class SubscriptionFragment extends Fragment {
     private int _foodCategory = 0; // Veg/NonVeg
     private int _mealCategory = 0; // Lunch/Dinner
     private ChipGroup group;
-    private RadioGroup categoryGroup,mealCategory;
+    private RadioGroup categoryGroup, mealCategory;
     private Button subscribe;
 
     private RecyclerView recyclerView;
     List<ActiveSubcription> subcriptionList;
 
-    public SubscriptionFragment(){}
-    public SubscriptionFragment(Context context){
+    public SubscriptionFragment() {
+    }
+
+    public SubscriptionFragment(Context context) {
         this.context = context;
     }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       init();
-        View view = inflater.inflate(R.layout.fragment_subscription,container,false);
-        recyclerView=view.findViewById(R.id.subscribtion_list);
-        subcriptionList=new ArrayList<>();
-        CollectionReference ref=db.collection("users").document(sessionManagement.getUserDocumentId()).collection("Subscriptions");
-
+        init();
+        View view = inflater.inflate(R.layout.fragment_subscription, container, false);
+        recyclerView = view.findViewById(R.id.subscribtion_list);
+        final String[] days = new String[1];
+        final CollectionReference ref = db.collection("users").document(sessionManagement.getUserDocumentId()).collection("Subscriptions");
+        subcriptionList = new ArrayList<>();
         ref.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (DocumentSnapshot document : task.getResult()) {
-                    subcriptionList.add(new ActiveSubcription("#223434","7 Day Plan","11:12:2019","18:12:2019"));
+
+                for (final DocumentSnapshot document : task.getResult()) {
+                    ref.document().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                            days[0]=(String)documentSnapshot.get("days");
+                            subcriptionList.add(new ActiveSubcription(document.getId(),  "7 Day Plan", "29:12:2019", "27:01:2020"));
+                            ActiveSubcriptionAdapter subcriptionAdapter = new ActiveSubcriptionAdapter(getContext(), subcriptionList);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                            recyclerView.setAdapter(subcriptionAdapter);
+                        }
+
+                    });
+
                 }
             }
         });
 
-        ActiveSubcriptionAdapter subcriptionAdapter=new ActiveSubcriptionAdapter(getContext(),subcriptionList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(subcriptionAdapter);
 
         return view;
 
     }
+
     private void init() {
         db = FirebaseFirestore.getInstance();
         sessionManagement = new SessionManagement(context);
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
