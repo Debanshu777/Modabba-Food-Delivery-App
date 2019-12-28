@@ -19,11 +19,14 @@ import com.example.modabba.Fragments.SubscriptionFragment;
 import com.example.modabba.RemoteConfig.UpdateHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import io.opencensus.tags.Tag;
+
 public class MainActivity extends AppCompatActivity implements UpdateHelper.onUpdateCheckListener {
 
 
     private BottomNavigationView bottomNavigationView;
     private Fragment fragment;
+    private static final String TAG = MainActivity.class.getSimpleName();
 
 
     @Override
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements UpdateHelper.onUp
     private void loadFragment(Fragment fragment){
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.screens,fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.screens,fragment,TAG).commit();
 
     }
     private void setDefaultFragment() {

@@ -44,7 +44,7 @@ public class AddMoney extends AppCompatActivity implements PaymentResultWithData
     private ImageView backArrow;
     private TextView min;
     int amount;
-   private RequestQueue requestQueue;
+    private RequestQueue requestQueue;
     private  String url1 = "http://192.168.43.21:5000/order";
     private  String url2 = "http://192.168.43.21:5000/verifysign";
 
@@ -78,7 +78,7 @@ public class AddMoney extends AppCompatActivity implements PaymentResultWithData
             }
         });
 
-        startPayment();
+
     }
 
     private void initViews() {
@@ -106,7 +106,7 @@ public class AddMoney extends AppCompatActivity implements PaymentResultWithData
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 if(s.length()>0){
-                   floatingActionButton.setVisibility(View.VISIBLE);
+                    floatingActionButton.setVisibility(View.VISIBLE);
                 }
                 else{
                     floatingActionButton.setVisibility(View.INVISIBLE);
@@ -119,6 +119,17 @@ public class AddMoney extends AppCompatActivity implements PaymentResultWithData
             }
         });
     }
+    private void send(String amt)
+    {
+        String userDocId = sessionManagement.getUserDocumentId();
+
+        Map<String, String> params = new HashMap();
+        params.put("amount", amt);
+        params.put("currency", "INR");
+        params.put("receipt", Calendar.getInstance().getTime().toString());
+        params.put("payment_capture", "amt");
+        params.put("userDocId",userDocId);
+    }
     private void sendCreateOrderData(String amt)
     {
         String userDocId = sessionManagement.getUserDocumentId();
@@ -127,7 +138,7 @@ public class AddMoney extends AppCompatActivity implements PaymentResultWithData
         params.put("amount", amt);
         params.put("currency", "INR");
         params.put("receipt", Calendar.getInstance().getTime().toString());
-        params.put("payment_capture", "1");
+        params.put("payment_capture", "amt");
         params.put("userDocId",userDocId);
 
         JSONObject parameters = new JSONObject(params);
@@ -135,7 +146,7 @@ public class AddMoney extends AppCompatActivity implements PaymentResultWithData
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url1, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
+                startPayment(response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -151,30 +162,30 @@ public class AddMoney extends AppCompatActivity implements PaymentResultWithData
 
         requestQueue.add(jsonRequest);
     }
-    private void startPayment() {
+    private void startPayment(JSONObject jsonResponse) {
 
         Log.i(TAG,"at start payment");
 
         String razorpayOrdeId = null;
 
-//        try{
-//            razorpayOrdeId = jsonResponse.getString("id");
-//        }
-//        catch(JSONException e){
-//            Log.i(TAG,"Exception Caught " + e.getMessage());
-//        }
+        try{
+            razorpayOrdeId = jsonResponse.getString("id");
+        }
+        catch(JSONException e){
+            Log.i(TAG,"Exception Caught " + e.getMessage());
+        }
 
-         Checkout checkout = new Checkout();
-         Activity activity = this;
+        Checkout checkout = new Checkout();
+        Activity activity = this;
 
         try {
 
             //customer details
 
             JSONObject options = new JSONObject();
-                options.put("name", "Marchant Name");
-            options.put("description", "Reference No. #123456");
-            options.put("order_id", "order_9A33XWu170gUtm");
+            options.put("name", "Modabba");
+            options.put("description", "Add Modabba Cash");
+            options.put("order_id", razorpayOrdeId);
             options.put("currency", "INR");
 
             JSONObject preFill = new JSONObject();

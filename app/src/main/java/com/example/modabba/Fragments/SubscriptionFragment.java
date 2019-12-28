@@ -31,9 +31,11 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +53,7 @@ public class SubscriptionFragment extends Fragment {
     private ChipGroup group;
     private RadioGroup categoryGroup, mealCategory;
     private Button subscribe;
-
+    private static final String TAG = "SUBSCRIPTION";
     private RecyclerView recyclerView;
     List<ActiveSubcription> subcriptionList;
 
@@ -68,31 +70,25 @@ public class SubscriptionFragment extends Fragment {
         init();
         View view = inflater.inflate(R.layout.fragment_subscription, container, false);
         recyclerView = view.findViewById(R.id.subscribtion_list);
-        final String[] days = new String[1];
         final CollectionReference ref = db.collection("users").document(sessionManagement.getUserDocumentId()).collection("Subscriptions");
         subcriptionList = new ArrayList<>();
-        ref.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        final String[] days = {""};
+        final String[] date_Of_activation={""};
+        ref.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                for (final DocumentSnapshot document : task.getResult()) {
-                    ref.document().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-
-                            days[0]=(String)documentSnapshot.get("days");
-                            subcriptionList.add(new ActiveSubcription(document.getId(),  "7 Day Plan", "29:12:2019", "27:01:2020"));
-                            ActiveSubcriptionAdapter subcriptionAdapter = new ActiveSubcriptionAdapter(getContext(), subcriptionList);
-                            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                            recyclerView.setAdapter(subcriptionAdapter);
-                        }
-
-                    });
-
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots)
+                {
+                    Map<String,Object>sublist=documentSnapshot.getData();
+                    days[0] = String.valueOf(sublist.get("days"));
+                    date_Of_activation[0]= String.valueOf(sublist.get("date_Of_activation"));
+                    subcriptionList.add(new ActiveSubcription(documentSnapshot.getId(), days[0] + "Day Plan",date_Of_activation[0], "27:01:2020"));
+                    ActiveSubcriptionAdapter subcriptionAdapter = new ActiveSubcriptionAdapter(getContext(), subcriptionList);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    recyclerView.setAdapter(subcriptionAdapter);
                 }
             }
         });
-
 
         return view;
 
