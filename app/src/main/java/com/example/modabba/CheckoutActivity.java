@@ -53,7 +53,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
 
     Calendar calendar = Calendar.getInstance();
-    final String currentDate = new SimpleDateFormat("dd MMM, yyyy", Locale.getDefault()).format(new Date());
+    String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
     int year = calendar.get(Calendar.YEAR);
     int month  = calendar.get(Calendar.MONTH);
     int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -118,8 +118,8 @@ public class CheckoutActivity extends AppCompatActivity {
             docRef.update("wallet",remaining_balance).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    addSubcription(meal);
-                    addorder();
+                    addSubcription(meal,Long.parseLong(totalPrice.getText().toString().substring(1)));
+                    //walletTrsaction(Long.parseLong(totalPrice.getText().toString().substring(1)));
                    subscribeToNotification();
                    Toast.makeText(CheckoutActivity.this, "Subcription Added!", Toast.LENGTH_SHORT).show();
                    startActivity(new Intent(CheckoutActivity.this, MainActivity.class));
@@ -137,11 +137,26 @@ public class CheckoutActivity extends AppCompatActivity {
         }
 
     }
-    private void addorder()
+    private void walletTransaction(long deducted,String id)
+    {
+        Map<String,Object> wal=new HashMap<>();
+        wal.put("wal_transaction_razor","");
+        wal.put("subscription id",id);
+        wal.put("time_Of_transaction",currentTime);
+        wal.put("amount_deducted",deducted);
+        wal.put("amount_added",0);
+        CollectionReference coref=db.collection("users").document(sessionManagement.getUserDocumentId()).collection("Wallet");
+        coref.add(wal).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Log.d(TAG, "wallet updated");
+            }
+        });
+    }
+    private void addorder(final String id)
     {
         List<DocumentSnapshot>documentSnapshots;
         CollectionReference ref=db.collection("users").document(sessionManagement.getUserDocumentId()).collection("Subscriptions");
-        final String id=ref.document().getId();
         ref.document().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -166,7 +181,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
 
     }
-    private void addSubcription(int meal)
+    private void addSubcription(int meal, final long c)
     {
         String a="Veg";
         if(meal==0)
@@ -185,6 +200,9 @@ public class CheckoutActivity extends AppCompatActivity {
         .add(subcription).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
+                String b=documentReference.getId();
+                addorder(b);
+                walletTransaction(c,b);
                 Toast.makeText(CheckoutActivity.this, "Subcription Added", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {

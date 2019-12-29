@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,22 +23,39 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.modabba.CheckoutActivity;
 import com.example.modabba.R;
 import com.example.modabba.SessionManagement.SessionManagement;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonWriter;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentData;
+import com.razorpay.PaymentResultListener;
 import com.razorpay.PaymentResultWithDataListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class AddMoney extends AppCompatActivity implements PaymentResultWithDataListener {
 
+    private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private EditText et_amount;
     private FloatingActionButton floatingActionButton;
     private static final String TAG = AddMoney.class.getSimpleName();
@@ -70,14 +88,31 @@ public class AddMoney extends AppCompatActivity implements PaymentResultWithData
                     min.setVisibility(View.VISIBLE);
                 }else {
 
-                    amount = amount * 100;
-                    String amt = String.valueOf(amount);
-                    sendCreateOrderData(amt);
+                    //amount = amount * 100;
+                    startPayment(amount);
 
                 }
             }
         });
 
+
+    }
+
+    private void startPayment(int amt) {
+
+        Checkout checkout=new Checkout();
+        checkout.setImage(R.drawable.app_logo);
+        final Activity activity=this;
+        try {
+            JSONObject option=new JSONObject();
+            option.put("description","Add To Modabba Cash");
+            option.put("currency","INR");
+            option.put("payment_amt",amt);
+            checkout.open(activity,option);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -119,137 +154,69 @@ public class AddMoney extends AppCompatActivity implements PaymentResultWithData
             }
         });
     }
-    private void send(String amt)
+    private void walletTransaction(long added,String id)
     {
-        String userDocId = sessionManagement.getUserDocumentId();
-
-        Map<String, String> params = new HashMap();
-        params.put("amount", amt);
-        params.put("currency", "INR");
-        params.put("receipt", Calendar.getInstance().getTime().toString());
-        params.put("payment_capture", "amt");
-        params.put("userDocId",userDocId);
-    }
-    private void sendCreateOrderData(String amt)
-    {
-        String userDocId = sessionManagement.getUserDocumentId();
-
-        Map<String, String> params = new HashMap();
-        params.put("amount", amt);
-        params.put("currency", "INR");
-        params.put("receipt", Calendar.getInstance().getTime().toString());
-        params.put("payment_capture", "amt");
-        params.put("userDocId",userDocId);
-
-        JSONObject parameters = new JSONObject(params);
-
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url1, parameters, new Response.Listener<JSONObject>() {
+        String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+        Map<String,Object> wal=new HashMap<>();
+        wal.put("wal_transaction_razor",id);
+        wal.put("subscription id","");
+        wal.put("time_Of_transaction",currentTime);
+        wal.put("amount_deducted",0);
+        wal.put("amount_added",added);
+        CollectionReference coref=db.collection("users").document(sessionManagement.getUserDocumentId()).collection("Wallet");
+        coref.add(wal).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
-            public void onResponse(JSONObject response) {
-                startPayment(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(AddMoney.this, "Check your internet connection !!    ", Toast.LENGTH_LONG).show();
+            public void onSuccess(DocumentReference documentReference) {
+                Log.d(TAG, "wallet updated");
             }
         });
-
-        jsonRequest.setRetryPolicy(new DefaultRetryPolicy(
-                5000,
-                0,
-                0));
-
-        requestQueue.add(jsonRequest);
     }
-    private void startPayment(JSONObject jsonResponse) {
 
-        Log.i(TAG,"at start payment");
-
-        String razorpayOrdeId = null;
-
-        try{
-            razorpayOrdeId = jsonResponse.getString("id");
-        }
-        catch(JSONException e){
-            Log.i(TAG,"Exception Caught " + e.getMessage());
-        }
-
-        Checkout checkout = new Checkout();
-        Activity activity = this;
-
-        try {
-
-            //customer details
-
-            JSONObject options = new JSONObject();
-            options.put("name", "Modabba");
-            options.put("description", "Add Modabba Cash");
-            options.put("order_id", razorpayOrdeId);
-            options.put("currency", "INR");
-
-            JSONObject preFill = new JSONObject();
-            preFill.put("email", sessionManagement.getUserEmail());
-            preFill.put("contact", sessionManagement.getUserNumber().substring(3));
-
-            options.put("prefill", preFill);
-
-            checkout.open(activity, options);
-        } catch(Exception e) {
-            Log.e("Error", e.toString());
-        }
-    }
     @Override
     public void onPaymentSuccess(String s, PaymentData paymentData) {
-
-        String paymentId = paymentData.getPaymentId();
-        String signature = paymentData.getSignature();
-        String orderId = paymentData.getOrderId();
-        sendDataForSignatureVerification(s,paymentId,signature,orderId,this);
-    }
-
-    private void sendDataForSignatureVerification(String razorpayPaymentID, String paymentId, String signature, String orderId, final AddMoney addMoney)
-    {
-        String userDocId = sessionManagement.getUserDocumentId();
-
-
-        Map<String, String> params = new HashMap();
-        params.put("razorpayPaymentID", razorpayPaymentID);
-        params.put("paymentId", paymentId);
-        params.put("signature", signature);
-        params.put("orderId", orderId);
-        params.put("userDocId",userDocId);
-
-        JSONObject parameters = new JSONObject(params);
-
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url2, parameters, new Response.Listener<JSONObject>() {
+        String currentDate = new SimpleDateFormat("dd MMM, yyyy", Locale.getDefault()).format(new Date());
+        String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+        Map<String,Object> transaction=new HashMap<>();
+        transaction.put("date_Of_transaction",currentDate);
+        transaction.put("time_Of_transaction",currentTime);
+        transaction.put("razor_payment_id",paymentData.getPaymentId());
+        transaction.put("amount",100);//transaction.put("amount",paymentData.getData().getInt("payment_amt"));
+        walletTransaction(100,paymentData.getPaymentId());
+        final DocumentReference docref=db.collection("users").document(sessionManagement.getUserDocumentId());
+        docref.collection("Transaction").add(transaction).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onSuccess(DocumentReference documentReference){
+               docref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                   @Override
+                   public void onSuccess(DocumentSnapshot documentSnapshot) {
+                       long credits  = (long)documentSnapshot.get("wallet");
+                       docref.update("wallet",credits+amount).addOnSuccessListener(new OnSuccessListener<Void>() {
+                           @Override
+                           public void onSuccess(Void aVoid) {
+                               Toast.makeText(AddMoney.this, "Added to Modabba Cash", Toast.LENGTH_SHORT).show();
+                           }
+                       }).addOnFailureListener(new OnFailureListener() {
+                           @Override
+                           public void onFailure(@NonNull Exception e) {
+                               Toast.makeText(AddMoney.this, "something came upg ", Toast.LENGTH_SHORT).show();
+                           }
+                       });
 
-                Log.i(TAG,"ONJSON Response");
-                addMoney.finish();
+                   }
+               });
+               // Toast.makeText(AddMoney.this, "", Toast.LENGTH_SHORT).show();
             }
-        }, new Response.ErrorListener() {
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i(TAG,"ONJSON Error Response");
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(AddMoney.this, "Try Again", Toast.LENGTH_SHORT).show();
             }
         });
-
-        jsonRequest.setRetryPolicy(new DefaultRetryPolicy(
-                5000,
-                0,
-                0));
-        requestQueue.add(jsonRequest);
+        Toast.makeText(this, "Payment Successful", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onPaymentError(int i, String s, PaymentData paymentData) {
-
-        Log.i(TAG,"ON Payment Error Response");
-
-        Toast.makeText(AddMoney.this, String.valueOf(i)+": "+s, Toast.LENGTH_LONG).show();
-
+        Toast.makeText(this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
     }
 }
