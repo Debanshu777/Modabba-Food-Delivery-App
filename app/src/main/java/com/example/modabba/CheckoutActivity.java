@@ -73,10 +73,19 @@ public class CheckoutActivity extends AppCompatActivity {
         initViews();
         no_days=Integer.parseInt(getIntent().getStringExtra("days"));
         int per_day=Integer.parseInt(getIntent().getStringExtra("prices"));
+        final int meal=getIntent().getIntExtra("meal",0);
         planPrice.setText("₹"+Integer.toString(no_days*per_day));
         planDays.setText(no_days+"Days");
         totalPrice.setText(planPrice.getText());
         setDeliveryWalletBalance();
+        category_veg=findViewById(R.id.checkout_veg);
+        category_nonveg=findViewById(R.id.checkout_nonveg);
+        if(meal== 0)
+        {
+            category_veg.setVisibility(View.INVISIBLE);
+            category_nonveg.setVisibility(View.VISIBLE);
+        }
+
 
         selectDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,13 +99,13 @@ public class CheckoutActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                createPayment();
+                createPayment(meal);
             }
         });
 
     }
 
-    private void createPayment() {
+    private void createPayment(final int meal) {
 
         if(credits >=Long.parseLong(totalPrice.getText().toString().substring(1))){
 
@@ -109,7 +118,7 @@ public class CheckoutActivity extends AppCompatActivity {
             docRef.update("wallet",remaining_balance).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    addSubcription();
+                    addSubcription(meal);
                     addorder();
                    subscribeToNotification();
                    Toast.makeText(CheckoutActivity.this, "Subcription Added!", Toast.LENGTH_SHORT).show();
@@ -157,8 +166,13 @@ public class CheckoutActivity extends AppCompatActivity {
 
 
     }
-    private void addSubcription()
+    private void addSubcription(int meal)
     {
+        String a="Veg";
+        if(meal==0)
+        {
+            a="Non-Veg";
+        }
         Map<String,Object> subcription=new HashMap<>();
         subcription.put("date_Of_activation",selectedDate.getText());
         subcription.put("days",no_days);
@@ -166,7 +180,7 @@ public class CheckoutActivity extends AppCompatActivity {
         subcription.put("plan","p1");
         subcription.put("skip",0);
         subcription.put("status","active");
-        subcription.put("type","NonVeg");
+        subcription.put("type",a);
         db.collection("users").document(sessionManagement.getUserDocumentId()).collection("Subscriptions")
         .add(subcription).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override

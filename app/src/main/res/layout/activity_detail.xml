@@ -67,16 +67,49 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/title"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/open_sans"
-                        android:lineSpacingExtra="8dp"
-                        android:text="Delicious Lunch Plan"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:textSize="17dp"
-                        android:textStyle="bold" />
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/title"
+                            android:layout_marginTop="3dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans"
+                            android:lineSpacingExtra="8dp"
+                            android:text="Delicious Lunch Plan"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                            android:textSize="17dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/veg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@id/title"
+                            android:background="@drawable/btn_background"
+                            android:backgroundTint="@color/materialGreen500"
+                            android:padding="3dp"
+                            android:text="veg"
+                            android:textColor="@color/white"
+                            android:textSize="10dp" />
+
+                        <TextView
+                            android:id="@+id/nonveg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/btn_background"
+                            android:backgroundTint="@color/red"
+                            android:padding="3dp"
+                            android:text="non-veg"
+                            android:textColor="@color/white"
+                            android:textSize="10dp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -90,14 +123,14 @@
                             android:fontFamily="@font/open_sans_light"
                             android:text="Cooking with  "
                             android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
-                            android:textSize="10dp"/>
+                            android:textSize="10dp" />
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="11dp"
                             android:src="@drawable/like"
-                            android:tint="@color/colorBlack"/>
+                            android:tint="@color/colorBlack" />
 
                     </LinearLayout>
 
@@ -107,7 +140,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/open_sans_light"
-                        android:text="Give your tummya healthy and tasty food tour with these Modabba plans."/>
+                        android:text="Give your tummya healthy and tasty food tour with these Modabba plans." />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -185,7 +218,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorPrimary"/>
+                        android:background="@color/colorPrimary" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_view_plan"
