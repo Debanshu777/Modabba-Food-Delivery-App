@@ -113,7 +113,6 @@ public class SliderAdapterExample extends
         View itemView;
         ImageView imageViewBackground;
         ImageView imageGifContainer;
-        TextView textViewDescription;
 
         public SliderAdapterVH(View itemView) {
             super(itemView);

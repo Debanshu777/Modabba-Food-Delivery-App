@@ -50,7 +50,7 @@ public class ActiveSubcriptionAdapter extends RecyclerView.Adapter<ActiveSubcrip
     public static class RecycleViewHolder extends RecyclerView.ViewHolder
     {
         TextView subid,plan_name,start_date,end_date;
-        Button unsubcribe_btn,modify_btn,skip_btn;
+        Button pause_btn,skip_btn;
 
         public RecycleViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,8 +58,7 @@ public class ActiveSubcriptionAdapter extends RecyclerView.Adapter<ActiveSubcrip
             plan_name=itemView.findViewById(R.id.plan_name);
             start_date=itemView.findViewById(R.id.start);
             end_date=itemView.findViewById(R.id.end);
-            unsubcribe_btn=itemView.findViewById(R.id.more_btn);
-            modify_btn=itemView.findViewById(R.id.modify);
+            pause_btn=itemView.findViewById(R.id.pause);
             skip_btn=itemView.findViewById(R.id.skip);
         }
     }

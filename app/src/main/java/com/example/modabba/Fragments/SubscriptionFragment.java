@@ -82,7 +82,7 @@ public class SubscriptionFragment extends Fragment {
                     Map<String,Object>sublist=documentSnapshot.getData();
                     days[0] = String.valueOf(sublist.get("days"));
                     date_Of_activation[0]= String.valueOf(sublist.get("date_Of_activation"));
-                    subcriptionList.add(new ActiveSubcription(documentSnapshot.getId(), days[0] + "Day Plan",date_Of_activation[0], "27:01:2020"));
+                    subcriptionList.add(new ActiveSubcription(documentSnapshot.getId(), days[0] + "Day",date_Of_activation[0], "27:01:2020"));
                     ActiveSubcriptionAdapter subcriptionAdapter = new ActiveSubcriptionAdapter(getContext(), subcriptionList);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView.setAdapter(subcriptionAdapter);

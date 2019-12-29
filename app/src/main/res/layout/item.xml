@@ -35,6 +35,36 @@
                 android:textSize="13sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <TextView
+                android:layout_toRightOf="@id/title"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/veg"
+                android:text="veg"
+                android:layout_marginTop="10dp"
+                android:padding="3dp"
+                android:background="@drawable/btn_background"
+                android:backgroundTint="@color/materialGreen500"
+                android:textSize="10dp"
+                android:layout_below="@id/image"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_toRightOf="@id/title"
+                android:layout_marginLeft="10dp"
+                android:text="non-veg"
+                android:visibility="gone"
+                android:textSize="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_background"
+                android:backgroundTint="@color/red"
+                android:textColor="@color/white"
+                android:padding="3dp"
+                android:layout_below="@id/image"
+                android:id="@+id/nonveg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
 
             <TextView
                 android:id="@+id/desc"

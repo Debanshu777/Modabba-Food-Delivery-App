@@ -132,14 +132,14 @@ public class CheckoutActivity extends AppCompatActivity {
     {
         List<DocumentSnapshot>documentSnapshots;
         CollectionReference ref=db.collection("users").document(sessionManagement.getUserDocumentId()).collection("Subscriptions");
-        ref.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        final String id=ref.document().getId();
+        ref.document().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                QuerySnapshot document=task.getResult();
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Map<String, Object> order = new HashMap<>();
                 order.put("date", selectedDate.getText());
                 order.put("status", "preparing");
-                order.put("subcription_id","");
+                order.put("subcription_id",id);
                 order.put("time_of_arrival", "14:20:30");
                 db.collection("users").document(sessionManagement.getUserDocumentId()).collection("MyOrders")
                         .add(order).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -148,9 +148,9 @@ public class CheckoutActivity extends AppCompatActivity {
                         Log.d(TAG, "order placed");
                     }
                 });
-
             }
         });
+
 
 
 

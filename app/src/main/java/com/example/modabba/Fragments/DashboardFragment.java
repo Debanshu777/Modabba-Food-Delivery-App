@@ -9,48 +9,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.modabba.ActivityConstants;
 import com.example.modabba.Adapter;
-import com.example.modabba.MainActivity;
 import com.example.modabba.MapActivity;
 import com.example.modabba.Model;
 import com.example.modabba.R;
 import com.example.modabba.SessionManagement.SessionManagement;
 import com.example.modabba.SlidePagerAdapter;
 import com.example.modabba.SliderAdapterExample;
-import com.example.modabba.Utils.PassingData;
 import com.example.modabba.ViewPagerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 public class DashboardFragment extends Fragment {
@@ -86,10 +74,12 @@ public class DashboardFragment extends Fragment {
 
         //scrollable card view
         models = new ArrayList<>();
-        models.add(new Model(R.drawable.photo4, "FOOD1", "Brochure is an informative paper document (often also used for advertising) that can be folded into a template"));
-        models.add(new Model(R.drawable.photo2, "FOOD2", "Sticker is a type of label: a piece of printed paper, plastic, vinyl, or other material with pressure sensitive adhesive on one side"));
-        models.add(new Model(R.drawable.photo1, "FOOD3", "Poster is any piece of printed paper designed to be attached to a wall or vertical surface."));
-        models.add(new Model(R.drawable.photo3, "FOOD4", "Business cards are cards bearing business information about a company or individual."));
+        models.add(new Model(R.drawable.photo4, "LUNCH", "Brochure is an informative paper document (often also used for advertising) that can be folded into a template", 0));
+        models.add(new Model(R.drawable.photo2, "DINNER", "Sticker is a type of label: a piece of printed paper, plastic, vinyl, or other material with pressure sensitive adhesive on one side", 0));
+        models.add(new Model(R.drawable.photo1, "LUNCH", "Poster is any piece of printed paper designed to be attached to a wall or vertical surface.", 1));
+        models.add(new Model(R.drawable.photo3, "DINNER", "Business cards are cards bearing business information about a company or individual.", 1));
+        models.add(new Model(R.drawable.photo3, "COMBO", "Business cards are cards bearing business information about a company or individual.", 0));
+        models.add(new Model(R.drawable.photo3, "COMBO", "Business cards are cards bearing business information about a company or individual.", 1));
         adapter = new Adapter(models, this, getContext());
         horiscroll = view.findViewById(R.id.horiscroll);
         horiscroll.setAdapter(adapter);

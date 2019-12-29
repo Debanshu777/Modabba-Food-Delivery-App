@@ -52,20 +52,6 @@
                         >
                     </TextView>
                 </LinearLayout>
-
-                <Button
-                    android:id="@+id/more_btn"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.30"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:padding="5dp"
-                    android:fontFamily="@font/open_sans"
-                    android:textSize="10dp"
-                    android:textStyle="bold"
-                    android:text="Unsubcribe"
-                    android:textColor="@color/white">
-                </Button>
             </LinearLayout>
 
             <LinearLayout
@@ -74,18 +60,19 @@
                 android:orientation="horizontal"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:weightSum="1">
+                android:weightSum="3">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:layout_weight="0.20"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="13dp"
                         android:fontFamily="@font/open_sans_light"
                         android:text="Plan"/>
 
@@ -95,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans"
                         android:paddingTop="3dp"
-                        android:text="7 day plan"
+                        android:text="7 day"
                         android:textColor="@color/colorBlack"/>
 
                 </LinearLayout>
@@ -104,14 +91,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:layout_weight="0.40"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="13dp"
                         android:fontFamily="@font/open_sans_light"
-                        android:text="Started"></TextView>
+                        android:text="Started"/>
 
                     <TextView
                         android:id="@+id/start"
@@ -129,12 +117,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:layout_weight="0.40"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="13dp"
                         android:fontFamily="@font/open_sans_light"
                         android:text="Next Payment">
 
@@ -170,17 +159,18 @@
                     android:backgroundTint="@color/white"
                     android:text="skip meal"
                     android:fontFamily="@font/open_sans"
-                    android:textColor="@color/colorPrimary"></Button>
+                    android:textColor="@color/colorPrimary"/>
 
                 <Button
-                    android:id="@+id/modify"
+                    android:id="@+id/pause"
+                    android:layout_marginLeft="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="2dp"
                     android:fontFamily="@font/open_sans"
                     android:backgroundTint="@color/white"
-                    android:text="Modify"
+                    android:text="Pause"
                     android:textColor="@color/colorPrimary">
 
                 </Button>
