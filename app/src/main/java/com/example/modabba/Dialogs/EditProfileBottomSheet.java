@@ -138,7 +138,7 @@ public class EditProfileBottomSheet extends BottomSheetDialogFragment {
     private void updateUsername(final String u) {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("user")
+        db.collection("users")
                 .document(documentId)
                 .update("username",u)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

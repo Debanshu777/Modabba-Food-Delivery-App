@@ -39,7 +39,7 @@
 
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="rzp_test_aWAiIUdHCagqWX" />
+            android:value="rzp_test_LlMrprhWL46CYq" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />

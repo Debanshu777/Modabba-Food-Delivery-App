@@ -3,11 +3,21 @@ package com.example.modabba;
 public class ChoosePlan {
     String plan_name;
     String plan_price;
+    int meal;
 
     public ChoosePlan(){}
-    public ChoosePlan(String plan_name, String plan_price) {
+    public ChoosePlan(String plan_name, String plan_price,int meal) {
         this.plan_name = plan_name;
         this.plan_price = plan_price;
+        this.meal=meal;
+    }
+
+    public int getMeal() {
+        return meal;
+    }
+
+    public void setMeal(int meal) {
+        this.meal = meal;
     }
 
     public String getPlan_name() {

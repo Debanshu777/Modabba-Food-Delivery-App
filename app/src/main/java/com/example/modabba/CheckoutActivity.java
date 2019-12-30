@@ -41,19 +41,15 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class CheckoutActivity extends AppCompatActivity {
 
     private TextView selectedDate,deliveryAddress,walletBalance,totalPrice,planPrice,planDays;
-    private MaterialButton selectDate,updateAddress,pay;
-    private int mealCategory = 0;
-    private int foodCategory = 0;
-    private int plan ;
+    private MaterialButton selectDate,pay;
     private TextView category_veg,category_nonveg;
     private ImageView checkoutImage;
     private FirebaseFirestore db;
     private SessionManagement sessionManagement;
     private long credits = 0;
     private ProgressDialog progressDialog;
-
     Calendar calendar = Calendar.getInstance();
-    final String currentDate = new SimpleDateFormat("dd MMM, yyyy", Locale.getDefault()).format(new Date());
+    String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
     int year = calendar.get(Calendar.YEAR);
     int month  = calendar.get(Calendar.MONTH);
     int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -73,10 +69,19 @@ public class CheckoutActivity extends AppCompatActivity {
         initViews();
         no_days=Integer.parseInt(getIntent().getStringExtra("days"));
         int per_day=Integer.parseInt(getIntent().getStringExtra("prices"));
+        final int meal=getIntent().getIntExtra("meal",0);
         planPrice.setText("₹"+Integer.toString(no_days*per_day));
         planDays.setText(no_days+"Days");
         totalPrice.setText(planPrice.getText());
         setDeliveryWalletBalance();
+        category_veg=findViewById(R.id.checkout_veg);
+        category_nonveg=findViewById(R.id.checkout_nonveg);
+        if(meal== 0)
+        {
+            category_veg.setVisibility(View.INVISIBLE);
+            category_nonveg.setVisibility(View.VISIBLE);
+        }
+
 
         selectDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,13 +95,21 @@ public class CheckoutActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                createPayment();
+                createPayment(meal);
+            }
+        });
+        deliveryAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CheckoutActivity.this, MapActivity.class).putExtra("callingActivity",002)
+                        .putExtra("Sessionid",sessionManagement.getUserDocumentId()));
             }
         });
 
+
     }
 
-    private void createPayment() {
+    private void createPayment(final int meal) {
 
         if(credits >=Long.parseLong(totalPrice.getText().toString().substring(1))){
 
@@ -109,8 +122,8 @@ public class CheckoutActivity extends AppCompatActivity {
             docRef.update("wallet",remaining_balance).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    addSubcription();
-                    addorder();
+                    addSubcription(meal,Long.parseLong(totalPrice.getText().toString().substring(1)));
+                    //walletTrsaction(Long.parseLong(totalPrice.getText().toString().substring(1)));
                    subscribeToNotification();
                    Toast.makeText(CheckoutActivity.this, "Subcription Added!", Toast.LENGTH_SHORT).show();
                    startActivity(new Intent(CheckoutActivity.this, MainActivity.class));
@@ -128,11 +141,26 @@ public class CheckoutActivity extends AppCompatActivity {
         }
 
     }
-    private void addorder()
+    private void walletTransaction(long deducted,String id)
+    {
+        Map<String,Object> wal=new HashMap<>();
+        wal.put("wal_transaction_razor","");
+        wal.put("subscription id",id);
+        wal.put("time_Of_transaction",currentTime);
+        wal.put("amount_deducted",deducted);
+        wal.put("amount_added",0);
+        CollectionReference coref=db.collection("users").document(sessionManagement.getUserDocumentId()).collection("Wallet");
+        coref.add(wal).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Log.d(TAG, "wallet updated");
+            }
+        });
+    }
+    private void addorder(final String id)
     {
         List<DocumentSnapshot>documentSnapshots;
         CollectionReference ref=db.collection("users").document(sessionManagement.getUserDocumentId()).collection("Subscriptions");
-        final String id=ref.document().getId();
         ref.document().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -157,8 +185,13 @@ public class CheckoutActivity extends AppCompatActivity {
 
 
     }
-    private void addSubcription()
+    private void addSubcription(int meal, final long c)
     {
+        String a="Veg";
+        if(meal==0)
+        {
+            a="Non-Veg";
+        }
         Map<String,Object> subcription=new HashMap<>();
         subcription.put("date_Of_activation",selectedDate.getText());
         subcription.put("days",no_days);
@@ -166,11 +199,14 @@ public class CheckoutActivity extends AppCompatActivity {
         subcription.put("plan","p1");
         subcription.put("skip",0);
         subcription.put("status","active");
-        subcription.put("type","NonVeg");
+        subcription.put("type",a);
         db.collection("users").document(sessionManagement.getUserDocumentId()).collection("Subscriptions")
         .add(subcription).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
+                String b=documentReference.getId();
+                addorder(b);
+                walletTransaction(c,b);
                 Toast.makeText(CheckoutActivity.this, "Subcription Added", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
