@@ -19,23 +19,22 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Iterator;
 import java.util.Map;
 
-public class LunchDashboard extends Fragment {
+public class TNonVegDashboard extends Fragment {
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
-    private TextView dashboard_lunch;
+    private TextView dashboard_dinner;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup rootView=(ViewGroup)inflater.inflate(R.layout.lunchdashboard,container,false);
-        dashboard_lunch=rootView.findViewById(R.id.dashboard_lunch);
-        DocumentReference lunchRef = db.collection("menu").document("lunch");
-        lunchRef.get()
+        ViewGroup rootView=(ViewGroup)inflater.inflate(R.layout.tnonvegdashboard,container,false);
+        dashboard_dinner=rootView.findViewById(R.id.dashboard_dinner);
+        DocumentReference dinnerRef = db.collection("menu").document("dinner");dinnerRef.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
 
                         StringBuilder builder = new StringBuilder();
 
-                        Map<String,String> data = (Map<String, String>) documentSnapshot.get("lunch");
+                        Map<String,String> data = (Map<String, String>) documentSnapshot.get("dinner");
 
                         Iterator<String> itr  = data.keySet().iterator();
 
@@ -53,7 +52,7 @@ public class LunchDashboard extends Fragment {
                                 builder.append("/");
 
                         }
-                        dashboard_lunch.setText(builder+" ");
+                        dashboard_dinner.setText(builder);
                         System.out.println(builder);
                     }
                 });

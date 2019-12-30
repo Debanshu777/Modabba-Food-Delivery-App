@@ -46,6 +46,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static androidx.recyclerview.widget.LinearLayoutManager.*;
+
 public class DashboardFragment extends Fragment {
 
     private Context context;
@@ -83,10 +85,10 @@ public class DashboardFragment extends Fragment {
         orderSatusModels.add(new OrderSatusModel("Preparing","31-12-2019","active"));
         orderSatusModels.add(new OrderSatusModel("on the way","31-12-2019","active"));
         orderSatusModels.add(new OrderSatusModel("delivered","31-12-2019","active"));
-        OrderStatusAdapter orderStatusAdapter=new OrderStatusAdapter(orderSatusModels);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        timelineView.setLayoutManager(manager);
-        timelineView.setAdapter(orderStatusAdapter);
+//        OrderStatusAdapter orderStatusAdapter=new OrderStatusAdapter(orderSatusModels,this, getContext());
+//        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), HORIZONTAL, false);
+//        timelineView.setLayoutManager(manager);
+//        timelineView.setAdapter(orderStatusAdapter);
         //scrollable card view
         models = new ArrayList<>();
         models.add(new Model(R.drawable.photo4, "LUNCH", "Brochure is an informative paper document (often also used for advertising) that can be folded into a template", 0));
@@ -140,8 +142,8 @@ public class DashboardFragment extends Fragment {
 
         //today's menu
         List<Fragment> list = new ArrayList<>();
-        list.add(new LunchDashboard());
-        list.add(new DinnerDashboard());
+        list.add(new TVegDashboard());
+        list.add(new TNonVegDashboard());
         pageadapter = new SlidePagerAdapter(getChildFragmentManager(), list);
         pager.setAdapter(pageadapter);
         setLoccredits();
@@ -194,7 +196,7 @@ public class DashboardFragment extends Fragment {
 
         dashBoardCredit = view.findViewById(R.id.dashboard_credits);
         //stateProgressBar = view.findViewById(R.id.progress_bar);
-        timelineView=view.findViewById(R.id.orderstatuslist);
+        //timelineView=view.findViewById(R.id.orderstatuslist);
 
         getmap = view.findViewById(R.id.getmap);
         loc = view.findViewById(R.id.loc);

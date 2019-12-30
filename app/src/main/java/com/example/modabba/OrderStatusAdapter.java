@@ -1,5 +1,6 @@
 package com.example.modabba;
 
+import android.content.Context;
 import android.graphics.drawable.VectorDrawable;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.modabba.Fragments.DashboardFragment;
 import com.github.vipulasri.timelineview.TimelineView;
 
 import java.util.List;
@@ -15,9 +17,11 @@ import java.util.List;
 public class OrderStatusAdapter extends RecyclerView.Adapter<OrderStatusAdapter.TimeLineViewHolder> {
 
     List<OrderSatusModel> orderSatusModelList;
+    private DashboardFragment context;
 
-    public OrderStatusAdapter(List<OrderSatusModel> orderSatusModelList) {
+    public OrderStatusAdapter(List<OrderSatusModel> orderSatusModelList, DashboardFragment context, Context con) {
         this.orderSatusModelList = orderSatusModelList;
+        this.context = context;
     }
 
     @NonNull

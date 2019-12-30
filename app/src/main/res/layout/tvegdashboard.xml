@@ -8,7 +8,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lunch:"
+        android:text="Veg:"
+        android:fontFamily="@font/open_sans"
+        android:textColor="@color/materialAccentGreen"
         android:textAlignment="textStart"
         android:textSize="13dp"
         />

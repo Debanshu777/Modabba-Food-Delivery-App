@@ -334,12 +334,12 @@
                                 android:textAlignment="center"
                                 android:textSize="15dp" />
                         </LinearLayout>
-                        <androidx.recyclerview.widget.RecyclerView
+                        <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/orderstatuslist">
 
-                        </androidx.recyclerview.widget.RecyclerView>
+                        </androidx.cardview.widget.CardView>
                        <!-- <com.kofigyan.stateprogressbar.StateProgressBar
                             android:id="@+id/progress_bar"
                             android:layout_width="wrap_content"
