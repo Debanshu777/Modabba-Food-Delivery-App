@@ -15,17 +15,22 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.modabba.Adapter;
 import com.example.modabba.MapActivity;
 import com.example.modabba.Model;
+import com.example.modabba.OrderSatusModel;
+import com.example.modabba.OrderStatusAdapter;
 import com.example.modabba.R;
 import com.example.modabba.SessionManagement.SessionManagement;
 import com.example.modabba.SlidePagerAdapter;
 import com.example.modabba.SliderAdapterExample;
 import com.example.modabba.ViewPagerAdapter;
+import com.github.vipulasri.timelineview.TimelineView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabLayout;
@@ -58,6 +63,8 @@ public class DashboardFragment extends Fragment {
     private List<Address> addressList;
     Adapter adapter;
     List<Model> models;
+    List<OrderSatusModel> orderSatusModels;
+    RecyclerView timelineView;
 
 
     public DashboardFragment(Context context) {
@@ -71,7 +78,15 @@ public class DashboardFragment extends Fragment {
         init();
 
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
-
+        //order status view
+        orderSatusModels=new ArrayList<>();
+        orderSatusModels.add(new OrderSatusModel("Preparing","31-12-2019","active"));
+        orderSatusModels.add(new OrderSatusModel("on the way","31-12-2019","active"));
+        orderSatusModels.add(new OrderSatusModel("delivered","31-12-2019","active"));
+        OrderStatusAdapter orderStatusAdapter=new OrderStatusAdapter(orderSatusModels);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        timelineView.setLayoutManager(manager);
+        timelineView.setAdapter(orderStatusAdapter);
         //scrollable card view
         models = new ArrayList<>();
         models.add(new Model(R.drawable.photo4, "LUNCH", "Brochure is an informative paper document (often also used for advertising) that can be folded into a template", 0));
@@ -178,11 +193,13 @@ public class DashboardFragment extends Fragment {
         tabLayout = view.findViewById(R.id.tab_layout);
 
         dashBoardCredit = view.findViewById(R.id.dashboard_credits);
-        stateProgressBar = view.findViewById(R.id.progress_bar);
+        //stateProgressBar = view.findViewById(R.id.progress_bar);
+        timelineView=view.findViewById(R.id.orderstatuslist);
+
         getmap = view.findViewById(R.id.getmap);
         loc = view.findViewById(R.id.loc);
 
-        stateProgressBar.setStateDescriptionData(descriptionData);
+        //stateProgressBar.setStateDescriptionData(descriptionData);
         dashboardLunch = view.findViewById(R.id.dashboard_lunch);
         dashBoardDinner = view.findViewById(R.id.dashboard_dinner);
 
