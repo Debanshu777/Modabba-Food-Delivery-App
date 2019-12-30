@@ -59,7 +59,7 @@ dependencies {
 
     implementation 'com.kaopiz:kprogresshud:1.2.0'
 
-
+    implementation 'com.github.vipulasri:timelineview:1.1.2'
     implementation 'com.alespero:expandable-cardview:0.8'
 
 

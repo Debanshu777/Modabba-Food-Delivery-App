@@ -334,8 +334,13 @@
                                 android:textAlignment="center"
                                 android:textSize="15dp" />
                         </LinearLayout>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/orderstatuslist">
 
-                        <com.kofigyan.stateprogressbar.StateProgressBar
+                        </androidx.recyclerview.widget.RecyclerView>
+                       <!-- <com.kofigyan.stateprogressbar.StateProgressBar
                             android:id="@+id/progress_bar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -351,7 +356,7 @@
                             app:spb_stateDescriptionColor="#808080"
                             app:spb_stateForegroundColor="@color/colorPrimary"
                             app:spb_stateNumberBackgroundColor="#808080"
-                            app:spb_stateNumberForegroundColor="#eeeeee" />
+                            app:spb_stateNumberForegroundColor="#eeeeee" />-->
 
                     </LinearLayout>
                 </LinearLayout>
