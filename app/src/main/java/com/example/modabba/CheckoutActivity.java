@@ -41,17 +41,13 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class CheckoutActivity extends AppCompatActivity {
 
     private TextView selectedDate,deliveryAddress,walletBalance,totalPrice,planPrice,planDays;
-    private MaterialButton selectDate,updateAddress,pay;
-    private int mealCategory = 0;
-    private int foodCategory = 0;
-    private int plan ;
+    private MaterialButton selectDate,pay;
     private TextView category_veg,category_nonveg;
     private ImageView checkoutImage;
     private FirebaseFirestore db;
     private SessionManagement sessionManagement;
     private long credits = 0;
     private ProgressDialog progressDialog;
-
     Calendar calendar = Calendar.getInstance();
     String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
     int year = calendar.get(Calendar.YEAR);
@@ -102,6 +98,14 @@ public class CheckoutActivity extends AppCompatActivity {
                 createPayment(meal);
             }
         });
+        deliveryAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CheckoutActivity.this, MapActivity.class).putExtra("callingActivity",002)
+                        .putExtra("Sessionid",sessionManagement.getUserDocumentId()));
+            }
+        });
+
 
     }
 

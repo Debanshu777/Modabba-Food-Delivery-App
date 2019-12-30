@@ -223,7 +223,7 @@ public class VerificationActivity extends AppCompatActivity {
                             String email = (String)documents.get(0).get("email");
                             String number = (String)documents.get(0).get("primaryNumber");
                             String documentId = (String) documents.get(0).getId();
-                            boolean serviceable = (boolean) documents.get(0).get("serviceable");
+                            String serviceable = (String) documents.get(0).get("serviceable");
 
                             Log.i(TAG,"Serviceable Location");
                             //create login session for the user
