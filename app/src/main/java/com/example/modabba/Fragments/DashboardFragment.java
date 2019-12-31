@@ -81,14 +81,14 @@ public class DashboardFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         //order status view
-        orderSatusModels=new ArrayList<>();
-        orderSatusModels.add(new OrderSatusModel("Preparing","31-12-2019","active"));
-        orderSatusModels.add(new OrderSatusModel("on the way","31-12-2019","active"));
-        orderSatusModels.add(new OrderSatusModel("delivered","31-12-2019","active"));
-        OrderStatusAdapter orderStatusAdapter=new OrderStatusAdapter(orderSatusModels,getContext());
-        //RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), HORIZONTAL, false);
-        timelineView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        timelineView.setAdapter(orderStatusAdapter);
+//        orderSatusModels=new ArrayList<>();
+//        orderSatusModels.add(new OrderSatusModel("Preparing","31-12-2019","active"));
+//        orderSatusModels.add(new OrderSatusModel("on the way","31-12-2019","active"));
+//        orderSatusModels.add(new OrderSatusModel("delivered","31-12-2019","active"));
+//        OrderStatusAdapter orderStatusAdapter=new OrderStatusAdapter(orderSatusModels,getContext());
+//        //RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), HORIZONTAL, false);
+//        timelineView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        timelineView.setAdapter(orderStatusAdapter);
 
 //        OrderStatusAdapter orderStatusAdapter=new OrderStatusAdapter(orderSatusModels,this, getContext());
 //        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), HORIZONTAL, false);
