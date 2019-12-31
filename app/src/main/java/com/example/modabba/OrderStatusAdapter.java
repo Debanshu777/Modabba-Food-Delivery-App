@@ -2,6 +2,7 @@ package com.example.modabba;
 
 import android.content.Context;
 import android.graphics.drawable.VectorDrawable;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -17,9 +18,9 @@ import java.util.List;
 public class OrderStatusAdapter extends RecyclerView.Adapter<OrderStatusAdapter.TimeLineViewHolder> {
 
     List<OrderSatusModel> orderSatusModelList;
-    private DashboardFragment context;
+    Context context;
 
-    public OrderStatusAdapter(List<OrderSatusModel> orderSatusModelList, DashboardFragment context, Context con) {
+    public OrderStatusAdapter(List<OrderSatusModel> orderSatusModelList, Context context) {
         this.orderSatusModelList = orderSatusModelList;
         this.context = context;
     }
@@ -27,7 +28,10 @@ public class OrderStatusAdapter extends RecyclerView.Adapter<OrderStatusAdapter.
     @NonNull
     @Override
     public TimeLineViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = View.inflate(parent.getContext(), R.layout.item_timeline, null);
+        View view;
+        view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_timeline,parent,false);
+
+        //View view = View.inflate(parent.getContext(), R.layout.item_timeline, null);
         return new TimeLineViewHolder(view, viewType);
     }
 
@@ -59,7 +63,7 @@ public class OrderStatusAdapter extends RecyclerView.Adapter<OrderStatusAdapter.
         public TimelineView mTimelineView;
         public TimeLineViewHolder(@NonNull View itemView,int viewType) {
             super(itemView);
-            mTimelineView = (TimelineView) itemView.findViewById(R.id.timeline);
+            mTimelineView = itemView.findViewById(R.id.timeline);
             date=itemView.findViewById(R.id.text_timeline_date);
             msg=itemView.findViewById(R.id.text_timeline_title);
             mTimelineView.initLine(viewType);
