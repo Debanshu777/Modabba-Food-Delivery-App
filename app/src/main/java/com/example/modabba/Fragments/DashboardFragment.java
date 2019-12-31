@@ -85,6 +85,11 @@ public class DashboardFragment extends Fragment {
         orderSatusModels.add(new OrderSatusModel("Preparing","31-12-2019","active"));
         orderSatusModels.add(new OrderSatusModel("on the way","31-12-2019","active"));
         orderSatusModels.add(new OrderSatusModel("delivered","31-12-2019","active"));
+        OrderStatusAdapter orderStatusAdapter=new OrderStatusAdapter(orderSatusModels,getContext());
+        //RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), HORIZONTAL, false);
+        timelineView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        timelineView.setAdapter(orderStatusAdapter);
+
 //        OrderStatusAdapter orderStatusAdapter=new OrderStatusAdapter(orderSatusModels,this, getContext());
 //        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), HORIZONTAL, false);
 //        timelineView.setLayoutManager(manager);
@@ -196,7 +201,7 @@ public class DashboardFragment extends Fragment {
 
         dashBoardCredit = view.findViewById(R.id.dashboard_credits);
         //stateProgressBar = view.findViewById(R.id.progress_bar);
-        //timelineView=view.findViewById(R.id.orderstatuslist);
+        timelineView=view.findViewById(R.id.orderstatuslist);
 
         getmap = view.findViewById(R.id.getmap);
         loc = view.findViewById(R.id.loc);

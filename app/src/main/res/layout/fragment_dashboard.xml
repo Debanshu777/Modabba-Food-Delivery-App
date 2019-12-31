@@ -33,14 +33,14 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans"
                         android:text="DELIVER TO"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <ImageButton
+                        android:id="@+id/getmap"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="#FCF5F5F5"
                         android:paddingTop="3dp"
-                        android:id="@+id/getmap"
                         android:src="@drawable/arrow_down"
                         android:tint="@color/colorPrimary" />
                 </LinearLayout>
@@ -52,7 +52,7 @@
                     android:text="Patia"
                     android:textAllCaps="true"
                     android:textColor="@color/colorBlack"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -61,39 +61,46 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginEnd="10dp"
-                android:layout_weight="1"
                 android:background="@drawable/color_button"
                 android:backgroundTint="@color/white"
                 android:orientation="horizontal"
                 android:padding="3dp"
-                android:weightSum="1">
+                android:weightSum="3">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginRight="10dp"
-                    android:padding="3dp"
+                    android:layout_weight="1"
                     android:src="@drawable/wallet" />
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/open_sans"
+                    android:padding="2dp"
+                    android:text="@string/Rs"
+                    android:textSize="15sp" />
+
+                <TextView
                     android:id="@+id/dashboard_credits"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Rs 1400"
+                    android:text="1400"
                     android:textAlignment="center"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:background="@drawable/button_background">
 
         <LinearLayout
@@ -106,8 +113,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="0dp">
+                android:layout_marginTop="0dp"
+                android:layout_weight="1">
 
                 <com.smarteist.autoimageslider.SliderView
                     android:id="@+id/imageSlider"
@@ -210,7 +217,6 @@
                         android:id="@+id/horiscroll"
                         android:layout_width="match_parent"
                         android:layout_height="350dp"
-                        android:layout_centerInParent="true"
                         android:clipToPadding="false"
                         android:foregroundGravity="center"
                         android:overScrollMode="never">
@@ -334,29 +340,38 @@
                                 android:textAlignment="center"
                                 android:textSize="15dp" />
                         </LinearLayout>
-                        <androidx.cardview.widget.CardView
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/orderstatuslist"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/orderstatuslist">
+                            android:clipToPadding="false"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                            tools:listitem="@layout/item_timeline" />
+                        <!-- <androidx.cardview.widget.CardView
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:id="@+id/orderstatuslist">
 
-                        </androidx.cardview.widget.CardView>
-                       <!-- <com.kofigyan.stateprogressbar.StateProgressBar
-                            android:id="@+id/progress_bar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
-                            android:layout_marginTop="15dp"
-                            android:layout_weight="1"
-                            app:spb_animateToCurrentProgressState="true"
-                            app:spb_checkStateCompleted="true"
-                            app:spb_currentStateDescriptionColor="#000"
-                            app:spb_currentStateNumber="three"
-                            app:spb_maxStateNumber="three"
-                            app:spb_stateBackgroundColor="#BDBDBD"
-                            app:spb_stateDescriptionColor="#808080"
-                            app:spb_stateForegroundColor="@color/colorPrimary"
-                            app:spb_stateNumberBackgroundColor="#808080"
-                            app:spb_stateNumberForegroundColor="#eeeeee" />-->
+
+                         </androidx.cardview.widget.CardView>
+                         <com.kofigyan.stateprogressbar.StateProgressBar
+                             android:id="@+id/progress_bar"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_gravity="bottom"
+                             android:layout_marginTop="15dp"
+                             android:layout_weight="1"
+                             app:spb_animateToCurrentProgressState="true"
+                             app:spb_checkStateCompleted="true"
+                             app:spb_currentStateDescriptionColor="#000"
+                             app:spb_currentStateNumber="three"
+                             app:spb_maxStateNumber="three"
+                             app:spb_stateBackgroundColor="#BDBDBD"
+                             app:spb_stateDescriptionColor="#808080"
+                             app:spb_stateForegroundColor="@color/colorPrimary"
+                             app:spb_stateNumberBackgroundColor="#808080"
+                             app:spb_stateNumberForegroundColor="#eeeeee" />-->
 
                     </LinearLayout>
                 </LinearLayout>
@@ -388,6 +403,7 @@
                         android:textAlignment="textStart"
                         android:textSize="17sp"
                         android:textStyle="bold" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -417,37 +433,41 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="30dp"
                 android:layout_height="200dp"
-                android:gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_weight="1"
                 android:background="@drawable/photo2"
-                android:layout_weight="1" >
+                android:gravity="center">
+
                 <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    app:cardBackgroundColor="@color/white"
                     android:alpha="0.95"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp">
+                    app:cardBackgroundColor="@color/white">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:weightSum="1"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:weightSum="1">
+
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/app_logo"
+                            android:layout_weight="0.5"
                             android:scaleType="fitCenter"
-                            android:layout_weight="0.5"/>
+                            android:src="@drawable/app_logo" />
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:gravity="center"
                             android:layout_weight="0.5"
-                            android:textSize="10dp"
-                            android:textAlignment="center"
+                            android:gravity="center"
                             android:padding="10dp"
-                            android:text="Our chefs make the use of freshest ingredients to prepare affordable and healthy meals without the use of any additional preservatives, artificial colorants and other additives.It’s true that you can get a wholesome healthy and tasty food starting at very minimal cost."/>
+                            android:text="Our chefs make the use of freshest ingredients to prepare affordable and healthy meals without the use of any additional preservatives, artificial colorants and other additives.It’s true that you can get a wholesome healthy and tasty food starting at very minimal cost."
+                            android:textAlignment="center"
+                            android:textSize="10sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
