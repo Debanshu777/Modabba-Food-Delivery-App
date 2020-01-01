@@ -6,12 +6,17 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.iid.MessagingChannel;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 public class FirebaseMessaging extends FirebaseMessagingService {
 
     private String TAG = FirebaseMessaging.class.getName();
+
+    public static MessagingChannel getInstance() {
+        return null;
+    }
 
     @Override
     public void onNewToken(String s) {

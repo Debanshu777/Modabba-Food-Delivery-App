@@ -49,43 +49,6 @@ public class App extends Application {
                         }
                     }
                 });
-        sendOnChannel1();
-        sendOnChannel2();
-    }
-    public void sendOnChannel1() {
-        String title = "Veg Menu";
-        String message = "Dal/Curry";
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
-                mBuilder
-                .setSmallIcon(R.drawable.app_logo)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                .build();
-        Intent notificationIntent = new Intent(this, App.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        mBuilder.setContentIntent(contentIntent);
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(1, mBuilder.build());
-    }
-    public void sendOnChannel2() {
-        String title = "Non-Veg Menu";
-        String message = "Dal/Curry";
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
-        mBuilder
-                .setSmallIcon(R.drawable.app_logo)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                .build();
-        Intent notificationIntent = new Intent(this, App.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        mBuilder.setContentIntent(contentIntent);
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(2, mBuilder.build());
+
     }
 }
