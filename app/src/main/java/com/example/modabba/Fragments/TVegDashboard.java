@@ -19,13 +19,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Iterator;
 import java.util.Map;
 
-public class TVegDashboard extends Fragment {
+public class LunchDashboard extends Fragment {
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private TextView dashboard_lunch;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup rootView=(ViewGroup)inflater.inflate(R.layout.tvegdashboard,container,false);
+        ViewGroup rootView=(ViewGroup)inflater.inflate(R.layout.lunchdashboard,container,false);
         dashboard_lunch=rootView.findViewById(R.id.dashboard_lunch);
         DocumentReference lunchRef = db.collection("menu").document("lunch");
         lunchRef.get()

@@ -1,7 +1,6 @@
 package com.example.modabba;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,7 +20,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private AppBarLayout mAppBarLayout;
     private ImageView imageview;
-    private TextView title,desc,veg,nonveg;
+    private TextView title,desc;
     private Toolbar mToolbar;
     private RecyclerView recyclerView,recyclerViewPlan;
     private FlexiblePlanAdapter flexiblePlanAdapter;
@@ -37,32 +36,23 @@ public class DetailActivity extends AppCompatActivity {
         imageview=findViewById(R.id.imageview);
         title=findViewById(R.id.title);
         desc=findViewById(R.id.desc);
-        veg=findViewById(R.id.veg);
-        nonveg=findViewById(R.id.nonveg);
         flexiblePlanList = new ArrayList<>();
         choosePlanList =new ArrayList<>();
-        flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "skip meal", "Sudden chanf=ge of schedule?Skip upcoming meal"));
-        flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "pause plan", "Going out of town? Pause your plan for those days"));
-        flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "Cancel plan", "Never feel bound.Cancel plan anytime if you're unhappy"));
+       // flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "skip meal", "Sudden chanf=ge of schedule?Skip upcoming meal"));
+        //flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "pause plan", "Going out of town? Pause your plan for those days"));
+        //flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "Cancel plan", "Never feel bound.Cancel plan anytime if you're unhappy"));
 
-
+       // choosePlanList.add(new ChoosePlan("07 days","60"));
+        //choosePlanList.add(new ChoosePlan("14 days","75"));
+        //choosePlanList.add(new ChoosePlan("30 days","120"));
 
         Bundle extras = getIntent().getExtras();
         int entryId = extras.getInt("id");
         final String tite=extras.getString("title");
         String dec=extras.getString("desc");
-        int meal=extras.getInt("meal");
         imageview.setImageResource(entryId);
         title.setText(tite);
         desc.setText(dec);
-        if(meal== 0)
-        {
-            veg.setVisibility(View.INVISIBLE);
-            nonveg.setVisibility(View.VISIBLE);
-        }
-        choosePlanList.add(new ChoosePlan("07 days","60",meal));
-        choosePlanList.add(new ChoosePlan("14 days","75",meal));
-        choosePlanList.add(new ChoosePlan("30 days","120",meal));
 
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
