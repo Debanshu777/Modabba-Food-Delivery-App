@@ -32,7 +32,8 @@ dependencies {
 
     implementation 'com.karumi:dexter:5.0.0'
     implementation 'com.google.android.material:material:1.0.0'
-
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+    //implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
     //RazorPay//////////
     implementation 'com.razorpay:checkout:1.5.12'
     implementation 'com.android.volley:volley:1.1.1'

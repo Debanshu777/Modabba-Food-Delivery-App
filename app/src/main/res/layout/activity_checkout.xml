@@ -198,7 +198,7 @@
             android:layout_toRightOf="@id/nm"
             android:text="Delivery To"
             android:fontFamily="@font/open_sans_light"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textColor="@color/black"
             android:layout_marginLeft="16dp"
             android:layout_width="wrap_content"
@@ -272,15 +272,90 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_height="40dp"/>
     </RelativeLayout>
+    <View
+        android:background="@color/black"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:src="@drawable/ic_add_box_black_24dp"
+            android:tint="@color/black"
+            android:layout_centerVertical="true"
+            android:layout_width="36dp"
+            android:id="@+id/numd"
+            android:layout_height="36dp"/>
+
+        <TextView
+            android:id="@+id/numdabba"
+            android:text="Number of Dabbas"
+            android:textColor="@color/black"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:fontFamily="@font/open_sans_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/numd"/>
+
+            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                android:id="@+id/number_button2"
+                android:layout_width="120dp"
+                app:backGroundColor="@color/white"
+                app:textSize="8sp"
+                app:initialNumber="10"
+                app:finalNumber="20"
+                app:textColor="@color/black"
+                android:layout_marginTop="18dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                app:backgroundDrawable="@drawable/btn_background"/>
+            <!--<Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/white"
+                android:text="-"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:gravity="center">
+            </Button>
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="15dp"
+                android:padding="5dp"
+                android:text="3"
+                android:textSize="30sp"
+                android:gravity="center">
+            </TextView>
+
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/white"
+                android:text="+"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:gravity="center">
+            </Button>-->
+
+
+
+
+    </RelativeLayout>
    <RelativeLayout
        android:padding="16dp"
        android:layout_width="match_parent"
        android:layout_height="match_parent">
-       <View
-           android:background="@color/black"
-           android:layout_width="match_parent"
-           android:layout_above="@id/cs"
-           android:layout_height="0.5dp"/>
+
        <TextView
            android:id="@+id/cs"
            android:text="Total:"

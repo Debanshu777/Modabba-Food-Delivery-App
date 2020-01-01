@@ -3,6 +3,7 @@ package com.example.modabba;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.modabba.SessionManagement.SessionManagement;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -55,6 +57,9 @@ public class CheckoutActivity extends AppCompatActivity {
     int day = calendar.get(Calendar.DAY_OF_MONTH);
     int no_days;
 
+    public ElegantNumberButton btn1;
+    public ElegantNumberButton btn2;
+    public TextView textView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,6 +93,14 @@ public class CheckoutActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 openDatePicker();
+            }
+        });
+        //set the maximum range of dabbas
+        btn1.setRange(1, 5);
+        btn1.setOnClickListener(new ElegantNumberButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String num = btn1.getNumber();
             }
         });
 
@@ -270,6 +283,11 @@ public class CheckoutActivity extends AppCompatActivity {
         checkoutImage = findViewById(R.id.checkout_image);
         category_nonveg = findViewById(R.id.checkout_nonveg);
         category_veg = findViewById(R.id.checkout_veg);
+
+        btn2 = findViewById(R.id.number_button2);
+
+
+
 
     }
 
