@@ -38,13 +38,13 @@ public class DetailActivity extends AppCompatActivity {
         desc=findViewById(R.id.desc);
         flexiblePlanList = new ArrayList<>();
         choosePlanList =new ArrayList<>();
-        flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "skip meal", "Sudden chanf=ge of schedule?Skip upcoming meal"));
-        flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "pause plan", "Going out of town? Pause your plan for those days"));
-        flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "Cancel plan", "Never feel bound.Cancel plan anytime if you're unhappy"));
+       // flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "skip meal", "Sudden chanf=ge of schedule?Skip upcoming meal"));
+        //flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "pause plan", "Going out of town? Pause your plan for those days"));
+        //flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "Cancel plan", "Never feel bound.Cancel plan anytime if you're unhappy"));
 
-        choosePlanList.add(new ChoosePlan("07 days","60"));
-        choosePlanList.add(new ChoosePlan("14 days","75"));
-        choosePlanList.add(new ChoosePlan("30 days","120"));
+       // choosePlanList.add(new ChoosePlan("07 days","60"));
+        //choosePlanList.add(new ChoosePlan("14 days","75"));
+        //choosePlanList.add(new ChoosePlan("30 days","120"));
 
         Bundle extras = getIntent().getExtras();
         int entryId = extras.getInt("id");

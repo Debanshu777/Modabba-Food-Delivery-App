@@ -4,6 +4,7 @@ import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 
@@ -22,14 +23,10 @@ import java.util.Map;
 public class App extends Application {
 
     private static final String TAG = App.class.getSimpleName();
-    public static final String CHANNEL_1_ID = "channel1";
-    public static final String CHANNEL_2_ID = "channel2";
-    private NotificationManagerCompat notificationManager= NotificationManagerCompat.from(this);
 
     @Override
     public void onCreate() {
         super.onCreate();
-        createNotificationChannels();
         final FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
 
         Map<String, Object> defaultValue = new HashMap<>();
@@ -52,49 +49,32 @@ public class App extends Application {
         sendOnChannel1();
         sendOnChannel2();
     }
-    private void createNotificationChannels() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel1 = new NotificationChannel(
-                    CHANNEL_1_ID,
-                    "Channel 1",
-                    NotificationManager.IMPORTANCE_HIGH
-            );
-            channel1.setDescription("This is Channel 1");
-
-            NotificationChannel channel2 = new NotificationChannel(
-                    CHANNEL_2_ID,
-                    "Channel 2",
-                    NotificationManager.IMPORTANCE_LOW
-            );
-            channel2.setDescription("This is Channel 2");
-
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(channel1);
-            manager.createNotificationChannel(channel2);
-        }
-    }
     public void sendOnChannel1() {
         String title = "Veg Menu";
         String message = "Dal/Curry";
-        Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+                mBuilder
                 .setSmallIcon(R.drawable.app_logo)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                 .build();
-        notificationManager.notify(1, notification);
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(1, mBuilder.build());
     }
     public void sendOnChannel2() {
         String title = "Non-Veg Menu";
         String message = "Dal/Curry";
-        Notification notification = new NotificationCompat.Builder(this, CHANNEL_2_ID)
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+        mBuilder
                 .setSmallIcon(R.drawable.app_logo)
                 .setContentTitle(title)
                 .setContentText(message)
-                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                 .build();
-        notificationManager.notify(2, notification);
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(2, mBuilder.build());
     }
 }

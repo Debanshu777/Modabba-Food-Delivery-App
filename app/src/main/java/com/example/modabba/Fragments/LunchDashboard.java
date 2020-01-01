@@ -20,9 +20,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Iterator;
 import java.util.Map;
-
-import static com.example.modabba.RemoteConfig.App.CHANNEL_1_ID;
-
 public class LunchDashboard extends Fragment {
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private TextView dashboard_lunch;
