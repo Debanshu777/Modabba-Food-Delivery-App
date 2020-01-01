@@ -38,11 +38,11 @@ public class MainActivity extends AppCompatActivity implements UpdateHelper.onUp
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel"notif1", "Notifications",NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel channel = new NotificationChannel("notif1", "Notifications",NotificationManager.IMPORTANCE_HIGH);
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
-        FirebaseMessaging.getInstance().subscribeToTopic("menu")
+        FirebaseMessaging.getInstance().subscribeToTopic("menu","veg","non-veg")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
