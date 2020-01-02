@@ -51,7 +51,9 @@ public class SubcriptionHistoryFragment extends Fragment {
                     Map<String,Object> sublist=documentSnapshot.getData();
                     id[0]= String.valueOf(sublist.get("subscription id"));
                     if(id[0]!="") {
-                        list.add(new subcriptionhistory(id[0], "p1", "12:45", "-", "1200"));
+                        amt[0]=String.valueOf(sublist.get("amount_deducted"));
+                        time[0]=String.valueOf(sublist.get("time_Of_transaction"));
+                        list.add(new subcriptionhistory(id[0], "p1", time[0], "-", amt[0]));
                         subcriptionhistoryAdapter subcriptionhistoryAdapter = new subcriptionhistoryAdapter(getContext(), list);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                         recyclerView.setAdapter(subcriptionhistoryAdapter);
