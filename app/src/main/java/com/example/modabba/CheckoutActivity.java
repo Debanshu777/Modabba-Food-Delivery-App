@@ -58,8 +58,6 @@ public class CheckoutActivity extends AppCompatActivity {
     int no_days;
 
     public ElegantNumberButton btn1;
-    public ElegantNumberButton btn2;
-    public TextView textView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -205,6 +203,7 @@ public class CheckoutActivity extends AppCompatActivity {
         {
             a="Non-Veg";
         }
+
         Map<String,Object> subcription=new HashMap<>();
         subcription.put("date_Of_activation",selectedDate.getText());
         subcription.put("days",no_days);
@@ -284,7 +283,7 @@ public class CheckoutActivity extends AppCompatActivity {
         category_nonveg = findViewById(R.id.checkout_nonveg);
         category_veg = findViewById(R.id.checkout_veg);
 
-        btn2 = findViewById(R.id.number_button2);
+        btn1 = findViewById(R.id.number_button2);
 
 
 
@@ -309,6 +308,12 @@ public class CheckoutActivity extends AppCompatActivity {
     private String formateDate(Date date){
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
+        //Calendar cal = Calendar.getInstance();
+        //cal.setTime(date);
+        //cal.add(Calendar.DATE, no_days);
+        //Date futureDate = cal.getTime();
+        //settext the future date
+
         return dateFormat.format(date);
     }
 
