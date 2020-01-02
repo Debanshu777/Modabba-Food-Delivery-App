@@ -46,13 +46,6 @@ public class SubscriptionFragment extends Fragment {
     private Context context;
     private FirebaseFirestore db;
     private SessionManagement sessionManagement;
-    private TextView subscriptionCredit;
-    private int selectedPlan;
-    private int _foodCategory = 0; // Veg/NonVeg
-    private int _mealCategory = 0; // Lunch/Dinner
-    private ChipGroup group;
-    private RadioGroup categoryGroup, mealCategory;
-    private Button subscribe;
     private static final String TAG = "SUBSCRIPTION";
     private RecyclerView recyclerView;
     List<ActiveSubcription> subcriptionList;

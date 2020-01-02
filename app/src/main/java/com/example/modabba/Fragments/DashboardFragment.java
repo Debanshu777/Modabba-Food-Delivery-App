@@ -21,6 +21,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.modabba.Adapter;
+import com.example.modabba.History;
 import com.example.modabba.MapActivity;
 import com.example.modabba.Model;
 import com.example.modabba.OrderSatusModel;
@@ -31,19 +32,27 @@ import com.example.modabba.SlidePagerAdapter;
 import com.example.modabba.SliderAdapterExample;
 import com.example.modabba.ViewPagerAdapter;
 import com.github.vipulasri.timelineview.TimelineView;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import static androidx.recyclerview.widget.LinearLayoutManager.*;
@@ -61,7 +70,7 @@ public class DashboardFragment extends Fragment {
     private ViewPager viewPager, pager, horiscroll;
     private PagerAdapter pageadapter;
     private TabLayout tabLayout;
-    private ImageButton getmap;
+    private ImageButton getmap,dash_wallet;
     private List<Address> addressList;
     Adapter adapter;
     List<Model> models;
@@ -80,32 +89,20 @@ public class DashboardFragment extends Fragment {
         init();
 
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        //order status view
-//        orderSatusModels=new ArrayList<>();
-//        orderSatusModels.add(new OrderSatusModel("Preparing","31-12-2019","active"));
-//        orderSatusModels.add(new OrderSatusModel("on the way","31-12-2019","active"));
-//        orderSatusModels.add(new OrderSatusModel("delivered","31-12-2019","active"));
-//        OrderStatusAdapter orderStatusAdapter=new OrderStatusAdapter(orderSatusModels,getContext());
-//        //RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), HORIZONTAL, false);
-//        timelineView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        timelineView.setAdapter(orderStatusAdapter);
-
-//        OrderStatusAdapter orderStatusAdapter=new OrderStatusAdapter(orderSatusModels,this, getContext());
-//        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), HORIZONTAL, false);
-//        timelineView.setLayoutManager(manager);
-//        timelineView.setAdapter(orderStatusAdapter);
         //scrollable card view
         models = new ArrayList<>();
-        models.add(new Model(R.drawable.photo4, "LUNCH", "Brochure is an informative paper document (often also used for advertising) that can be folded into a template", 0));
-        models.add(new Model(R.drawable.photo2, "DINNER", "Sticker is a type of label: a piece of printed paper, plastic, vinyl, or other material with pressure sensitive adhesive on one side", 0));
-        models.add(new Model(R.drawable.photo1, "LUNCH", "Poster is any piece of printed paper designed to be attached to a wall or vertical surface.", 1));
-        models.add(new Model(R.drawable.photo3, "DINNER", "Business cards are cards bearing business information about a company or individual.", 1));
-        models.add(new Model(R.drawable.photo3, "COMBO", "Business cards are cards bearing business information about a company or individual.", 0));
-        models.add(new Model(R.drawable.photo3, "COMBO", "Business cards are cards bearing business information about a company or individual.", 1));
+        models.add(new Model(R.drawable.photo4, "LUNCH", "Brochure is an informative paper document (often also used for advertising) that can be folded into a template", 0,0));
+        models.add(new Model(R.drawable.photo2, "DINNER", "Sticker is a type of label: a piece of printed paper, plastic, vinyl, or other material with pressure sensitive adhesive on one side", 0,0));
+        models.add(new Model(R.drawable.photo1, "LUNCH", "Poster is any piece of printed paper designed to be attached to a wall or vertical surface.", 1,0));
+        models.add(new Model(R.drawable.photo3, "DINNER", "Business cards are cards bearing business information about a company or individual.", 1,0));
+        models.add(new Model(R.drawable.photo3, "COMBO", "Business cards are cards bearing business information about a company or individual.", 0,1));
+        models.add(new Model(R.drawable.photo3, "COMBO", "Business cards are cards bearing business information about a company or individual.", 1,1));
         adapter = new Adapter(models, this, getContext());
         horiscroll = view.findViewById(R.id.horiscroll);
         horiscroll.setAdapter(adapter);
         horiscroll.setPadding(130, 0, 130, 0);
+
+
         //top flipper
         sliderView = view.findViewById(R.id.imageSlider);
         final SliderAdapterExample adapter = new SliderAdapterExample(getContext());
@@ -160,7 +157,34 @@ public class DashboardFragment extends Fragment {
                     setLoccredits();
             }
         });
+        dash_wallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(context,History.class).putExtra("Sessionid",sessionManagement.getUserDocumentId()));
+            }
+        });
 
+       // orderState();
+
+    }
+
+    private void orderState() {
+        final CollectionReference ref = db.collection("users").document(sessionManagement.getUserDocumentId()).collection("MyOrders");
+        final String[] date = {""};
+        ref.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots) {
+                    Map<String,Object>sublist=documentSnapshot.getData();
+                    date[0]=String.valueOf(sublist.get("date"));
+                    String currentDate = new SimpleDateFormat("dd MMM, yyyy", Locale.getDefault()).format(new Date());
+                    if(date[0].equalsIgnoreCase(currentDate))
+                    {
+
+                    }
+                }
+            }
+        });
 
     }
 
@@ -199,14 +223,14 @@ public class DashboardFragment extends Fragment {
         pager = view.findViewById(R.id.pager);
         tabLayout = view.findViewById(R.id.tab_layout);
 
+        dash_wallet=view.findViewById(R.id.dash_wallet);
         dashBoardCredit = view.findViewById(R.id.dashboard_credits);
-        //stateProgressBar = view.findViewById(R.id.progress_bar);
-        timelineView=view.findViewById(R.id.orderstatuslist);
+        stateProgressBar = view.findViewById(R.id.progress_bar);
 
         getmap = view.findViewById(R.id.getmap);
         loc = view.findViewById(R.id.loc);
 
-        //stateProgressBar.setStateDescriptionData(descriptionData);
+        stateProgressBar.setStateDescriptionData(descriptionData);
         dashboardLunch = view.findViewById(R.id.dashboard_lunch);
         dashBoardDinner = view.findViewById(R.id.dashboard_dinner);
 

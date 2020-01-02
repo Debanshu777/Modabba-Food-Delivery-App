@@ -34,6 +34,7 @@
         <activity android:name=".Payment.PaymentActivity"/>
         <activity android:name=".Payment.AddMoney"/>
         <activity android:name=".MapActivity"/>
+        <activity android:name=".History"/>
         <activity android:name=".CheckoutActivity"/>
         <activity android:name=".OrderSuccess"/>
         <activity android:name=".DetailActivity"/>
@@ -46,7 +47,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <service android:name=".NotificationService" />
     </application>
 
 </manifest>

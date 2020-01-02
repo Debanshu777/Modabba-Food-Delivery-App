@@ -7,6 +7,16 @@ public class Model {
     private String desc;
     private int meal;
 
+    public int getCombo() {
+        return combo;
+    }
+
+    public void setCombo(int combo) {
+        this.combo = combo;
+    }
+
+    private int combo;
+
     public int getMeal() {
         return meal;
     }
@@ -15,11 +25,12 @@ public class Model {
         this.meal = meal;
     }
 
-    public Model(int image, String title, String desc, int meal) {
+    public Model(int image, String title, String desc, int meal,int combo) {
         this.image = image;
         this.title = title;
         this.desc = desc;
         this.meal = meal;
+        this.combo=combo;
     }
 
     public int getImage() {

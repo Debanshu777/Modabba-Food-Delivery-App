@@ -4,12 +4,22 @@ public class ChoosePlan {
     String plan_name;
     String plan_price;
     int meal;
+    int combo;
+
+    public int getCombo() {
+        return combo;
+    }
+
+    public void setCombo(int combo) {
+        this.combo = combo;
+    }
 
     public ChoosePlan(){}
-    public ChoosePlan(String plan_name, String plan_price,int meal) {
+    public ChoosePlan(String plan_name, String plan_price,int meal,int combo) {
         this.plan_name = plan_name;
         this.plan_price = plan_price;
         this.meal=meal;
+        this.combo=combo;
     }
 
     public int getMeal() {

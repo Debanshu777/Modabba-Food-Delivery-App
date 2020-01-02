@@ -30,8 +30,8 @@ public class NonVegMenuFragment extends Fragment {
     }
     private void createItems() {
         Menu menu = new Menu();
-        int[] color=new int[]{R.color.colorBlack, R.color.blue, R.color.colorPrimary,
-                R.color.colorPrimaryDark, R.color.red, R.color.colorAccent};
+        int[] color=new int[]{R.color.colorPrimary, R.color.colorPrimary, R.color.colorPrimary,
+                R.color.colorPrimary, R.color.colorPrimary, R.color.colorPrimary};
         ArrayList<String> val=new ArrayList<>();
         Map<String, ArrayList<String>> map;
         int c=0;

@@ -67,10 +67,12 @@
                 android:padding="3dp"
                 android:weightSum="3">
 
-                <ImageView
+                <ImageButton
+                    android:id="@+id/dash_wallet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:background="@color/white"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:src="@drawable/wallet" />
@@ -341,14 +343,8 @@
                                 android:textSize="15dp" />
                         </LinearLayout>
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/orderstatuslist"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:clipToPadding="false"
-                            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                            tools:listitem="@layout/item_timeline" />
-                        <!-- <androidx.cardview.widget.CardView
+
+                        <androidx.cardview.widget.CardView
                              android:layout_width="match_parent"
                              android:layout_height="wrap_content"
                              android:id="@+id/orderstatuslist">
@@ -371,7 +367,7 @@
                              app:spb_stateDescriptionColor="#808080"
                              app:spb_stateForegroundColor="@color/colorPrimary"
                              app:spb_stateNumberBackgroundColor="#808080"
-                             app:spb_stateNumberForegroundColor="#eeeeee" />-->
+                             app:spb_stateNumberForegroundColor="#eeeeee" />
 
                     </LinearLayout>
                 </LinearLayout>
