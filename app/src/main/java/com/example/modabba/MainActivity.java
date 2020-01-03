@@ -24,6 +24,7 @@ import com.example.modabba.RemoteConfig.UpdateHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity implements UpdateHelper.onUpdateCheckListener {
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements UpdateHelper.onUp
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel"notif1", "Notifications",NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel channel = new NotificationChannel("notif1", "Notifications",NotificationManager.IMPORTANCE_HIGH);
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }

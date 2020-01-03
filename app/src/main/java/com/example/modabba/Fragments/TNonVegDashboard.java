@@ -27,7 +27,8 @@ public class TNonVegDashboard extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView=(ViewGroup)inflater.inflate(R.layout.tnonvegdashboard,container,false);
         dashboard_dinner=rootView.findViewById(R.id.dashboard_dinner);
-        DocumentReference dinnerRef = db.collection("menu").document("dinner");dinnerRef.get()
+        DocumentReference dinnerRef = db.collection("menu").document("dinner");
+        dinnerRef.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {

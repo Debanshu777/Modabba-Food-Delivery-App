@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.modabba">
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -8,6 +9,7 @@
 
 
     <application
+        tools:replace="android:icon"
         android:name=".RemoteConfig.App"
         android:allowBackup="true"
         android:icon="@drawable/app_logo"
@@ -28,6 +30,7 @@
         <activity android:name=".MainActivity" >
         </activity>
         <activity android:name=".SignUpActivity"/>
+        <activity android:name=".History"/>
         <activity android:name=".FeedbackActivity"></activity>
         <activity android:name=".Payment.PaymentActivity"/>
         <activity android:name=".Payment.AddMoney"/>
