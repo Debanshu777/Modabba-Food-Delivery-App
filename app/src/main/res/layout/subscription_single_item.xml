@@ -62,6 +62,7 @@
                     android:padding="5dp">
 
                     <TextView
+                        android:id="@+id/subid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans"
@@ -200,11 +201,11 @@
 
                     <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
                         android:id="@+id/number_btn1"
-                        android:layout_width="110dp"
+                        android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         app:backGroundColor="@color/white"
                         app:backgroundDrawable="@drawable/btn_background"
-                        app:finalNumber="10"
+                        app:finalNumber="5"
                         app:initialNumber="1"
                         app:textColor="@color/black"
                         app:textSize="8sp"
@@ -231,12 +232,12 @@
                     </Button>
                     <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
                         android:id="@+id/number_btn2"
-                        android:layout_width="110dp"
+                        android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         app:backGroundColor="@color/white"
                         app:backgroundDrawable="@drawable/btn_background"
-                        app:finalNumber="20"
-                        app:initialNumber="10"
+                        app:finalNumber="5"
+                        app:initialNumber="1"
                         app:textColor="@color/black"
                         app:textSize="8sp"
                         android:visibility="gone"/>
