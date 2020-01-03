@@ -23,19 +23,20 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1">
+                android:orientation="vertical"
+                android:weightSum="2">
 
-                <LinearLayout
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_weight="0.70"
-                    android:orientation="vertical"
+                    android:layout_weight="1"
                     android:padding="5dp">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/subidd"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_light"
                         android:text="#subcription id">
@@ -43,15 +44,45 @@
                     </TextView>
 
                     <TextView
-                        android:id="@+id/subid"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:fontFamily="@font/open_sans_light"
+                        android:text="#dabbas">
+
+                    </TextView>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans"
-                        android:textStyle="bold"
                         android:text="#subcription id"
-                        >
+                        android:textStyle="bold">
+
                     </TextView>
-                </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/noofdabba"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/open_sans"
+                        android:text="6"
+                        android:textStyle="bold">
+
+                    </TextView>
+                </RelativeLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -72,9 +103,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="13dp"
                         android:fontFamily="@font/open_sans_light"
-                        android:text="Plan"/>
+                        android:text="Plan"
+                        android:textSize="13dp" />
 
                     <TextView
                         android:id="@+id/plan_name"
@@ -83,7 +114,7 @@
                         android:fontFamily="@font/open_sans"
                         android:paddingTop="3dp"
                         android:text="7 day"
-                        android:textColor="@color/colorBlack"/>
+                        android:textColor="@color/colorBlack" />
 
                 </LinearLayout>
 
@@ -97,9 +128,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="13dp"
                         android:fontFamily="@font/open_sans_light"
-                        android:text="Started"/>
+                        android:text="Started"
+                        android:textSize="13dp" />
 
                     <TextView
                         android:id="@+id/start"
@@ -123,9 +154,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="13dp"
                         android:fontFamily="@font/open_sans_light"
-                        android:text="Next Payment">
+                        android:text="Next Payment"
+                        android:textSize="13dp">
 
                     </TextView>
 
@@ -143,38 +174,74 @@
 
             </LinearLayout>
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/skip"
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginBottom="5dp"
-                    android:backgroundTint="@color/white"
-                    android:text="skip meal"
-                    android:fontFamily="@font/open_sans"
-                    android:textColor="@color/colorPrimary"/>
+                    android:layout_margin="10dp">
 
-                <Button
-                    android:id="@+id/pause"
-                    android:layout_marginLeft="5dp"
+                    <Button
+                        android:id="@+id/skip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginBottom="5dp"
+                        android:backgroundTint="@color/white"
+                        android:fontFamily="@font/open_sans"
+                        android:text="skip meal"
+                        android:textColor="@color/colorPrimary" />
+
+                    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                        android:id="@+id/number_btn1"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        app:backGroundColor="@color/white"
+                        app:backgroundDrawable="@drawable/btn_background"
+                        app:finalNumber="10"
+                        app:initialNumber="1"
+                        app:textColor="@color/black"
+                        app:textSize="8sp"
+                        android:visibility="gone"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="2dp"
-                    android:fontFamily="@font/open_sans"
-                    android:backgroundTint="@color/white"
-                    android:text="Pause"
-                    android:textColor="@color/colorPrimary">
+                    android:layout_margin="10dp">
 
-                </Button>
+                    <Button
+                        android:id="@+id/pause"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="2dp"
+                        android:backgroundTint="@color/white"
+                        android:fontFamily="@font/open_sans"
+                        android:text="Pause"
+                        android:textColor="@color/colorPrimary">
+                    </Button>
+                    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                        android:id="@+id/number_btn2"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        app:backGroundColor="@color/white"
+                        app:backgroundDrawable="@drawable/btn_background"
+                        app:finalNumber="20"
+                        app:initialNumber="10"
+                        app:textColor="@color/black"
+                        app:textSize="8sp"
+                        android:visibility="gone"/>
 
+                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
