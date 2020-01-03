@@ -221,6 +221,7 @@ public class CheckoutActivity extends AppCompatActivity {
         subcription.put("payment_id","");
         subcription.put("plan","p1");
         subcription.put("skip",0);
+        subcription.put("extented",0);
         subcription.put("status","active");
         subcription.put("type",a);
         subcription.put("no_of_dabba",num);

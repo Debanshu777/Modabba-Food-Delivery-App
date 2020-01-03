@@ -182,10 +182,23 @@
                 android:gravity="end"
                 android:orientation="horizontal">
 
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp">
+                    <Button
+                        android:id="@+id/done1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginBottom="5dp"
+                        android:backgroundTint="@color/white"
+                        android:fontFamily="@font/open_sans"
+                        android:text="Done"
+                        android:visibility="gone"
+                        android:textColor="@color/colorPrimary" />
 
                     <Button
                         android:id="@+id/skip"
@@ -198,7 +211,6 @@
                         android:fontFamily="@font/open_sans"
                         android:text="skip meal"
                         android:textColor="@color/colorPrimary" />
-
                     <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
                         android:id="@+id/number_btn1"
                         android:layout_width="120dp"
@@ -210,6 +222,8 @@
                         app:textColor="@color/black"
                         app:textSize="8sp"
                         android:visibility="gone"/>
+
+
 
                 </RelativeLayout>
 
