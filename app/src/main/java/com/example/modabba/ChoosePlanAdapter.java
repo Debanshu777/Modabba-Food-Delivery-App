@@ -47,6 +47,7 @@ public class ChoosePlanAdapter extends RecyclerView.Adapter<ChoosePlanAdapter.Pl
         final String day=data.getPlan_name();
         final String price=data.getPlan_price();
         final int meal=data.getMeal();
+        final int combo=data.getCombo();
         holder.plan_name.setText(day);
         holder.plan_price.setText(price);
         db.collection("users").document(sessionManagement.getUserDocumentId())
@@ -67,6 +68,7 @@ public class ChoosePlanAdapter extends RecyclerView.Adapter<ChoosePlanAdapter.Pl
                     intent.putExtra("days",day.substring(0,2));
                     intent.putExtra("prices",price);
                     intent.putExtra("meal",meal);
+                    intent.putExtra("combo",combo);
                     v.getContext().startActivity(intent);
                 }
                 else

@@ -130,7 +130,7 @@
                         android:text="+"
                         android:id="@+id/op"
                         android:textSize="20sp"
-                        android:textColor="@color/colorBlack"/>
+                        android:textColor="@color/red"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
                         android:paddingEnd="2dp"
                         android:paddingStart="2dp"
                         android:paddingBottom="5dp"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/red"
                         android:text="@string/Rs"
                         android:textSize="20sp" />
 
@@ -148,7 +148,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="5dp"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/red"
                         android:gravity="center"
                         android:text="1400"
                         android:textAlignment="center"

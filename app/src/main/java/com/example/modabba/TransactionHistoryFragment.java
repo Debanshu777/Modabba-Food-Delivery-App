@@ -48,7 +48,7 @@ public class TransactionHistoryFragment extends Fragment {
                     id[0]= String.valueOf(sublist.get("wal_transaction_razor"));
                     if(id[0]!="") {
                         amt[0]=String.valueOf(sublist.get("amount_added"));
-                        time[0]=String.valueOf(sublist.get("time_Of_transaction"));
+                        time[0]=String.valueOf(sublist.get("date_Of_transaction"))+" "+String.valueOf(sublist.get("time_Of_transaction"));
                         list.add(new transactionhistory(id[0], "+", "doyel saha",time[0],"card", amt[0]));
                         transactionhistoryAdapter transactionhistoryAdapter = new transactionhistoryAdapter(getActivity(), list);
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);

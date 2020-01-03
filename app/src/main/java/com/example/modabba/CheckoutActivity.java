@@ -55,7 +55,7 @@ public class CheckoutActivity extends AppCompatActivity {
     int year = calendar.get(Calendar.YEAR);
     int month  = calendar.get(Calendar.MONTH);
     int day = calendar.get(Calendar.DAY_OF_MONTH);
-    int no_days;
+    int no_days,num=1;
 
     public ElegantNumberButton btn1;
 
@@ -71,7 +71,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
         initViews();
         no_days=Integer.parseInt(getIntent().getStringExtra("days"));
-        int per_day=Integer.parseInt(getIntent().getStringExtra("prices"));
+        final int per_day=Integer.parseInt(getIntent().getStringExtra("prices"));
         final int meal=getIntent().getIntExtra("meal",0);
         planPrice.setText("₹"+Integer.toString(no_days*per_day));
         planDays.setText(no_days+"Days");
@@ -98,7 +98,16 @@ public class CheckoutActivity extends AppCompatActivity {
         btn1.setOnClickListener(new ElegantNumberButton.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String num = btn1.getNumber();
+                num = Integer.parseInt(btn1.getNumber());
+                if(num==0)
+                {
+                    planPrice.setText("₹"+Integer.toString(no_days*per_day));
+                    totalPrice.setText(planPrice.getText());
+                }
+                else {
+                    planPrice.setText("₹" + Integer.toString(no_days * per_day * num));
+                    totalPrice.setText(planPrice.getText());
+                }
             }
         });
 
@@ -106,7 +115,7 @@ public class CheckoutActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                createPayment(meal);
+                createPayment(meal,num);
             }
         });
         deliveryAddress.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +129,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
     }
 
-    private void createPayment(final int meal) {
+    private void createPayment(final int meal, final int num) {
 
         if(credits >=Long.parseLong(totalPrice.getText().toString().substring(1))){
 
@@ -133,8 +142,7 @@ public class CheckoutActivity extends AppCompatActivity {
             docRef.update("wallet",remaining_balance).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    addSubcription(meal,Long.parseLong(totalPrice.getText().toString().substring(1)));
-                    //walletTrsaction(Long.parseLong(totalPrice.getText().toString().substring(1)));
+                    addSubcription(meal,Long.parseLong(totalPrice.getText().toString().substring(1)),num);
                    subscribeToNotification();
                    Toast.makeText(CheckoutActivity.this, "Subcription Added!", Toast.LENGTH_SHORT).show();
                    startActivity(new Intent(CheckoutActivity.this, MainActivity.class));
@@ -154,7 +162,9 @@ public class CheckoutActivity extends AppCompatActivity {
     }
     private void walletTransaction(long deducted,String id)
     {
+        String currentDate = new SimpleDateFormat("dd MMM, yyyy", Locale.getDefault()).format(new Date());
         Map<String,Object> wal=new HashMap<>();
+        wal.put("date_Of_transaction",currentDate);
         wal.put("wal_transaction_razor","");
         wal.put("subscription id",id);
         wal.put("time_Of_transaction",currentTime);
@@ -168,7 +178,7 @@ public class CheckoutActivity extends AppCompatActivity {
             }
         });
     }
-    private void addorder(final String id)
+    private void addorder(final String id, final int num)
     {
         List<DocumentSnapshot>documentSnapshots;
         CollectionReference ref=db.collection("users").document(sessionManagement.getUserDocumentId()).collection("Subscriptions");
@@ -179,6 +189,7 @@ public class CheckoutActivity extends AppCompatActivity {
                 order.put("date", selectedDate.getText());
                 order.put("status", "preparing");
                 order.put("subcription_id",id);
+                order.put("no_of_dabba",num);
                 order.put("time_of_arrival", "14:20:30");
                 db.collection("users").document(sessionManagement.getUserDocumentId()).collection("MyOrders")
                         .add(order).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -196,7 +207,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
 
     }
-    private void addSubcription(int meal, final long c)
+    private void addSubcription(int meal, final long c, final int num)
     {
         String a="Veg";
         if(meal==0)
@@ -212,12 +223,13 @@ public class CheckoutActivity extends AppCompatActivity {
         subcription.put("skip",0);
         subcription.put("status","active");
         subcription.put("type",a);
+        subcription.put("no_of_dabba",num);
         db.collection("users").document(sessionManagement.getUserDocumentId()).collection("Subscriptions")
         .add(subcription).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 String b=documentReference.getId();
-                addorder(b);
+                addorder(b,num);
                 walletTransaction(c,b);
                 Toast.makeText(CheckoutActivity.this, "Subcription Added", Toast.LENGTH_SHORT).show();
             }

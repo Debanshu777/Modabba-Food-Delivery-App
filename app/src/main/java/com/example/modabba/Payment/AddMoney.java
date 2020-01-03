@@ -156,8 +156,10 @@ public class AddMoney extends AppCompatActivity implements PaymentResultWithData
     }
     private void walletTransaction(long added,String id)
     {
+        String currentDate = new SimpleDateFormat("dd MMM, yyyy", Locale.getDefault()).format(new Date());
         String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
         Map<String,Object> wal=new HashMap<>();
+        wal.put("date_Of_transaction",currentDate);
         wal.put("wal_transaction_razor",id);
         wal.put("subscription id","");
         wal.put("time_Of_transaction",currentTime);

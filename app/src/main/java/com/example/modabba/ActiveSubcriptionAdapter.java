@@ -40,6 +40,8 @@ public class ActiveSubcriptionAdapter extends RecyclerView.Adapter<ActiveSubcrip
         holder.end_date.setText(activeSubcription.getEnd_date());
 
 
+
+
     }
 
     @Override

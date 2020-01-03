@@ -147,16 +147,14 @@
             android:layout_toRightOf="@id/ml"
             android:text="Available Balance"
             android:fontFamily="@font/open_sans_light"
-            android:textSize="16dp"
-            android:textColor="@color/black"
+            android:textSize="15dp"
             android:layout_marginLeft="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_below="@id/bn"
             android:fontFamily="@font/open_sans_light"
-            android:textSize="14dp"
-            android:textColor="@color/black"
+            android:textSize="13dp"
             android:layout_marginLeft="16dp"
             android:id="@+id/bvb"
             android:textStyle="bold"
@@ -198,8 +196,7 @@
             android:layout_toRightOf="@id/nm"
             android:text="Delivery To"
             android:fontFamily="@font/open_sans_light"
-            android:textSize="16sp"
-            android:textColor="@color/black"
+            android:textSize="15sp"
             android:layout_marginLeft="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -212,15 +209,16 @@
             android:textStyle="bold"
             android:maxLines="1"
             android:layout_toLeftOf="@id/checkout_update"
-            android:textSize="14dp"
+            android:textSize="13dp"
             android:fontFamily="@font/open_sans_light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/checkout_update"
             android:layout_width="70dp"
+            android:textColor="@color/colorPrimary"
             android:text="Default"
-            android:textSize="12dp"
+            android:textSize="10dp"
             android:layout_alignParentEnd="true"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_height="40dp"/>
@@ -245,10 +243,9 @@
         <TextView
             android:id="@+id/mm"
             android:text="Select Start Date"
-            android:textColor="@color/black"
             android:layout_marginLeft="16dp"
             android:layout_toRightOf="@id/jkl"
-            android:textSize="16dp"
+            android:textSize="15dp"
             android:fontFamily="@font/open_sans_light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -258,7 +255,7 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:fontFamily="@font/open_sans_light"
-            android:textSize="14dp"
+            android:textSize="13dp"
             android:layout_below="@id/mm"
             android:layout_toRightOf="@id/jkl"
             android:layout_width="wrap_content"
@@ -267,7 +264,8 @@
             android:id="@+id/select_Date"
             android:layout_width="70dp"
             android:text="select"
-            android:textSize="12dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="10dp"
             android:layout_alignParentEnd="true"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_height="40dp"/>
@@ -294,10 +292,9 @@
         <TextView
             android:id="@+id/numdabba"
             android:text="Number of Dabbas"
-            android:textColor="@color/black"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:textSize="16sp"
+            android:layout_marginTop="3dp"
+            android:textSize="15sp"
             android:fontFamily="@font/open_sans_light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -308,47 +305,13 @@
                 android:layout_width="120dp"
                 app:backGroundColor="@color/white"
                 app:textSize="8sp"
-                app:initialNumber="10"
-                app:finalNumber="20"
+                app:initialNumber="1"
+                app:finalNumber="5"
                 app:textColor="@color/black"
-                android:layout_marginTop="18dp"
                 android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_alignParentEnd="true"
                 app:backgroundDrawable="@drawable/btn_background"/>
-            <!--<Button
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:backgroundTint="@color/white"
-                android:text="-"
-                android:textColor="@color/black"
-                android:textSize="30sp"
-                android:gravity="center">
-            </Button>
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginBottom="15dp"
-                android:padding="5dp"
-                android:text="3"
-                android:textSize="30sp"
-                android:gravity="center">
-            </TextView>
-
-
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:backgroundTint="@color/white"
-                android:text="+"
-                android:textColor="@color/black"
-                android:textSize="30sp"
-                android:gravity="center">
-            </Button>-->
-
-
-
 
     </RelativeLayout>
    <RelativeLayout
