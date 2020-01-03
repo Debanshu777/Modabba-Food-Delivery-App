@@ -40,6 +40,7 @@ public class ActiveSubcriptionAdapter extends RecyclerView.Adapter<ActiveSubcrip
         holder.plan_name.setText(activeSubcription.getPlan_name());
         holder.start_date.setText(activeSubcription.getStart_date());
         holder.end_date.setText(activeSubcription.getEnd_date());
+        holder.noofdabba.setText(activeSubcription.getDabba());
         //counter for skip meal
         holder.skip_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +50,8 @@ public class ActiveSubcriptionAdapter extends RecyclerView.Adapter<ActiveSubcrip
                 holder.btn1.setOnClickListener(new ElegantNumberButton.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String skipnum = holder.btn1.getNumber();
+                        int skipnum = Integer.parseInt(holder.btn1.getNumber());
+                        //if()
                     }
                 });
             }
@@ -63,7 +65,7 @@ public class ActiveSubcriptionAdapter extends RecyclerView.Adapter<ActiveSubcrip
                 holder.btn2.setOnClickListener(new ElegantNumberButton.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String pausenum = holder.btn2.getNumber();
+                        int pausenum = Integer.parseInt(holder.btn2.getNumber());
                     }
                 });
             }
@@ -81,7 +83,7 @@ public class ActiveSubcriptionAdapter extends RecyclerView.Adapter<ActiveSubcrip
 
     public static class RecycleViewHolder extends RecyclerView.ViewHolder
     {
-        TextView subid,plan_name,start_date,end_date;
+        TextView subid,plan_name,start_date,end_date,noofdabba;
         Button pause_btn,skip_btn;
         ElegantNumberButton btn1,btn2;
 
@@ -93,6 +95,7 @@ public class ActiveSubcriptionAdapter extends RecyclerView.Adapter<ActiveSubcrip
             end_date=itemView.findViewById(R.id.end);
             pause_btn=itemView.findViewById(R.id.pause);
             skip_btn=itemView.findViewById(R.id.skip);
+            noofdabba=itemView.findViewById(R.id.noofdabba);
             btn1=itemView.findViewById(R.id.number_btn1);
             btn2=itemView.findViewById(R.id.number_btn2);
         }

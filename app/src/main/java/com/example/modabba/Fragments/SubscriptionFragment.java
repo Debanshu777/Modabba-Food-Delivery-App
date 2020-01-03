@@ -67,6 +67,7 @@ public class SubscriptionFragment extends Fragment {
         subcriptionList = new ArrayList<>();
         final String[] days = {""};
         final String[] date_Of_activation={""};
+        final String[] no_of_dabba={""};
         ref.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -75,7 +76,8 @@ public class SubscriptionFragment extends Fragment {
                     Map<String,Object>sublist=documentSnapshot.getData();
                     days[0] = String.valueOf(sublist.get("days"));
                     date_Of_activation[0]= String.valueOf(sublist.get("date_Of_activation"));
-                    subcriptionList.add(new ActiveSubcription(documentSnapshot.getId(), days[0] + "Day",date_Of_activation[0], "27:01:2020"));
+                    no_of_dabba[0]=String.valueOf(sublist.get("no_of_dabba"));
+                    subcriptionList.add(new ActiveSubcription(documentSnapshot.getId(), days[0] + "Day",date_Of_activation[0], "27:01:2020",no_of_dabba[0]));
                     ActiveSubcriptionAdapter subcriptionAdapter = new ActiveSubcriptionAdapter(getContext(), subcriptionList);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView.setAdapter(subcriptionAdapter);
