@@ -24,6 +24,7 @@ import com.example.modabba.MapActivity;
 import com.example.modabba.Payment.PaymentActivity;
 import com.example.modabba.R;
 import com.example.modabba.SessionManagement.SessionManagement;
+import com.example.modabba.TrialOrder;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
@@ -36,7 +37,7 @@ public class ProfileFragment extends Fragment {
     private Button logout;
     private TextView currentUser, currentEmail, phone, edit;
 
-    private LinearLayout manage_address, payment, active_subscription, order_history, shareapp, leavefeedback,contactus;
+    private LinearLayout manage_address, payment, order_trial, shareapp, leavefeedback,contactus;
 
     public ProfileFragment(Context context){
         this.context = context;
@@ -66,6 +67,13 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(context, MapActivity.class).putExtra("callingActivity",002));
+            }
+        });
+
+        order_trial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(context, TrialOrder.class));
             }
         });
 
@@ -143,7 +151,7 @@ public class ProfileFragment extends Fragment {
         currentEmail = view.findViewById(R.id.email);
         phone = view.findViewById(R.id.number);
         edit = view.findViewById(R.id.editProfile);
-
+        order_trial=view.findViewById(R.id.order_trial);
         manage_address = view.findViewById(R.id.manage_address);
         contactus=view.findViewById(R.id.contact_us);
         payment = view.findViewById(R.id.payment);

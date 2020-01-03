@@ -2,43 +2,44 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.modabba">
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        tools:replace="android:icon"
         android:name=".RemoteConfig.App"
         android:allowBackup="true"
         android:icon="@drawable/app_logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
+        <activity android:name=".TrialOrder"></activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".VerificationActivity"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".MainActivity" >
-        </activity>
-        <activity android:name=".SignUpActivity"/>
-        <activity android:name=".History"/>
-        <activity android:name=".FeedbackActivity"></activity>
-        <activity android:name=".Payment.PaymentActivity"/>
-        <activity android:name=".Payment.AddMoney"/>
-        <activity android:name=".MapActivity"/>
-        <activity android:name=".CheckoutActivity"/>
-        <activity android:name=".OrderSuccess"/>
-        <activity android:name=".DetailActivity"/>
-        <activity android:name=".ActiveSubActivity.ActiveSubscriptionActivity"/>
+        <activity
+            android:name=".VerificationActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".History" />
+        <activity android:name=".FeedbackActivity" />
+        <activity android:name=".Payment.PaymentActivity" />
+        <activity android:name=".Payment.AddMoney" />
+        <activity android:name=".MapActivity" />
+        <activity android:name=".CheckoutActivity" />
+        <activity android:name=".OrderSuccess" />
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".ActiveSubActivity.ActiveSubscriptionActivity" />
 
         <meta-data
             android:name="com.razorpay.ApiKey"
