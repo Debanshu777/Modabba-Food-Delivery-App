@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.modabba">
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -8,6 +9,7 @@
 
 
     <application
+        tools:replace="android:icon"
         android:name=".RemoteConfig.App"
         android:allowBackup="true"
         android:icon="@drawable/app_logo"
@@ -15,8 +17,7 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:replace="android:icon">
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".SplashActivity">
             <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -34,7 +35,6 @@
         <activity android:name=".Payment.PaymentActivity"/>
         <activity android:name=".Payment.AddMoney"/>
         <activity android:name=".MapActivity"/>
-        <activity android:name=".History"/>
         <activity android:name=".CheckoutActivity"/>
         <activity android:name=".OrderSuccess"/>
         <activity android:name=".DetailActivity"/>
@@ -47,6 +47,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <service android:name=".NotificationService" />
     </application>
 
 </manifest>

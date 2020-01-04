@@ -73,12 +73,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:fontFamily="@font/open_sans"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
                     android:layout_marginTop="15dp"
-                    android:text="Confused!!! which subcription suited you?">
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="Confused!!! which subcription suits you?"
+                    android:textSize="15sp"
+                    android:textStyle="bold">
 
                 </TextView>
 
@@ -209,13 +209,13 @@
                                     </LinearLayout>
 
                                     <Button
+                                        android:id="@+id/veg"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
                                         android:layout_marginTop="20dp"
                                         android:backgroundTint="@color/colorPrimary"
-                                        android:text="Subcribe"
-                                        android:id="@+id/veg"/>
+                                        android:text="Subscribe" />
 
                                 </LinearLayout>
 
@@ -338,13 +338,13 @@
                                     </LinearLayout>
 
                                     <Button
+                                        android:id="@+id/nonveg"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
                                         android:layout_marginTop="20dp"
                                         android:backgroundTint="@color/colorPrimary"
-                                        android:text="Subcribe"
-                                        android:id="@+id/nonveg"/>
+                                        android:text="Subscribe" />
 
                                 </LinearLayout>
 

@@ -24,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.modabba.CheckoutActivity;
+import com.example.modabba.NotificationService;
 import com.example.modabba.R;
 import com.example.modabba.SessionManagement.SessionManagement;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -195,6 +196,8 @@ public class AddMoney extends AppCompatActivity implements PaymentResultWithData
                        docref.update("wallet",credits+amount).addOnSuccessListener(new OnSuccessListener<Void>() {
                            @Override
                            public void onSuccess(Void aVoid) {
+                               NotificationService notificationService = new NotificationService();
+                               notificationService.showNotification(getApplicationContext(),"Wallet","Money Has Been Added");
                                Toast.makeText(AddMoney.this, "Added to Modabba Cash", Toast.LENGTH_SHORT).show();
                            }
                        }).addOnFailureListener(new OnFailureListener() {

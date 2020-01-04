@@ -1,6 +1,7 @@
 package com.example.modabba.Fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.modabba.NotificationService;
 import com.example.modabba.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -34,7 +36,7 @@ public class TVegDashboard extends Fragment {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
 
                         StringBuilder builder = new StringBuilder();
-
+                        NotificationService notificationService = new NotificationService();
                         Map<String,String> data = (Map<String, String>) documentSnapshot.get("lunch");
 
                         Iterator<String> itr  = data.keySet().iterator();
@@ -53,6 +55,9 @@ public class TVegDashboard extends Fragment {
                                 builder.append("/");
 
                         }
+                        Log.d("builder message",builder.toString());
+                        if(builder.toString().length() > 0 )
+                            notificationService.showNotification(getActivity(),"The Menu Has Been Updated","Tap to View today's menu");
                         dashboard_lunch.setText(builder+" ");
                         System.out.println(builder);
                     }

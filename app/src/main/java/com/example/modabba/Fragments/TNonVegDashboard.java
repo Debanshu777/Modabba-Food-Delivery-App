@@ -1,6 +1,8 @@
 package com.example.modabba.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Iterator;
 import java.util.Map;
+import  com.example.modabba.NotificationService;
 
 public class TNonVegDashboard extends Fragment {
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
@@ -32,9 +35,8 @@ public class TNonVegDashboard extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-
+                        NotificationService notificationService = new NotificationService();
                         StringBuilder builder = new StringBuilder();
-
                         Map<String,String> data = (Map<String, String>) documentSnapshot.get("dinner");
 
                         Iterator<String> itr  = data.keySet().iterator();
@@ -53,6 +55,9 @@ public class TNonVegDashboard extends Fragment {
                                 builder.append("/");
 
                         }
+                        Log.d("builder message",builder.toString());
+                        if(builder.toString().length() > 0 )
+                        notificationService.showNotification(getActivity(),"The Menu Has Been Updated","Tap to View today's menu");
                         dashboard_dinner.setText(builder);
                         System.out.println(builder);
                     }

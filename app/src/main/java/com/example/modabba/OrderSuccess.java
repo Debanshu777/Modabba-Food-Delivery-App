@@ -19,6 +19,8 @@ public class OrderSuccess extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.orer_success_layout);
+        NotificationService notificationService = new NotificationService();
+        notificationService.showNotification(getApplicationContext(),"Subscription","New Subscription has been added");
 
         text = findViewById(R.id.my_orders);
 
