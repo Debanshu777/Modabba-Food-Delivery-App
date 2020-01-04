@@ -112,8 +112,7 @@
                 android:columnCount="2"
                 android:rowCount="1"
                 android:alignmentMode="alignMargins"
-                android:columnOrderPreserved="false"
-                android:padding="10dp">
+                android:columnOrderPreserved="false">
 
                 <!--row 1 column 1-->
 
@@ -124,7 +123,7 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
@@ -133,9 +132,9 @@
                             android:id="@+id/cardView_account_details"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="5dp"
                             android:layout_marginTop="70dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginRight="5dp"
                             app:cardCornerRadius="5dp"
                             app:cardElevation="5dp"
                             app:cardUseCompatPadding="true">
@@ -153,8 +152,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="20dp"
-                                    android:orientation="vertical"
-                                    android:padding="10dp">
+                                    android:orientation="vertical">
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -263,9 +261,9 @@
                             android:id="@+id/cardView1_account_details"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="5dp"
                             android:layout_marginTop="70dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginRight="5dp"
                             app:cardCornerRadius="5dp"
                             app:cardElevation="5dp"
                             app:cardUseCompatPadding="true">
@@ -283,8 +281,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="20dp"
-                                    android:orientation="vertical"
-                                    android:padding="10dp">
+                                    android:orientation="vertical">
 
                                     <TextView
                                         android:layout_width="match_parent"
