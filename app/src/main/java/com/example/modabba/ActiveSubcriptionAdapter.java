@@ -83,16 +83,16 @@ public class ActiveSubcriptionAdapter extends RecyclerView.Adapter<ActiveSubcrip
             public void onClick(View v) {
                 final DocumentReference documentReference=db.collection("users").document(sessionManagement.getUserDocumentId()).collection("Subscription")
                         .document(activeSubcription.getSubcriptionid());
-                documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                documentReference.get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        //int skip = (int) documentSnapshot.get("skip");
+                        int skip=0;//(int) documentSnapshot.get("skip");
+                        int flag=0;
                         //int ext=(int)documentSnapshot.get("extented");
-                        if((int) documentSnapshot.get("skip")==0 ) {//extention conditon has to be added
-                            Map<String, Object> subcription = new HashMap<>();
-                            subcription.put("skip", 1);
-                            //subcription.put("extented", ext + 1);
-                            documentReference.update(subcription);
+                        if(skip==0 ) {
+                            flag=1;
+                            Toast.makeText(context, "done"+flag+activeSubcription.getSubcriptionid(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

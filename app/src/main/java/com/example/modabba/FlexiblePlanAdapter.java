@@ -38,6 +38,8 @@ public class FlexiblePlanAdapter extends RecyclerView.Adapter<FlexiblePlanAdapte
     public int getItemCount() {
         return flexibleDataList.size();
     }
+
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView name,descp;
         ImageView image;

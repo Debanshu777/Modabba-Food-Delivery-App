@@ -41,6 +41,7 @@ public class DetailActivity extends AppCompatActivity {
         nonveg=findViewById(R.id.nonveg);
         flexiblePlanList = new ArrayList<>();
         choosePlanList =new ArrayList<>();
+
         flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "skip meal", "Sudden chanf=ge of schedule?Skip upcoming meal"));
         flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "pause plan", "Going out of town? Pause your plan for those days"));
         flexiblePlanList.add(new FexiblePlanData(R.drawable.like, "Cancel plan", "Never feel bound.Cancel plan anytime if you're unhappy"));
