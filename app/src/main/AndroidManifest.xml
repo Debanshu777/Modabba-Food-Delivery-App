@@ -31,7 +31,7 @@
         <activity android:name=".MainActivity" >
         </activity>
         <activity android:name=".SignUpActivity"/>
-        <activity android:name=".FeedbackActivity"></activity>
+        <activity android:name=".FeedbackActivity"/>
         <activity android:name=".Payment.PaymentActivity"/>
         <activity android:name=".Payment.AddMoney"/>
         <activity android:name=".MapActivity"/>
