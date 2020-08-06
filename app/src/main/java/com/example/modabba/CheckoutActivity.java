@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -70,8 +71,8 @@ public class CheckoutActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
         initViews();
-        no_days=Integer.parseInt(getIntent().getStringExtra("days"));
-        final int per_day=Integer.parseInt(getIntent().getStringExtra("prices"));
+        no_days=Integer.parseInt(Objects.requireNonNull(getIntent().getStringExtra("days")));
+        final int per_day=Integer.parseInt(Objects.requireNonNull(getIntent().getStringExtra("prices")));
         final int meal=getIntent().getIntExtra("meal",0);
         planPrice.setText("₹"+Integer.toString(no_days*per_day));
         planDays.setText(no_days+"Days");

@@ -37,6 +37,7 @@
         <activity android:name=".MapActivity"/>
         <activity android:name=".CheckoutActivity"/>
         <activity android:name=".TrialOrder"/>
+        <activity android:name=".History"/>
         <activity android:name=".OrderSuccess"/>
         <activity android:name=".DetailActivity"/>
         <activity android:name=".ActiveSubActivity.ActiveSubscriptionActivity"/>

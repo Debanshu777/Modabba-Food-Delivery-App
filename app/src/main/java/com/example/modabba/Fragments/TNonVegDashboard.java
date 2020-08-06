@@ -20,6 +20,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
+
 import  com.example.modabba.NotificationService;
 
 public class TNonVegDashboard extends Fragment {
@@ -39,6 +41,7 @@ public class TNonVegDashboard extends Fragment {
                         StringBuilder builder = new StringBuilder();
                         Map<String,String> data = (Map<String, String>) documentSnapshot.get("dinner");
 
+                        assert data != null;
                         Iterator<String> itr  = data.keySet().iterator();
 
                         while (itr.hasNext()){
@@ -48,8 +51,8 @@ public class TNonVegDashboard extends Fragment {
 
                             String cap  = key.substring(0, 1).toUpperCase() + key.substring(1);
 
-                            builder.append(" "+value);
-                            builder.append(" "+cap+" ");
+                            builder.append(" ").append(value);
+                            builder.append(" ").append(cap).append(" ");
 
                             if((itr.hasNext()))
                                 builder.append("/");
@@ -57,7 +60,7 @@ public class TNonVegDashboard extends Fragment {
                         }
                         Log.d("builder message",builder.toString());
                         if(builder.toString().length() > 0 )
-                        notificationService.showNotification(getActivity(),"The Menu Has Been Updated","Tap to View today's menu");
+                        notificationService.showNotification(Objects.requireNonNull(getActivity()),"The Menu Has Been Updated","Tap to View today's menu");
                         dashboard_dinner.setText(builder);
                         System.out.println(builder);
                     }

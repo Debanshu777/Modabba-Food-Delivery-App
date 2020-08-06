@@ -11,6 +11,8 @@ import com.example.modabba.Utils.PassingData;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.Objects;
+
 public class SignUpActivity extends AppCompatActivity {
     private TextInputEditText username,useremail,userpass,userconfirm,useraltphone;
     private MaterialButton next;
@@ -30,10 +32,10 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(username.getText().toString().isEmpty()){
+                if(Objects.requireNonNull(username.getText()).toString().isEmpty()){
                     username.setError("Username cannot be empty");
                 }
-                else if(userpass.getText().toString().isEmpty() || !(userpass.getText().toString().equals(userconfirm.getText().toString()))){
+                else if(Objects.requireNonNull(userpass.getText()).toString().isEmpty() || !(userpass.getText().toString().equals(userconfirm.getText().toString()))){
                     userpass.setError("Password does not match");
                     userconfirm.setError("Password does not match");
                 }
@@ -41,8 +43,8 @@ public class SignUpActivity extends AppCompatActivity {
                 {
 
                     data.setName(username.getText().toString());
-                    data.setEmail(useremail.getText().toString());
-                    data.setAltphone(useraltphone.getText().toString());
+                    data.setEmail(Objects.requireNonNull(useremail.getText()).toString());
+                    data.setAltphone(Objects.requireNonNull(useraltphone.getText()).toString());
                     data.setPassword(userconfirm.getText().toString());
 
 

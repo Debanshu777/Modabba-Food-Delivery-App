@@ -1,5 +1,6 @@
 package com.example.modabba.Payment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.text.DecimalFormat;
+import java.util.Objects;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -58,6 +60,7 @@ public class PaymentActivity extends AppCompatActivity {
 
         DocumentReference docRef = db.collection("user").document(userDocId);
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onEvent(@Nullable DocumentSnapshot snapshot,
                                 @Nullable FirebaseFirestoreException e) {
@@ -67,8 +70,8 @@ public class PaymentActivity extends AppCompatActivity {
                 }
 
                 if (snapshot != null && snapshot.exists()) {
-                    if(Long.parseLong(snapshot.get("wallet").toString())>0)
-                    balance.setText("₹ " +String.valueOf(decimalFormat.format(Double.parseDouble(snapshot.get("wallet").toString())*100/100.0)));
+                    if(Long.parseLong(Objects.requireNonNull(snapshot.get("wallet")).toString())>0)
+                    balance.setText("₹ " + decimalFormat.format(Double.parseDouble(Objects.requireNonNull(snapshot.get("wallet")).toString()) * 100 / 100.0));
                     else
                         balance.setText("₹ 0");
                 } else {

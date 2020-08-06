@@ -21,6 +21,8 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Objects;
+
 public class NotificationService extends FirebaseMessagingService {
     int x=0;
 
@@ -28,7 +30,7 @@ public class NotificationService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        showNotification(this,remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody());
+        showNotification(this, Objects.requireNonNull(remoteMessage.getNotification()).getTitle(),remoteMessage.getNotification().getBody());
     }
     public void createNotifChannels(){
         FirebaseMessaging.getInstance().subscribeToTopic("menu")

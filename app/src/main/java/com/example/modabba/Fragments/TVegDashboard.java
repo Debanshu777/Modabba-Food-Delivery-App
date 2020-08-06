@@ -1,5 +1,6 @@
 package com.example.modabba.Fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 
 public class TVegDashboard extends Fragment {
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
@@ -32,6 +34,7 @@ public class TVegDashboard extends Fragment {
         DocumentReference lunchRef = db.collection("menu").document("lunch");
         lunchRef.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
 
@@ -39,6 +42,7 @@ public class TVegDashboard extends Fragment {
                         NotificationService notificationService = new NotificationService();
                         Map<String,String> data = (Map<String, String>) documentSnapshot.get("lunch");
 
+                        assert data != null;
                         Iterator<String> itr  = data.keySet().iterator();
 
                         while (itr.hasNext()){
@@ -48,8 +52,8 @@ public class TVegDashboard extends Fragment {
 
                             String cap  = key.substring(0, 1).toUpperCase() + key.substring(1);
 
-                            builder.append(" "+value);
-                            builder.append(" "+cap+" ");
+                            builder.append(" ").append(value);
+                            builder.append(" ").append(cap).append(" ");
 
                             if((itr.hasNext()))
                                 builder.append("/");
@@ -57,7 +61,7 @@ public class TVegDashboard extends Fragment {
                         }
                         Log.d("builder message",builder.toString());
                         if(builder.toString().length() > 0 )
-                            notificationService.showNotification(getActivity(),"The Menu Has Been Updated","Tap to View today's menu");
+                            notificationService.showNotification(Objects.requireNonNull(getActivity()),"The Menu Has Been Updated","Tap to View today's menu");
                         dashboard_lunch.setText(builder+" ");
                         System.out.println(builder);
                     }

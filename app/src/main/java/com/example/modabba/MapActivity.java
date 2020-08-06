@@ -1,9 +1,11 @@
 package com.example.modabba;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.Animatable2;
 import android.graphics.drawable.AnimatedVectorDrawable;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.example.modabba.SessionManagement.SessionManagement;
 import com.example.modabba.Utils.PassingData;
@@ -56,6 +59,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -66,7 +70,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private Location mLastKnownLocation;
     private LocationCallback locationCallback;
     private View mapView;
-    private static final String TAG  = MapActivity.class.getSimpleName();
+    private static final String TAG = MapActivity.class.getSimpleName();
     private final float DEFAULT_ZOOM = 19;
 
     private FirebaseAuth firebaseAuth;
@@ -74,9 +78,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private FirebaseFirestore db;
     private ImageView moveMarker;
     private int callingActivity;
-    private TextInputEditText location,landmark;
+    private TextInputEditText location, landmark;
     private ChipGroup chipGroup;
-    private  String sessionId;
+    private String sessionId;
     private List<Address> addressList;
     private LatLng finalLatLng;
     private MaterialButton save;
@@ -91,11 +95,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_map);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        assert mapFragment != null;
         mapFragment.getMapAsync(this);
         mapView = mapFragment.getView();
 
-        callingActivity = getIntent().getIntExtra("callingActivity",0000);
-        sessionId=getIntent().getStringExtra("Sessionid");
+        callingActivity = getIntent().getIntExtra("callingActivity", 0000);
+        sessionId = getIntent().getStringExtra("Sessionid");
 
         init();
 
@@ -117,13 +122,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onCheckedChanged(ChipGroup chipGroup, int i) {
 
-                switch (i){
+                switch (i) {
 
-                    case R.id.home : addressType = "Home";
+                    case R.id.home:
+                        addressType = "Home";
                         break;
-                    case R.id.work : addressType = "Work";
+                    case R.id.work:
+                        addressType = "Work";
                         break;
-                    case R.id.other : addressType = "Other";
+                    case R.id.other:
+                        addressType = "Other";
                         break;
 
                 }
@@ -136,7 +144,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
 
-                switch (callingActivity){
+                switch (callingActivity) {
 
                     case ActivityConstants.SignUpActivity:
                         signUpUser();
@@ -150,40 +158,41 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         });
 
     }
-    public void updateAddress()
-        {
-            String city = addressList.get(0).getLocality();
-            Map<String,Object> details  = new HashMap<>();
-            details.put("city",addressList.get(0).getLocality());
-            details.put("pincode",addressList.get(0).getPostalCode());
-            details.put("geopoint", new GeoPoint(finalLatLng.latitude,finalLatLng.longitude));
-            details.put("completeAddress",addressList.get(0).getAddressLine(0));
-            details.put("landmark",landmark.getText().toString());
+
+    public void updateAddress() {
+        String city = addressList.get(0).getLocality();
+        Map<String, Object> details = new HashMap<>();
+        details.put("city", addressList.get(0).getLocality());
+        details.put("pincode", addressList.get(0).getPostalCode());
+        details.put("geopoint", new GeoPoint(finalLatLng.latitude, finalLatLng.longitude));
+        details.put("completeAddress", addressList.get(0).getAddressLine(0));
+        details.put("landmark", Objects.requireNonNull(landmark.getText()).toString());
 
 
-            Map<String,Map<String,Object>> userAddress = new HashMap<>();
-            userAddress.put(addressType,details);
+        Map<String, Map<String, Object>> userAddress = new HashMap<>();
+        userAddress.put(addressType, details);
 
-            DocumentReference docref=db.collection("users").document(sessionId);
-            docref.update("address",userAddress).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Toast.makeText(MapActivity.this, "Updated", Toast.LENGTH_SHORT).show();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(MapActivity.this, "not updated", Toast.LENGTH_SHORT).show();
-                }
-            });
-            if(city.equals("Bhubaneswar")) {
-                docref.update("servicable", "Servicable");
-            }else {
-                docref.update("servicable", "Not Servicable");
+        DocumentReference docref = db.collection("users").document(sessionId);
+        docref.update("address", userAddress).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(MapActivity.this, "Updated", Toast.LENGTH_SHORT).show();
             }
-
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(MapActivity.this, "not updated", Toast.LENGTH_SHORT).show();
+            }
+        });
+        if (city.equals("Bhubaneswar")) {
+            docref.update("servicable", "Servicable");
+        } else {
+            docref.update("servicable", "Not Servicable");
         }
-    public void signUpUser(){
+
+    }
+
+    public void signUpUser() {
 
         String city = addressList.get(0).getLocality();
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
@@ -191,16 +200,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
         //User Address
-        Map<String,Object> details  = new HashMap<>();
-        details.put("city",addressList.get(0).getLocality());
-        details.put("pincode",addressList.get(0).getPostalCode());
-        details.put("geopoint", new GeoPoint(finalLatLng.latitude,finalLatLng.longitude));
-        details.put("completeAddress",addressList.get(0).getAddressLine(0));
-        details.put("landmark",landmark.getText().toString());
+        Map<String, Object> details = new HashMap<>();
+        details.put("city", addressList.get(0).getLocality());
+        details.put("pincode", addressList.get(0).getPostalCode());
+        details.put("geopoint", new GeoPoint(finalLatLng.latitude, finalLatLng.longitude));
+        details.put("completeAddress", addressList.get(0).getAddressLine(0));
+        details.put("landmark", Objects.requireNonNull(landmark.getText()).toString());
 
 
-        Map<String,Map<String,Object>> userAddress = new HashMap<>();
-        userAddress.put(addressType,details);
+        Map<String, Map<String, Object>> userAddress = new HashMap<>();
+        userAddress.put(addressType, details);
 
         data = getIntent().getParcelableExtra("object");
 
@@ -209,20 +218,20 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         progressDialog.show();
 
         Map<String, Object> user = new HashMap<>();
-        user.put("username",data.getName());
-        user.put("email",data.getEmail());
-        user.put("password",data.getPassword());
-        user.put("primaryNumber",data.getPhone());
-        user.put("registration_Date",currentDate+" "+currentTime);
-        user.put("alternateNumber",data.getAltphone());
-        user.put("address",userAddress);
-        user.put("wallet",00);
+        user.put("username", data.getName());
+        user.put("email", data.getEmail());
+        user.put("password", data.getPassword());
+        user.put("primaryNumber", data.getPhone());
+        user.put("registration_Date", currentDate + " " + currentTime);
+        user.put("alternateNumber", data.getAltphone());
+        user.put("address", userAddress);
+        user.put("wallet", 00);
 
 
         //check for serviceability
-        if(city.equals("Bhubaneswar")) {
+        if (city.equals("Bhubaneswar")) {
             user.put("servicable", "Servicable");
-        }else {
+        } else {
             user.put("servicable", "Not Servicable");
         }
 
@@ -235,8 +244,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         progressDialog.dismiss();
 
 
-                        sessionManagement.createLoginSession(data.getPhone(),data.getEmail(),data.getName(),documentReference.getId());
-                        startActivity(new Intent(MapActivity.this,MainActivity.class)
+                        sessionManagement.createLoginSession(data.getPhone(), data.getEmail(), data.getName(), documentReference.getId());
+                        startActivity(new Intent(MapActivity.this, MainActivity.class)
                                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
 
 
@@ -246,11 +255,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     @Override
                     public void onFailure(@NonNull Exception e) {
 
-                        Toast.makeText(getApplicationContext(),"Please try after some time",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Please try after some time", Toast.LENGTH_SHORT).show();
                     }
                 });
 
     }
+
     private void init() {
 
         db = FirebaseFirestore.getInstance();
@@ -262,8 +272,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         landmark = findViewById(R.id.landmark);
         chipGroup = findViewById(R.id.chipGroup);
         save = findViewById(R.id.save);
-        iv_lines=findViewById(R.id.iv_line);
-        avd= (AnimatedVectorDrawable) iv_lines.getBackground();
+        iv_lines = findViewById(R.id.iv_line);
+        avd = (AnimatedVectorDrawable) iv_lines.getBackground();
         progressDialog = new ProgressDialog(this);
 
     }
@@ -272,6 +282,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
 
         mGoogleMap = googleMap;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         mGoogleMap.setMyLocationEnabled(true);
         mGoogleMap.getUiSettings().setZoomGesturesEnabled(true);
         mGoogleMap.getUiSettings().setMyLocationButtonEnabled(true);

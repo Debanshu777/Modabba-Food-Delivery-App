@@ -65,10 +65,9 @@ public class DashboardFragment extends Fragment {
     private SessionManagement sessionManagement;
     private TextView dashBoardCredit;
     private String[] descriptionData = {"Preparing", "On Way", "Delivered"};
-    private StateProgressBar stateProgressBar;
     private TextView dashboardUsername, dashboardLunch, dashBoardDinner, loc;
-    private ViewPager viewPager, pager, horiscroll;
-    private PagerAdapter pageadapter;
+    private ViewPager viewPager;
+    private ViewPager pager;
     private TabLayout tabLayout;
     private ImageButton getmap,dash_wallet;
     private List<Address> addressList;
@@ -98,7 +97,7 @@ public class DashboardFragment extends Fragment {
         models.add(new Model(R.drawable.photo3, "COMBO", "Business cards are cards bearing business information about a company or individual.", 0,1));
         models.add(new Model(R.drawable.photo3, "COMBO", "Business cards are cards bearing business information about a company or individual.", 1,1));
         adapter = new Adapter(models, this, getContext());
-        horiscroll = view.findViewById(R.id.horiscroll);
+        ViewPager horiscroll = view.findViewById(R.id.horiscroll);
         horiscroll.setAdapter(adapter);
         horiscroll.setPadding(130, 0, 130, 0);
 
@@ -146,7 +145,7 @@ public class DashboardFragment extends Fragment {
         List<Fragment> list = new ArrayList<>();
         list.add(new TVegDashboard());
         list.add(new TNonVegDashboard());
-        pageadapter = new SlidePagerAdapter(getChildFragmentManager(), list);
+        PagerAdapter pageadapter = new SlidePagerAdapter(getChildFragmentManager(), list);
         pager.setAdapter(pageadapter);
         setLoccredits();
         getmap.setOnClickListener(new View.OnClickListener() {
@@ -178,10 +177,6 @@ public class DashboardFragment extends Fragment {
                     Map<String,Object>sublist=documentSnapshot.getData();
                     date[0]=String.valueOf(sublist.get("date"));
                     String currentDate = new SimpleDateFormat("dd MMM, yyyy", Locale.getDefault()).format(new Date());
-                    if(date[0].equalsIgnoreCase(currentDate))
-                    {
-
-                    }
                 }
             }
         });
@@ -198,6 +193,7 @@ public class DashboardFragment extends Fragment {
                         long credit = (long) documentSnapshot.get("wallet");
                         dashBoardCredit.setText(String.valueOf(credit));
 
+                        assert address != null;
                         for (Map.Entry<String, Map<String, Object>> data : address.entrySet()) {
 
 
@@ -225,7 +221,7 @@ public class DashboardFragment extends Fragment {
 
         dash_wallet=view.findViewById(R.id.dash_wallet);
         dashBoardCredit = view.findViewById(R.id.dashboard_credits);
-        stateProgressBar = view.findViewById(R.id.progress_bar);
+        StateProgressBar stateProgressBar = view.findViewById(R.id.progress_bar);
 
         getmap = view.findViewById(R.id.getmap);
         loc = view.findViewById(R.id.loc);
